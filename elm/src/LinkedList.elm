@@ -4,15 +4,15 @@ type LinkedList a = Cons a (LinkedList a) | Nothing
 
 push : LinkedList a -> a -> LinkedList a
 push list value =
-    Cons value (list)
+    Cons value list
 
--- head : LinkedList a -> a
--- head list = 
---   case list of
---     Cons a _ ->
---         a
---     Nothing ->
---         Nothing
+head : LinkedList a -> Maybe a
+head list =
+    case list of
+        Cons a _ ->
+            Just a
+        Nothing ->
+            Maybe.Nothing
 
 
 tail : LinkedList a -> LinkedList a
@@ -24,6 +24,17 @@ tail list =
         Nothing
 
 
+-- last : LinkedList a -> a
+-- last list =
+--     case list of
+--         -- Nothing ->
+--         --     Nothing
+--         Cons a Nothing ->
+--             a
+--         _ ->
+--             last (tail list)
+
+
 length : LinkedList a -> Int
 length list =
   case list of
@@ -31,6 +42,7 @@ length list =
             0
         notEmptyList ->
             1 + length (tail notEmptyList)
+
 
 isEmpty : LinkedList a -> Bool
 isEmpty list =
