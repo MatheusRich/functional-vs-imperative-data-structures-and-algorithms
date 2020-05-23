@@ -24,6 +24,15 @@ tail list =
         Nothing
 
 
+index : LinkedList a -> Int -> Maybe a
+index list idx =
+    case (list, idx) of
+        (l, 0) ->
+            head l
+        (l, i) ->
+            index (tail l) (i-1)
+
+
 last : LinkedList a -> Maybe a
 last list =
     case list of
