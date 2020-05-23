@@ -2,9 +2,14 @@ module LinkedList exposing (..)
 
 type LinkedList a = Cons a (LinkedList a) | Nothing
 
-push : LinkedList a -> a -> LinkedList a
+push : LinkedList a -> Maybe a -> LinkedList a
 push list value =
-    Cons value list
+    case value of
+        Maybe.Nothing ->
+            list
+        Just v ->
+            Cons v list
+
 
 head : LinkedList a -> Maybe a
 head list =
@@ -61,7 +66,19 @@ isEmpty list =
         _ ->
           False
 
+
+concat : LinkedList a -> LinkedList a -> LinkedList a
+concat list1 list2 =
+    case (list1, list2) of
+        (Nothing, l2) ->
+            l2
+        ((Cons a Nothing), l2) ->
+            Cons a l2
+        (l1, l2) ->
+            push (concat (tail l1) l2) (head l1)
+
+
 -- l = (Cons 1 (LinkedList.Nothing))
 -- LinkedList.isEmpty l
--- l2 = LinkedList.push l 2
+-- l2 = LinkedList.push l (Just 2)
 -- LinkedList.tail l2
