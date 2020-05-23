@@ -24,15 +24,15 @@ tail list =
         Nothing
 
 
--- last : LinkedList a -> a
--- last list =
---     case list of
---         -- Nothing ->
---         --     Nothing
---         Cons a Nothing ->
---             a
---         _ ->
---             last (tail list)
+last : LinkedList a -> Maybe a
+last list =
+    case list of
+        Nothing ->
+            Maybe.Nothing
+        Cons a Nothing ->
+            Just a
+        _ ->
+            last (tail list)
 
 
 length : LinkedList a -> Int
