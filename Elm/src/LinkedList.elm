@@ -4,6 +4,13 @@ type LinkedList a = Cons a (LinkedList a) | Nothing
 
 -- CREATE
 
+-- infix right 5 (::) = cons
+
+new : a -> LinkedList a
+new value =
+    (Cons value (Nothing))
+
+
 push : LinkedList a -> Maybe a -> LinkedList a
 push list value =
     case value of
@@ -14,7 +21,17 @@ push list value =
 
 
 -- TRANSFORM
--- map : LinkedList a -> (a -> b) -> LinkedList b
+map : LinkedList a -> (Maybe a -> b) -> LinkedList b
+map list fn =
+    case list of
+        Nothing ->
+            Nothing
+        Cons h Nothing ->
+            new (fn (Just h))
+        Cons listHead listTail ->
+            push (map listTail fn) (Just (fn (Just listHead)))
+
+
 -- filter : LinkedList a -> (a -> Bool) -> LinkedList a
 
 -- DECONSTRUCT
@@ -31,10 +48,10 @@ isEmpty list =
 head : LinkedList a -> Maybe a
 head list =
     case list of
-        Cons a _ ->
-            Just a
         Nothing ->
             Maybe.Nothing
+        Cons a _ ->
+            Just a
 
 
 tail : LinkedList a -> LinkedList a
@@ -97,6 +114,23 @@ append list1 list2 =
 -- sort : LinkedList comparable -> LinkedList comparable
 
 
+-- UTILS
+
+double : (Maybe Int) -> Int
+double n =
+    case n of
+        Maybe.Nothing ->
+            0
+        Just v ->
+            v * 2   
+
+divide : (Maybe Int) -> Float
+divide n =
+    case n of
+        Maybe.Nothing ->
+            0
+        Just v ->
+            toFloat (v) / 2   
 
 -- l = (Cons 1 (LinkedList.Nothing))
 -- LinkedList.isEmpty l
