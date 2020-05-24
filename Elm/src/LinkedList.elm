@@ -68,11 +68,11 @@ index list idx =
     if idx < 0 then
         Maybe.Nothing
     else
-        case (list, idx) of
-            (l, 0) ->
-                head l
-            (l, i) ->
-                index (tail l) (i-1)
+        case idx of
+            0 ->
+                head list
+            _ ->
+                index (tail list) (idx - 1)
 
 
 last : LinkedList a -> Maybe a
