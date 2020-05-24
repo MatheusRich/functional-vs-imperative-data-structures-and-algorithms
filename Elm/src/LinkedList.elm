@@ -21,15 +21,15 @@ push list value =
 
 
 -- TRANSFORM
-map : LinkedList a -> (Maybe a -> b) -> LinkedList b
+map : LinkedList a -> (a -> b) -> LinkedList b
 map list fn =
     case list of
         Nothing ->
             Nothing
         Cons h Nothing ->
-            new (fn (Just h))
+            new (fn h)
         Cons listHead listTail ->
-            push (map listTail fn) (Just (fn (Just listHead)))
+            push (map listTail fn) (Just (fn listHead))
 
 
 -- filter : LinkedList a -> (a -> Bool) -> LinkedList a
@@ -116,21 +116,13 @@ append list1 list2 =
 
 -- UTILS
 
-double : (Maybe Int) -> Int
+double : (Int) -> Int
 double n =
-    case n of
-        Maybe.Nothing ->
-            0
-        Just v ->
-            v * 2   
+    n * 2   
 
-divide : (Maybe Int) -> Float
+divide : Int -> Float
 divide n =
-    case n of
-        Maybe.Nothing ->
-            0
-        Just v ->
-            toFloat (v) / 2   
+    toFloat (n) / 2   
 
 -- l = (Cons 1 (LinkedList.Nothing))
 -- LinkedList.isEmpty l
