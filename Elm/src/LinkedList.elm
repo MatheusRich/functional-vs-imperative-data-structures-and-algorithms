@@ -2,6 +2,8 @@ module LinkedList exposing (..)
 
 type LinkedList a = Cons a (LinkedList a) | Nothing
 
+-- CREATE
+
 push : LinkedList a -> Maybe a -> LinkedList a
 push list value =
     case value of
@@ -9,6 +11,21 @@ push list value =
             list
         Just v ->
             Cons v list
+
+
+-- TRANSFORM
+-- map : LinkedList a -> (a -> b) -> LinkedList b
+-- filter : LinkedList a -> (a -> Bool) -> LinkedList a
+
+-- DECONSTRUCT
+
+isEmpty : LinkedList a -> Bool
+isEmpty list =
+    case list of
+        Nothing ->
+            True
+        _ ->
+          False
 
 
 head : LinkedList a -> Maybe a
@@ -48,6 +65,7 @@ last list =
         _ ->
             last (tail list)
 
+-- UTILITIES
 
 length : LinkedList a -> Int
 length list =
@@ -58,24 +76,23 @@ length list =
             1 + length (tail notEmptyList)
 
 
-isEmpty : LinkedList a -> Bool
-isEmpty list =
-    case list of
-        Nothing ->
-            True
-        _ ->
-          False
+-- COMBINE
 
-
-concat : LinkedList a -> LinkedList a -> LinkedList a
-concat list1 list2 =
+append : LinkedList a -> LinkedList a -> LinkedList a
+append list1 list2 =
     case (list1, list2) of
         (Nothing, l2) ->
             l2
         ((Cons a Nothing), l2) ->
             Cons a l2
         (l1, l2) ->
-            push (concat (tail l1) l2) (head l1)
+            push (append (tail l1) l2) (head l1)
+
+
+-- SORT
+
+-- sort : LinkedList comparable -> LinkedList comparable
+
 
 
 -- l = (Cons 1 (LinkedList.Nothing))
