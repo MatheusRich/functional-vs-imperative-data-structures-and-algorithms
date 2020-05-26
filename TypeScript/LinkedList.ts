@@ -1,5 +1,5 @@
-class LinkedList {
-  list: number[];
+class LinkedList<T> {
+  list: T[];
 
   constructor() {
     this.list = [];
@@ -7,7 +7,7 @@ class LinkedList {
 
   // Create
 
-  push(value: number): number[] {
+  push(value: T): T[] {
     this.list.push(value);
 
     return this.list;
@@ -17,23 +17,23 @@ class LinkedList {
 
   // Deconstruct
 
-  head(): number | null {
+  head(): T | null {
     return this.list[0];
   }
 
-  tail(): number[] | null {
+  tail(): T[] | null {
     if (this.list.length <= 1) { return null; }
 
     return this.list.slice(1);
   }
 
-  index(index: number): number | null {
+  index(index: number): T | null {
     if (this.list.length < index) { return null; }
 
     return this.list[index];
   }
 
-  last(): number | null {
+  last(): T | null {
     if (this.list.length === 0) { return null; }
 
     return this.list[this.list.length - 1];
@@ -47,15 +47,15 @@ class LinkedList {
 
   // Combine
 
-  append(otherList : LinkedList): number[] {
+  append(otherList : LinkedList<T>): T[] {
     return this.list.concat(otherList.list);
   }
 }
 
 // let l = new LinkedList();
-// l.push(1)
+// l.push('1')
 // let l2 = new LinkedList();
-// l2.push(2)
+// l2.push('2')
 // console.log(l.tail());
 // console.log(l.head());
 // console.log(l.index(2));
