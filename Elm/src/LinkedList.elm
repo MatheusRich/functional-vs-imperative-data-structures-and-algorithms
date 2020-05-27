@@ -8,7 +8,7 @@ type LinkedList a = Cons a (LinkedList a) | Nothing
 
 new : a -> LinkedList a
 new value =
-    (Cons value (Nothing))
+    Cons value Nothing
 
 
 push : LinkedList a -> Maybe a -> LinkedList a
@@ -26,8 +26,8 @@ map list fn =
     case list of
         Nothing ->
             Nothing
-        Cons h Nothing ->
-            new (fn h)
+        Cons listHead Nothing ->
+            new (fn listHead)
         Cons listHead listTail ->
             push (map listTail fn) (Just (fn listHead))
 
@@ -80,8 +80,8 @@ last list =
     case list of
         Nothing ->
             Maybe.Nothing
-        Cons a Nothing ->
-            Just a
+        Cons listHead Nothing ->
+            Just listHead
         _ ->
             last (tail list)
 
@@ -103,8 +103,8 @@ append list1 list2 =
     case (list1, list2) of
         (Nothing, l2) ->
             l2
-        ((Cons a Nothing), l2) ->
-            Cons a l2
+        ((Cons listHead Nothing), l2) ->
+            Cons listHead l2
         (l1, l2) ->
             push (append (tail l1) l2) (head l1)
 
