@@ -1,62 +1,104 @@
+class LinkedListNode<T> {
+  value: T;
+  next: LinkedListNode<T> | null;
+
+  constructor(value: T, next: LinkedListNode<T> | null = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
 class LinkedList<T> {
-  list: T[];
+  head: LinkedListNode<T> | null;
+  length: number;
 
   constructor() {
-    this.list = [];
+    this.head = null;
+    this.length = 0;
   }
 
   // Create
 
-  push(value: T): T[] {
-    this.list.push(value);
+  push(value: T): LinkedList<T> {
+    let newNode = new LinkedListNode(value, this.head);
+    this.head = newNode;
+    this.length++;
 
-    return this.list;
+    return this;
   }
 
   // Transform
 
+  // map(func: Function): LinkedList<T> {
+  //   if (!this.head) return new LinkedList();
+
+  //   while (head) {}
+
+  //   return;
+  // }
+
+  // reverse()
+
   // Deconstruct
 
-  head(): T | null {
-    return this.list[0];
+  // head(): LinkedListNode<T> | null {
+  //   return this.head;
+  // }
+
+  tail(): LinkedListNode<T> | null {
+    if (!this.head) {
+      return null;
+    }
+
+    return this.head.next;
   }
 
-  tail(): T[] | null {
-    if (this.list.length <= 1) { return null; }
+  index(index: number): LinkedListNode<T> | null {
+    if (this.length < index || index < 0) return null;
 
-    return this.list.slice(1);
+    let currentIndex: number = 0;
+    let currentNode = this.head;
+
+    while (currentIndex < index && currentNode && currentNode.next) {
+      currentNode = currentNode.next;
+      currentIndex++;
+    }
+
+    return currentNode;
   }
 
-  index(index: number): T | null {
-    if (this.list.length < index) { return null; }
+  last(): LinkedListNode<T> | null {
+    let currentNode = this.head;
+    while (currentNode && currentNode.next) {
+      currentNode = currentNode.next;
+    }
 
-    return this.list[index];
+    return currentNode;
   }
 
-  last(): T | null {
-    if (this.list.length === 0) { return null; }
+  // // Utilities
 
-    return this.list[this.list.length - 1];
-  }
+  // get length(): number {
+  //   return this.length;
+  // }
 
-  // Utilities
+  // // Combine
 
-  length(): number {
-    return this.list.length;
-  }
-
-  // Combine
-
-  append(otherList : LinkedList<T>): T[] {
-    return this.list.concat(otherList.list);
-  }
+  // append(otherList: LinkedList<T>): T[] {
+  //   return this.list.concat(otherList.list);
+  // }
 }
 
-// let l = new LinkedList();
-// l.push('1')
+let l = new LinkedList();
+l.push(1);
+l.push(2);
+l.push(3);
+// l.push('3');
+
 // let l2 = new LinkedList();
 // l2.push('2')
-// console.log(l.tail());
-// console.log(l.head());
+// console.log(l.index(10));
+// console.log(l);
+// console.log(l.last());
 // console.log(l.index(2));
 // console.log(l.append(l2));
