@@ -32,6 +32,20 @@ map list fn =
             push (map listTail fn) (Just (fn listHead))
 
 
+reverse : LinkedList a -> LinkedList a
+reverse list =
+  foldl Cons Nothing list
+
+
+foldl : (a -> b -> b) -> b -> LinkedList a -> b
+foldl func acc list =
+    case list of
+        Nothing ->
+            acc
+        Cons listHead listTail ->
+            foldl func (func listHead acc) listTail
+
+
 -- filter : LinkedList a -> (a -> Bool) -> LinkedList a
 
 -- DECONSTRUCT
