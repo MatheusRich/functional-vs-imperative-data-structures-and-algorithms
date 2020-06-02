@@ -9,20 +9,20 @@ class LinkedListNode<T> {
 }
 
 class LinkedList<T> {
-  head: LinkedListNode<T> | null;
-  length: number;
+  _head: LinkedListNode<T> | null;
+  _length: number;
 
   constructor() {
-    this.head = null;
-    this.length = 0;
+    this._head = null;
+    this._length = 0;
   }
 
   // Create
 
   push(value: T): LinkedList<T> {
-    let newNode = new LinkedListNode(value, this.head);
-    this.head = newNode;
-    this.length++;
+    let newNode = new LinkedListNode(value, this._head);
+    this._head = newNode;
+    this._length++;
 
     return this;
   }
@@ -30,7 +30,7 @@ class LinkedList<T> {
   // Transform
 
   // map(func: Function): LinkedList<T> {
-  //   if (!this.head) return new LinkedList();
+  //   if (!this._head) return new LinkedList();
 
   //   while (head) {}
 
@@ -41,23 +41,23 @@ class LinkedList<T> {
 
   // Deconstruct
 
-  // head(): LinkedListNode<T> | null {
-  //   return this.head;
-  // }
+  head(): LinkedListNode<T> | null {
+    return this._head;
+  }
 
   tail(): LinkedListNode<T> | null {
-    if (!this.head) {
+    if (!this._head) {
       return null;
     }
 
-    return this.head.next;
+    return this._head.next;
   }
 
   index(index: number): LinkedListNode<T> | null {
-    if (this.length < index || index < 0) return null;
+    if (this._length < index || index < 0) return null;
 
     let currentIndex: number = 0;
-    let currentNode = this.head;
+    let currentNode = this._head;
 
     while (currentIndex < index && currentNode && currentNode.next) {
       currentNode = currentNode.next;
@@ -68,7 +68,7 @@ class LinkedList<T> {
   }
 
   last(): LinkedListNode<T> | null {
-    let currentNode = this.head;
+    let currentNode = this._head;
     while (currentNode && currentNode.next) {
       currentNode = currentNode.next;
     }
@@ -78,9 +78,9 @@ class LinkedList<T> {
 
   // // Utilities
 
-  // get length(): number {
-  //   return this.length;
-  // }
+  get length(): number {
+    return this._length;
+  }
 
   // // Combine
 
