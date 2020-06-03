@@ -29,13 +29,19 @@ class LinkedList<T> {
 
   // Transform
 
-  // map(func: Function): LinkedList<T> {
-  //   if (!this._head) return new LinkedList();
+  map(func: Function): LinkedList<T> {
+    if (!this.head()) return new LinkedList();
 
-  //   while (head) {}
+    let newList = new LinkedList<T>();
 
-  //   return;
-  // }
+    let currentNode = this.head();
+    while (currentNode) {
+      newList.push(func(currentNode.value));
+      currentNode = currentNode.next;
+    }
+
+    return newList.reverse();
+  }
 
   reverse(): LinkedList<T> {
     let reversed = new LinkedList<T>();
@@ -138,7 +144,8 @@ console.log('\nl2');
 l2.print();
 console.log('\nl2 + l');
 l2.append(l).print();
-console.log(l2.length());
+l2.map((value: number) => value * 2).print();
+// console.log(l2.length());
 // console.log(l.last());
 // console.log(l.index(2));
 // console.log(l.append(l2));
