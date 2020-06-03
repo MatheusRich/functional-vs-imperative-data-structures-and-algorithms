@@ -48,6 +48,66 @@ foldl func acc list =
 
 -- filter : LinkedList a -> (a -> Bool) -> LinkedList a
 
+
+-- SORT
+
+mergeSort : LinkedList comparable -> LinkedList comparable
+mergeSort list =
+    case list of
+        Nothing ->
+            Nothing
+        Cons _ Nothing ->
+            list
+        _ ->
+            let
+                left =
+                    take list (length list // 2)
+                right =
+                    drop list (length list // 2)
+            in
+                merge (mergeSort left) (mergeSort right)
+
+
+merge : LinkedList comparable -> LinkedList comparable -> LinkedList comparable
+merge list1 list2 =
+    case (list1, list2) of
+        (_, Nothing) ->
+            list1
+        (Nothing, _) ->
+            list2
+        (Cons head1 tail1, Cons head2 tail2) ->
+             if head1 < head2 then
+                push (merge tail1 list2) (Just head1)
+             else
+                push (merge list1 tail2) (Just head2)
+
+
+drop : LinkedList a -> Int -> LinkedList a
+drop list n =
+    if n <= 0 then
+        list
+    else
+        case list of
+            Nothing ->
+              list
+            Cons _ listTail ->
+                drop listTail (n-1)
+
+
+take : LinkedList a -> Int -> LinkedList a
+take list n =
+    if n <= 0 then
+        list
+    else
+        case (list , n) of
+            (Nothing, _) ->
+                list    
+            (Cons listHead _, 1) ->
+                new listHead
+            (Cons listHead listTail , _) ->
+                push (take listTail (n - 1)) (Just listHead)
+
+
 -- DECONSTRUCT
 
 isEmpty : LinkedList a -> Bool
