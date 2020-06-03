@@ -37,7 +37,17 @@ class LinkedList<T> {
   //   return;
   // }
 
-  // reverse()
+  reverse(): LinkedList<T> {
+    let reversed = new LinkedList<T>();
+    let currentNode = this._head;
+
+    while (currentNode) {
+      reversed.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    return reversed;
+  }
 
   // Deconstruct
 
@@ -78,27 +88,57 @@ class LinkedList<T> {
 
   // // Utilities
 
-  get length(): number {
+  length(): number {
     return this._length;
+  }
+
+  print() {
+    let currentNode = this._head;
+    let str = '';
+    while (currentNode) {
+      str += `${currentNode.value} -> `;
+      currentNode = currentNode.next;
+    }
+    console.log(str + 'X');
   }
 
   // // Combine
 
-  // append(otherList: LinkedList<T>): T[] {
-  //   return this.list.concat(otherList.list);
-  // }
+  append(otherList: LinkedList<T>): LinkedList<T> {
+    let currentNode = this.head();
+    while (currentNode && currentNode.next) {
+      currentNode = currentNode.next;
+    }
+
+    if (currentNode) {
+      currentNode.next = otherList.head();
+    } else {
+      currentNode = otherList.head();
+    }
+
+    this._length += otherList.length();
+
+    return this;
+  }
 }
 
 let l = new LinkedList();
 l.push(1);
 l.push(2);
 l.push(3);
-// l.push('3');
 
-// let l2 = new LinkedList();
-// l2.push('2')
-// console.log(l.index(10));
-// console.log(l);
+let l2 = new LinkedList();
+l2.push(4);
+l2.push(5);
+l2.push(6);
+
+console.log('l1');
+l.print();
+console.log('\nl2');
+l2.print();
+console.log('\nl2 + l');
+l2.append(l).print();
+console.log(l2.length());
 // console.log(l.last());
 // console.log(l.index(2));
 // console.log(l.append(l2));
