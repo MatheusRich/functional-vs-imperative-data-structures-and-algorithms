@@ -1,4 +1,22 @@
-module LinkedList exposing (..)
+module LinkedList exposing
+    ( LinkedList
+    , append
+    , drop
+    , foldl
+    , head
+    , index
+    , isEmpty
+    , last
+    , length
+    , map
+    , merge
+    , mergeSort
+    , new
+    , push
+    , reverse
+    , tail
+    , take
+    )
 
 
 type LinkedList a
@@ -221,6 +239,7 @@ append list1 list2 =
 
         ( l1, l2 ) ->
             push (append (tail l1) l2) (head l1)
+
 
 
 -- UTILS
