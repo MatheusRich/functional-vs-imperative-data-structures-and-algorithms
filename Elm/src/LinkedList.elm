@@ -1,5 +1,5 @@
 module LinkedList exposing
-    ( LinkedList
+    ( LinkedList(..)
     , append
     , drop
     , foldl
@@ -20,8 +20,8 @@ module LinkedList exposing
 
 
 type LinkedList a
-    = Cons a (LinkedList a)
-    | Nothing
+    = Value a (LinkedList a)
+    | Empty
 
 
 
@@ -31,17 +31,17 @@ type LinkedList a
 
 new : a -> LinkedList a
 new value =
-    Cons value Nothing
+    Value value Empty
 
 
 push : LinkedList a -> Maybe a -> LinkedList a
 push list value =
     case value of
-        Maybe.Nothing ->
+        Nothing ->
             list
 
         Just v ->
-            Cons v list
+            Value v list
 
 
 
@@ -51,28 +51,28 @@ push list value =
 map : LinkedList a -> (a -> b) -> LinkedList b
 map list fn =
     case list of
-        Nothing ->
-            Nothing
+        Empty ->
+            Empty
 
-        Cons listHead Nothing ->
+        Value listHead Empty ->
             new (fn listHead)
 
-        Cons listHead listTail ->
+        Value listHead listTail ->
             push (map listTail fn) (Just (fn listHead))
 
 
 reverse : LinkedList a -> LinkedList a
 reverse list =
-    foldl Cons Nothing list
+    foldl Value Empty list
 
 
 foldl : (a -> b -> b) -> b -> LinkedList a -> b
 foldl func acc list =
     case list of
-        Nothing ->
+        Empty ->
             acc
 
-        Cons listHead listTail ->
+        Value listHead listTail ->
             foldl func (func listHead acc) listTail
 
 
@@ -84,10 +84,10 @@ foldl func acc list =
 mergeSort : LinkedList comparable -> LinkedList comparable
 mergeSort list =
     case list of
-        Nothing ->
-            Nothing
+        Empty ->
+            Empty
 
-        Cons _ Nothing ->
+        Value _ Empty ->
             list
 
         _ ->
@@ -104,13 +104,13 @@ mergeSort list =
 merge : LinkedList comparable -> LinkedList comparable -> LinkedList comparable
 merge list1 list2 =
     case ( list1, list2 ) of
-        ( _, Nothing ) ->
+        ( _, Empty ) ->
             list1
 
-        ( Nothing, _ ) ->
+        ( Empty, _ ) ->
             list2
 
-        ( Cons head1 tail1, Cons head2 tail2 ) ->
+        ( Value head1 tail1, Value head2 tail2 ) ->
             if head1 < head2 then
                 push (merge tail1 list2) (Just head1)
 
@@ -125,10 +125,10 @@ drop list n =
 
     else
         case list of
-            Nothing ->
+            Empty ->
                 list
 
-            Cons _ listTail ->
+            Value _ listTail ->
                 drop listTail (n - 1)
 
 
@@ -139,13 +139,13 @@ take list n =
 
     else
         case ( list, n ) of
-            ( Nothing, _ ) ->
+            ( Empty, _ ) ->
                 list
 
-            ( Cons listHead _, 1 ) ->
+            ( Value listHead _, 1 ) ->
                 new listHead
 
-            ( Cons listHead listTail, _ ) ->
+            ( Value listHead listTail, _ ) ->
                 push (take listTail (n - 1)) (Just listHead)
 
 
@@ -156,7 +156,7 @@ take list n =
 isEmpty : LinkedList a -> Bool
 isEmpty list =
     case list of
-        Nothing ->
+        Empty ->
             True
 
         _ ->
@@ -166,27 +166,27 @@ isEmpty list =
 head : LinkedList a -> Maybe a
 head list =
     case list of
-        Nothing ->
-            Maybe.Nothing
+        Empty ->
+            Nothing
 
-        Cons a _ ->
+        Value a _ ->
             Just a
 
 
 tail : LinkedList a -> LinkedList a
 tail list =
     case list of
-        Cons _ a ->
+        Value _ a ->
             a
 
-        Nothing ->
-            Nothing
+        Empty ->
+            Empty
 
 
 index : LinkedList a -> Int -> Maybe a
 index list idx =
     if idx < 0 then
-        Maybe.Nothing
+        Nothing
 
     else
         case idx of
@@ -200,10 +200,10 @@ index list idx =
 last : LinkedList a -> Maybe a
 last list =
     case list of
-        Nothing ->
-            Maybe.Nothing
+        Empty ->
+            Nothing
 
-        Cons listHead Nothing ->
+        Value listHead Empty ->
             Just listHead
 
         _ ->
@@ -217,7 +217,7 @@ last list =
 length : LinkedList a -> Int
 length list =
     case list of
-        Nothing ->
+        Empty ->
             0
 
         notEmptyList ->
@@ -231,11 +231,11 @@ length list =
 append : LinkedList a -> LinkedList a -> LinkedList a
 append list1 list2 =
     case ( list1, list2 ) of
-        ( Nothing, l2 ) ->
+        ( Empty, l2 ) ->
             l2
 
-        ( Cons listHead Nothing, l2 ) ->
-            Cons listHead l2
+        ( Value listHead Empty, l2 ) ->
+            Value listHead l2
 
         ( l1, l2 ) ->
             push (append (tail l1) l2) (head l1)
