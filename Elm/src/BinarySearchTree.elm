@@ -1,4 +1,4 @@
-module BinarySearchTree exposing (BinarySearchTree, contains, depth, first, insert, isEmpty, map, new)
+module BinarySearchTree exposing (BinarySearchTree, contains, depth, first, push, isEmpty, map, new)
 
 
 type BinarySearchTree a
@@ -21,18 +21,18 @@ isEmpty tree =
             False
 
 
-insert : BinarySearchTree comparable -> comparable -> BinarySearchTree comparable
-insert tree x =
+push : BinarySearchTree comparable -> comparable -> BinarySearchTree comparable
+push tree x =
     case tree of
         Empty ->
             new x
 
         Node y left right ->
             if x > y then
-                Node y left (insert right x)
+                Node y left (push right x)
 
             else if x < y then
-                Node y (insert left x) right
+                Node y (push left x) right
 
             else
                 tree
