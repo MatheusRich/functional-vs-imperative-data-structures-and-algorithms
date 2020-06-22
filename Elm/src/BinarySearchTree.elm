@@ -1,4 +1,4 @@
-module BinarySearchTree exposing (BinarySearchTree, contains, depth, first, push, isEmpty, map, new)
+module BinarySearchTree exposing (BinarySearchTree, contains, depth, find, first, isEmpty, map, new, push)
 
 
 type BinarySearchTree a
@@ -36,6 +36,25 @@ push tree x =
 
             else
                 tree
+
+
+find : BinarySearchTree a -> (a -> Bool) -> Maybe a
+find tree fn =
+    case tree of
+        Empty ->
+            Nothing
+
+        Node n left right ->
+            if fn n then
+                Just n
+
+            else
+                case find left fn of
+                    Nothing ->
+                        find right fn
+
+                    found ->
+                        found
 
 
 contains : BinarySearchTree comparable -> comparable -> Bool
