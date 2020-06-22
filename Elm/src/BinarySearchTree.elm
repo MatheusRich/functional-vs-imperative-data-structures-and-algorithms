@@ -1,17 +1,17 @@
-module BinaryTree exposing (BinaryTree, contains, depth, first, insert, isEmpty, map, new)
+module BinarySearchTree exposing (BinarySearchTree, contains, depth, first, insert, isEmpty, map, new)
 
 
-type BinaryTree a
+type BinarySearchTree a
     = Empty
-    | Node a (BinaryTree a) (BinaryTree a)
+    | Node a (BinarySearchTree a) (BinarySearchTree a)
 
 
-new : a -> BinaryTree a
+new : a -> BinarySearchTree a
 new value =
     Node value Empty Empty
 
 
-isEmpty : BinaryTree a -> Bool
+isEmpty : BinarySearchTree a -> Bool
 isEmpty tree =
     case tree of
         Empty ->
@@ -21,7 +21,7 @@ isEmpty tree =
             False
 
 
-insert : BinaryTree comparable -> comparable -> BinaryTree comparable
+insert : BinarySearchTree comparable -> comparable -> BinarySearchTree comparable
 insert tree x =
     case tree of
         Empty ->
@@ -38,7 +38,7 @@ insert tree x =
                 tree
 
 
-contains : BinaryTree comparable -> comparable -> Bool
+contains : BinarySearchTree comparable -> comparable -> Bool
 contains tree target =
     case tree of
         Empty ->
@@ -55,7 +55,7 @@ contains tree target =
                 True
 
 
-depth : BinaryTree a -> Int
+depth : BinarySearchTree a -> Int
 depth tree =
     case tree of
         Empty ->
@@ -65,7 +65,7 @@ depth tree =
             1 + max (depth left) (depth right)
 
 
-map : BinaryTree a -> (a -> b) -> BinaryTree b
+map : BinarySearchTree a -> (a -> b) -> BinarySearchTree b
 map tree func =
     case tree of
         Empty ->
@@ -75,7 +75,7 @@ map tree func =
             Node (func v) (map left func) (map right func)
 
 
-first : BinaryTree a -> Maybe a
+first : BinarySearchTree a -> Maybe a
 first tree =
     case tree of
         Empty ->
