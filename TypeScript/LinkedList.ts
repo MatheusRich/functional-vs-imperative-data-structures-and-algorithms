@@ -29,7 +29,7 @@ class LinkedList<T> {
 
   // Transform
 
-  map(func: Function): LinkedList<T> {
+  map(func: (value: T) => any): LinkedList<T> {
     if (!this.head()) return new LinkedList();
 
     let newList = new LinkedList<T>();
@@ -128,12 +128,12 @@ class LinkedList<T> {
   }
 }
 
-let l = new LinkedList();
+let l: LinkedList<number> = new LinkedList();
 l.push(1);
 l.push(2);
 l.push(3);
 
-let l2 = new LinkedList();
+let l2: LinkedList<number> = new LinkedList();
 l2.push(4);
 l2.push(5);
 l2.push(6);
