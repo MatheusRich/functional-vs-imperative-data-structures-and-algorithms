@@ -3,11 +3,7 @@ class BSTNode<T> {
   left: BSTNode<T> | null;
   right: BSTNode<T> | null;
 
-  constructor(
-    value: T,
-    left: BSTNode<T> | null = null,
-    right: BSTNode<T> | null = null,
-  ) {
+  constructor(value: T, left: BSTNode<T> | null = null, right: BSTNode<T> | null = null) {
     this.value = value;
     this.left = left;
     this.right = right;
@@ -29,6 +25,20 @@ class BSTNode<T> {
     }
 
     return this;
+  }
+
+  find(fn: (value: T) => boolean): T | null {
+    if (fn(this.value)) return this.value;
+
+    let leftFind = null;
+    if (this.left) leftFind = this.left.find(fn);
+    if (leftFind) return leftFind;
+
+    let rightFind = null;
+    if (this.right) rightFind = this.right.find(fn);
+    if (rightFind) return rightFind;
+
+    return null;
   }
 
   contains(value: T): boolean {
@@ -70,6 +80,10 @@ class BinarySearchTree<T> {
     this.root = null;
   }
 
+  isEmpty(): boolean {
+    return this.root === null;
+  }
+
   push(value: T): BinarySearchTree<T> {
     if (!this.root) {
       this.root = new BSTNode(value);
@@ -78,6 +92,12 @@ class BinarySearchTree<T> {
     }
 
     return this;
+  }
+
+  find(fn: (value: T) => boolean): T | null {
+    if (!this.root) return null;
+
+    return this.root.find(fn);
   }
 
   contains(value: T): boolean {
@@ -100,4 +120,7 @@ let bst: BinarySearchTree<number> = new BinarySearchTree();
 bst.push(1);
 bst.push(2);
 bst.push(-3);
-console.log(bst.map((n) => n * 2));
+
+console.log({map: bst.map(n => n * 2)});
+console.log({find: bst.find(n => n < 0)});
+
