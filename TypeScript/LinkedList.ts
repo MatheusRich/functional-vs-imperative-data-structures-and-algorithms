@@ -92,7 +92,7 @@ class LinkedList<T> {
     return currentNode;
   }
 
-  // // Utilities
+  // Utilities
 
   length(): number {
     return this._length;
@@ -108,7 +108,7 @@ class LinkedList<T> {
     console.log(str + 'X');
   }
 
-  // // Combine
+  // Combine
 
   append(otherList: LinkedList<T>): LinkedList<T> {
     let currentNode = this.head();
