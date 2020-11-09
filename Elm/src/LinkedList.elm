@@ -14,6 +14,7 @@ module LinkedList exposing
     , new
     , push
     , reverse
+    , sort
     , tail
     , take
     )
@@ -26,7 +27,6 @@ type LinkedList a
 
 
 -- CREATE
--- infix right 5 (::) = cons
 
 
 new : a -> LinkedList a
@@ -79,6 +79,11 @@ foldl func acc list =
 
 -- filter : LinkedList a -> (a -> Bool) -> LinkedList a
 -- SORT
+
+
+sort : LinkedList comparable -> LinkedList comparable
+sort list =
+    mergeSort list
 
 
 mergeSort : LinkedList comparable -> LinkedList comparable
