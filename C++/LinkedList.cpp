@@ -13,7 +13,7 @@ LinkedList<T>::LinkedList() {
 }
 
 template <typename T>
-ListNode<T>* LinkedList<T>::getHead() {
+ListNode<T>* LinkedList<T>::first() {
   return head;
 }
 
@@ -34,7 +34,7 @@ ListNode<T>* LinkedList<T>::index(int index) {
   if (index < 0 || index >= size) return nullptr;
 
   int currentIndex = 0;
-  auto currentNode = getHead();
+  auto currentNode = first();
 
   while (currentIndex < index && currentNode) {
     currentNode = currentNode->next;
@@ -46,7 +46,7 @@ ListNode<T>* LinkedList<T>::index(int index) {
 
 template <typename T>
 string LinkedList<T>::toString() {
-  auto current = getHead();
+  auto current = first();
 
   while (current != nullptr) {
     cout << current->value << " -> ";

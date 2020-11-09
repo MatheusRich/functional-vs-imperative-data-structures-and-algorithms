@@ -20,7 +20,7 @@ private:
 public:
   LinkedList();
 
-  ListNode<T> *getHead();
+  ListNode<T> *first();
   ListNode<T> *index(int index);
   bool isEmpty();
   void push(T value);
