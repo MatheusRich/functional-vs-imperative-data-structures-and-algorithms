@@ -9,7 +9,6 @@
   - length: Haskell
   - sort: Haskell and C++
   - push: Haskell
-  - pop: Elm, TS, C++ and Haskell
   - reverse: Haskell
 - [ ] BST
   - contains: Haskell and C++
@@ -32,18 +31,20 @@
 - [ ] Reduce
   - Elm, TS, C++ and Haskell
 
-# Elm
+# Tools
+
+## Elm
 
 **Version:** 0.19.1
 
-# Typescript
+## Typescript
 
 **Version:** 4.0.5
 
-# Haskell
+## Haskell
 
 **Version:** The Glorious Glasgow Haskell Compilation System, version 8.0.2
 
-# C++
+## C++
 
 **Version:** g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
