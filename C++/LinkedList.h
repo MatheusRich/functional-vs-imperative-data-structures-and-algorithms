@@ -15,13 +15,14 @@ template <typename T>
 class LinkedList {
 private:
   ListNode<T> *_head;
-  int size;
+  int _size;
 
 public:
   LinkedList();
+  LinkedList(ListNode<T> * head, int size);
 
   ListNode<T> *head();
-  ListNode<T> *tail();
+  LinkedList<T> tail();
   ListNode<T> *last();
   ListNode<T> *index(int index);
   LinkedList<T> reverse();

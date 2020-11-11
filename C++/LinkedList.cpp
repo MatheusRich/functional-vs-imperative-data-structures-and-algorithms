@@ -11,7 +11,13 @@ ListNode<T>::ListNode(T value, ListNode<T>* next) {
 template <typename T>
 LinkedList<T>::LinkedList() {
   _head = nullptr;
-  size = 0;
+  _size = 0;
+}
+
+template <typename T>
+LinkedList<T>::LinkedList(ListNode<T>* head, int size) {
+  _head = head;
+  _size = size;
 }
 
 template <typename T>
@@ -20,10 +26,10 @@ ListNode<T>* LinkedList<T>::head() {
 }
 
 template <typename T>
-ListNode<T>* LinkedList<T>::tail() {
-  if (_head == nullptr) return nullptr;
+LinkedList<T> LinkedList<T>::tail() {
+  if (_head == nullptr) return LinkedList();
 
-  return _head->next;
+  return LinkedList(_head->next, _size);
 }
 
 template <typename T>
@@ -44,19 +50,19 @@ bool LinkedList<T>::isEmpty() {
 
 template <typename T>
 int LinkedList<T>::length() {
-  return size;
+  return _size;
 }
 
 template <typename T>
 void LinkedList<T>::push(T value) {
   auto tmp = new ListNode<T>(value, _head);
   _head = tmp;
-  size++;
+  _size++;
 }
 
 template <typename T>
 ListNode<T>* LinkedList<T>::index(int index) {
-  if (index < 0 || index >= size) return nullptr;
+  if (index < 0 || index >= _size) return nullptr;
 
   int currentIndex = 0;
   auto currentNode = head();

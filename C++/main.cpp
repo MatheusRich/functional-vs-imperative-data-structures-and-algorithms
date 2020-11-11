@@ -15,7 +15,7 @@ int main() {
   cout << "String Representation: " << l.toString() << endl;
   cout << "Length: " << l.length() << endl;
   cout << "Head: " << l.head()->value << endl;
-  cout << "Tail (first): " << l.tail()->value << endl;
+  cout << "Tail: " << l.tail().toString() << endl;
   cout << "Last: " << l.last()->value << endl;
   cout << "Reverse: " << l.reverse().toString() << endl;
 
