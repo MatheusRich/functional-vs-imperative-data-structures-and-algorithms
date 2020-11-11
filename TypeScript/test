@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tsc Main.ts > /dev/null
+node Main.js
