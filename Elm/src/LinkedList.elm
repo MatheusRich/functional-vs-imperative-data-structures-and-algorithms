@@ -33,8 +33,8 @@ new value =
     Value value Empty
 
 
-push : LinkedList a -> a -> LinkedList a
-push list value =
+push : a -> LinkedList a -> LinkedList a
+push value list =
     Value value list
 
 
@@ -42,8 +42,8 @@ push list value =
 -- TRANSFORM
 
 
-map : LinkedList a -> (a -> b) -> LinkedList b
-map list fn =
+map : (a -> b) -> LinkedList a -> LinkedList b
+map fn list =
     case list of
         Empty ->
             Empty
@@ -52,7 +52,7 @@ map list fn =
             new (fn listHead)
 
         Value listHead listTail ->
-            push (map listTail fn) (fn listHead)
+            push (fn listHead) (map fn listTail)
 
 
 reverse : LinkedList a -> LinkedList a
@@ -92,10 +92,10 @@ mergeSort list =
         _ ->
             let
                 left =
-                    take list (length list // 2)
+                    take (length list // 2) list
 
                 right =
-                    drop list (length list // 2)
+                    drop (length list // 2) list
             in
             merge (mergeSort left) (mergeSort right)
 
@@ -111,14 +111,14 @@ merge list1 list2 =
 
         ( Value head1 tail1, Value head2 tail2 ) ->
             if head1 < head2 then
-                push (merge tail1 list2) head1
+                push head1 (merge tail1 list2)
 
             else
-                push (merge list1 tail2) head2
+                push head2 (merge list1 tail2)
 
 
-drop : LinkedList a -> Int -> LinkedList a
-drop list n =
+drop : Int -> LinkedList a -> LinkedList a
+drop n list =
     if n <= 0 then
         list
 
@@ -128,11 +128,11 @@ drop list n =
                 list
 
             Value _ listTail ->
-                drop listTail (n - 1)
+                drop (n - 1) listTail
 
 
-take : LinkedList a -> Int -> LinkedList a
-take list n =
+take : Int -> LinkedList a -> LinkedList a
+take n list =
     if n <= 0 then
         list
 
@@ -145,7 +145,7 @@ take list n =
                 new listHead
 
             ( Value listHead listTail, _ ) ->
-                push (take listTail (n - 1)) listHead
+                push listHead (take (n - 1) listTail)
 
 
 
@@ -182,8 +182,8 @@ tail list =
             Empty
 
 
-index : LinkedList a -> Int -> Maybe a
-index list idx =
+index : Int -> LinkedList a -> Maybe a
+index idx list =
     if idx < 0 then
         Nothing
 
@@ -193,7 +193,7 @@ index list idx =
                 head list
 
             _ ->
-                index (tail list) (idx - 1)
+                index (idx - 1) (tail list)
 
 
 last : LinkedList a -> Maybe a
@@ -238,7 +238,7 @@ divide n =
 
 
 
--- l = (Cons 1 (LinkedList.Nothing))
+-- l = LinkedList.Empty
 -- LinkedList.isEmpty l
 -- l2 = LinkedList.push l (Just 2)
 -- LinkedList.tail l2
