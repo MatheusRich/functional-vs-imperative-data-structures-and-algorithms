@@ -14,13 +14,13 @@ public:
 template <typename T>
 class LinkedList {
 private:
-  ListNode<T> *head;
+  ListNode<T> *_head;
   int size;
 
 public:
   LinkedList();
 
-  ListNode<T> *first();
+  ListNode<T> *head();
   ListNode<T> *index(int index);
   bool isEmpty();
   int length();
