@@ -2,13 +2,14 @@
 
 - [ ] LinkedList
   - head: Haskell
-  - tail: Haskell and C++
+  - tail: Haskell
   - index: Haskell
   - isEmpty: Haskell
-  - last: Haskell and C++
+  - last: Haskell
   - length: Haskell
   - sort: Haskell and C++
   - push: Haskell
+  - pop: Elm, TS, C++ and Haskell
   - reverse: Haskell and C++
 - [ ] BST
   - contains: Haskell and C++
@@ -22,11 +23,11 @@
 
 <!-- Assuming this operations will be in linked lists -->
 
-- [x] MergeSort
+- [ ] MergeSort
   - TS, C++ and Haskell
 - [ ] Filter
   - Elm, TS, C++ and Haskell
-- [x] Map
+- [ ] Map
   - TS, C++ and Haskell
 - [ ] Reduce
   - Elm, TS, C++ and Haskell

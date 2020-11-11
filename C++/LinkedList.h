@@ -22,6 +22,7 @@ public:
 
   ListNode<T> *head();
   ListNode<T> *tail();
+  ListNode<T> *last();
   ListNode<T> *index(int index);
   bool isEmpty();
   int length();

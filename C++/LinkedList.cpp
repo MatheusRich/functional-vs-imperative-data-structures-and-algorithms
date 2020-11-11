@@ -27,6 +27,17 @@ ListNode<T>* LinkedList<T>::tail() {
 }
 
 template <typename T>
+ListNode<T>* LinkedList<T>::last() {
+  auto currentNode = head();
+
+  while (currentNode != nullptr && currentNode->next != nullptr) {
+    currentNode = currentNode->next;
+  }
+
+  return currentNode;
+}
+
+template <typename T>
 bool LinkedList<T>::isEmpty() {
   return _head == nullptr;
 }
