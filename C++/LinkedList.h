@@ -21,6 +21,7 @@ public:
   LinkedList();
 
   ListNode<T> *head();
+  ListNode<T> *tail();
   ListNode<T> *index(int index);
   bool isEmpty();
   int length();

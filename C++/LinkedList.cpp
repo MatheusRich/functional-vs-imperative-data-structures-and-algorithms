@@ -1,5 +1,7 @@
 #include "LinkedList.h"
 
+#include <sstream>
+
 template <typename T>
 ListNode<T>::ListNode(T value, ListNode<T>* next) {
   this->value = value;
@@ -15,6 +17,13 @@ LinkedList<T>::LinkedList() {
 template <typename T>
 ListNode<T>* LinkedList<T>::head() {
   return _head;
+}
+
+template <typename T>
+ListNode<T>* LinkedList<T>::tail() {
+  if (_head == nullptr) return nullptr;
+
+  return _head->next;
 }
 
 template <typename T>
@@ -51,14 +60,14 @@ ListNode<T>* LinkedList<T>::index(int index) {
 
 template <typename T>
 string LinkedList<T>::toString() {
-  auto current = head();
+  stringstream ss;
 
+  auto current = head();
   while (current != nullptr) {
-    cout << current->value << " -> ";
+    ss << current->value << " -> ";
     current = current->next;
   }
+  ss << "X";
 
-  cout << 'X' << endl;
+  return ss.str();
 }
-
-// ~LinkedList();
