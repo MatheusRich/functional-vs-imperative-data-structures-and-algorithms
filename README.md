@@ -21,6 +21,7 @@
 # Algorithms
 
 <!-- Assuming this operations will be in linked lists -->
+
 - [x] MergeSort
   - TS, C++ and Haskell
 - [ ] Filter
