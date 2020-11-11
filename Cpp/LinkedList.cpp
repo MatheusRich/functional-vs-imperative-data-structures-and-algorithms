@@ -29,7 +29,7 @@ template <typename T>
 LinkedList<T> LinkedList<T>::tail() {
   if (_head == nullptr) return LinkedList();
 
-  return LinkedList(_head->next, _size);
+  return LinkedList(_head->next, _size - 1);
 }
 
 template <typename T>
