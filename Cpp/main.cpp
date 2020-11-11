@@ -3,6 +3,7 @@
 string boolToString(bool a) { return a == true ? "true" : "false"; }
 
 int main() {
+  cout << "Creating new Linked List" << endl;
   auto l = LinkedList<int>();
   cout << "Empty: " << boolToString(l.isEmpty()) << endl;
   cout << "Pushing 5, 2, 1, and 7" << endl;
@@ -18,6 +19,4 @@ int main() {
   cout << "Tail: " << l.tail().toString() << endl;
   cout << "Last: " << l.last()->value << endl;
   cout << "Reverse: " << l.reverse().toString() << endl;
-
-  // cout << l.toString() << endl;
 }
