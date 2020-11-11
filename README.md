@@ -36,10 +36,14 @@
 ## Elm
 
 **Version:** 0.19.1
+**Node Version:** v13.0.1
+**Compile command:** `elm make --optimize filename.ts`
 
 ## Typescript
 
 **Version:** 4.0.5
+**Node Version:** v13.0.1
+**Compile command:** `tsc filename.ts`
 
 ## Haskell
 
@@ -48,3 +52,5 @@
 ## C++
 
 **Version:** g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+**Compile command:** `g++ -std=c++11 main.cpp`
+
