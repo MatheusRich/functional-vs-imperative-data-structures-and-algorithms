@@ -24,6 +24,7 @@ public:
   ListNode<T> *tail();
   ListNode<T> *last();
   ListNode<T> *index(int index);
+  LinkedList<T> reverse();
   bool isEmpty();
   int length();
   void push(T value);

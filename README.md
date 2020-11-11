@@ -10,7 +10,7 @@
   - sort: Haskell and C++
   - push: Haskell
   - pop: Elm, TS, C++ and Haskell
-  - reverse: Haskell and C++
+  - reverse: Haskell
 - [ ] BST
   - contains: Haskell and C++
   - depth: TS, Haskell and C++

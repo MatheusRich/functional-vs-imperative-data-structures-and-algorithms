@@ -70,6 +70,19 @@ ListNode<T>* LinkedList<T>::index(int index) {
 }
 
 template <typename T>
+LinkedList<T> LinkedList<T>::reverse() {
+  auto newList = LinkedList();
+  auto currentNode = head();
+
+  while (currentNode) {
+    newList.push(currentNode->value);
+    currentNode = currentNode->next;
+  }
+
+  return newList;
+}
+
+template <typename T>
 string LinkedList<T>::toString() {
   stringstream ss;
 
