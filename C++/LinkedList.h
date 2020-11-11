@@ -23,6 +23,7 @@ public:
   ListNode<T> *first();
   ListNode<T> *index(int index);
   bool isEmpty();
+  int length();
   void push(T value);
   string toString();
 };

@@ -19,7 +19,12 @@ ListNode<T>* LinkedList<T>::first() {
 
 template <typename T>
 bool LinkedList<T>::isEmpty() {
-  return this->head == nullptr;
+  return head == nullptr;
+}
+
+template <typename T>
+int LinkedList<T>::length() {
+  return size;
 }
 
 template <typename T>
