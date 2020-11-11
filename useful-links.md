@@ -1,3 +1,7 @@
+# General
+## Elm
+- https://package.elm-lang.org/help/design-guidelines
+
 # Linked List
 
 - **Haskell:** https://gis.github.com/akoskovacs/5074344
