@@ -1,4 +1,4 @@
 #!/bin/bash
 
-tsc Main.ts > /dev/null
-node Main.js
+tsc TypeScript/Main.ts
+node TypeScript/Main.js

@@ -8,13 +8,13 @@ class LinkedListNode<T> {
   }
 }
 
-class LinkedList<T> {
+export class LinkedList<T> {
   _head: LinkedListNode<T> | null;
   _length: number;
 
-  constructor() {
-    this._head = null;
-    this._length = 0;
+  constructor(head: LinkedListNode<T> | null = null, length: number = 0) {
+    this._head = head;
+    this._length = length;
   }
 
   // Create
@@ -30,7 +30,7 @@ class LinkedList<T> {
   // Transform
 
   map(func: (value: T) => any): LinkedList<T> {
-    if (!this.head()) return new LinkedList();
+    if (!this.head()) return new LinkedList<T>();
 
     let newList = new LinkedList<T>();
 
@@ -61,12 +61,10 @@ class LinkedList<T> {
     return this._head;
   }
 
-  tail(): LinkedListNode<T> | null {
-    if (!this._head) {
-      return null;
-    }
+  tail(): LinkedList<T> {
+    if (!this._head) return new LinkedList<T>();
 
-    return this._head.next;
+    return new LinkedList<T>(this._head.next, this._length - 1);
   }
 
   index(index: number): LinkedListNode<T> | null {
@@ -94,18 +92,22 @@ class LinkedList<T> {
 
   // Utilities
 
+  isEmpty(): boolean {
+    return this._length === 0;
+  }
+
   length(): number {
     return this._length;
   }
 
-  print() {
+  toString(): string {
     let currentNode = this._head;
     let str = '';
     while (currentNode) {
       str += `${currentNode.value} -> `;
       currentNode = currentNode.next;
     }
-    console.log(str + 'X');
+    return str + 'X';
   }
 
   // Combine
@@ -127,25 +129,3 @@ class LinkedList<T> {
     return this;
   }
 }
-
-let l: LinkedList<number> = new LinkedList();
-l.push(1);
-l.push(2);
-l.push(3);
-
-let l2: LinkedList<number> = new LinkedList();
-l2.push(4);
-l2.push(5);
-l2.push(6);
-
-console.log('l1');
-l.print();
-console.log('\nl2');
-l2.print();
-console.log('\nl2 + l');
-l2.append(l).print();
-l2.map((value: number) => value * 2).print();
-// console.log(l2.length());
-// console.log(l.last());
-// console.log(l.index(2));
-// console.log(l.append(l2));
