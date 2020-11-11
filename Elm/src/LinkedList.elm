@@ -1,6 +1,5 @@
 module LinkedList exposing
     ( LinkedList(..)
-    , append
     , drop
     , foldl
     , head
@@ -34,14 +33,9 @@ new value =
     Value value Empty
 
 
-push : LinkedList a -> Maybe a -> LinkedList a
+push : LinkedList a -> a -> LinkedList a
 push list value =
-    case value of
-        Nothing ->
-            list
-
-        Just v ->
-            Value v list
+    Value value list
 
 
 
@@ -58,7 +52,7 @@ map list fn =
             new (fn listHead)
 
         Value listHead listTail ->
-            push (map listTail fn) (Just (fn listHead))
+            push (map listTail fn) (fn listHead)
 
 
 reverse : LinkedList a -> LinkedList a
@@ -117,10 +111,10 @@ merge list1 list2 =
 
         ( Value head1 tail1, Value head2 tail2 ) ->
             if head1 < head2 then
-                push (merge tail1 list2) (Just head1)
+                push (merge tail1 list2) head1
 
             else
-                push (merge list1 tail2) (Just head2)
+                push (merge list1 tail2) head2
 
 
 drop : LinkedList a -> Int -> LinkedList a
@@ -151,7 +145,7 @@ take list n =
                 new listHead
 
             ( Value listHead listTail, _ ) ->
-                push (take listTail (n - 1)) (Just listHead)
+                push (take listTail (n - 1)) listHead
 
 
 
@@ -227,23 +221,6 @@ length list =
 
         notEmptyList ->
             1 + length (tail notEmptyList)
-
-
-
--- COMBINE
-
-
-append : LinkedList a -> LinkedList a -> LinkedList a
-append list1 list2 =
-    case ( list1, list2 ) of
-        ( Empty, l2 ) ->
-            l2
-
-        ( Value listHead Empty, l2 ) ->
-            Value listHead l2
-
-        ( l1, l2 ) ->
-            push (append (tail l1) l2) (head l1)
 
 
 
