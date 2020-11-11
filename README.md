@@ -42,7 +42,7 @@
 
 # Haskell
 
-**Version:**
+**Version:** The Glorious Glasgow Haskell Compilation System, version 8.0.2
 
 # C++
 
