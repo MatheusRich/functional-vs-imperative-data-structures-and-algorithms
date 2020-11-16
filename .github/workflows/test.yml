@@ -15,11 +15,11 @@ jobs:
         with:
           ruby-version: 2.7
           bundler-cache: true
-      - uses: justgook/setup-elm@1.2.0
+      # - uses: justgook/setup-elm@1.2.0
       - run: ruby -v
       - run: g++ -v
       - run: node --version
       - run: tsc --version
-      - run: elm --version
+      # - run: elm --version
       - name: Run tests
         run: ruby tests.rb
