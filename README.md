@@ -1,15 +1,15 @@
 # Data Structures
 
 - [ ] LinkedList
-  - head: Haskell
-  - tail: Haskell
-  - index: Haskell
-  - isEmpty: Haskell
+  - head: DONE
+  - tail: DONE
+  - index: DONE
+  - isEmpty: DONE
   - last: Haskell
-  - length: Haskell
+  - length: DONE
   - sort: Haskell and C++
-  - push: Haskell
-  - reverse: Haskell
+  - push: DONE
+  - reverse: DONE (redo in ELM)
 - [ ] BST
   - contains: Haskell and C++
   - depth: TS, Haskell and C++

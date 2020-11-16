@@ -1,65 +1,47 @@
-module MyList where
+module LinkedList where
 
-data MyList a = Cons a (MyList a) 
-                | MyNil deriving (Show, Eq)
-{-
- A simple linked list module
-  Some examples: 
-	mylist = (Cons 10 (Cons 99 (Cons 11 (Cons 1 MyNil))))
-	myHead myList                       # => 10
-	myTail myList                       # => Cons 99 (Cons 11 (Cons 1 MyNil))
-	myLength myList               # => 4
-	myToList myList               # => [10,99,11,1]
-	myFromList [10,99,11,1]       # => (Cons 10 (Cons 99 (Cons 11 (Cons 1 MyNil))))
-	myIndex 2 myList              # => 11
-	myMapList (\x -> x*x) myList  # => Cons 100 (Cons 9801 (Cons 121 (Cons 1 MyNil)))
+import Prelude hiding (foldl, head, last, length, reverse, tail)
 
-	...etc..
--}
+data LinkedList a
+  = Value a (LinkedList a)
+  | Empty
+  deriving (Show)
 
-myHead :: MyList a -> a
-myHead l = case l of
-        Cons a _ -> a
+new :: a -> LinkedList a
+new value =
+  Value value Empty
 
-myTail :: MyList a -> MyList a
-myTail MyNil = MyNil
-myTail l = case l of
-        Cons _ a -> a
+isEmpty :: LinkedList a -> Bool
+isEmpty Empty = True
+isEmpty _ = False
 
-myIndex :: Int -> MyList a -> a
-myIndex 0 xs = myHead xs
-myIndex x xs = myHead (myIndexTail x xs)
-    where 
-        myIndexTail 0 xs = xs
-        myIndexTail i xs = myIndexTail (i-1) (myTail xs)
+head :: LinkedList a -> Maybe a
+head Empty = Nothing
+head (Value head _) = Just head
 
-myLength :: MyList a -> Int 
-myLength MyNil = 0
-myLength xs = 1 + (myLength (myTail xs))
+tail :: LinkedList a -> LinkedList a
+tail (Value _ tail) = tail
+tail Empty = Empty
 
-myLast :: MyList a -> a
-myLast (Cons a MyNil) = a
-myLast l = myLast (myTail l)
+push :: a -> LinkedList a -> LinkedList a
+push value list = Value value list
 
-myInsert :: a -> MyList a -> MyList a
-myInsert x xs = Cons x xs
+index :: Integer -> LinkedList a -> Maybe a
+index 0 list = head list
+index idx list =
+  if idx < 0
+    then Nothing
+    else index (idx - 1) (LinkedList.tail list)
 
-myConcat :: MyList a -> MyList a -> MyList a
-myConcat (Cons a MyNil) bs = Cons a bs
-myConcat as bs = myInsert (myHead as) (myConcat (myTail as) bs)
+length :: LinkedList a -> Integer
+length Empty = 0
+length list = 1 + (length (tail list))
 
-myAppend :: a -> MyList a -> MyList a
-myAppend x (Cons a MyNil) = Cons a (Cons x MyNil)
-myAppend x xs = myInsert (myHead xs) (myAppend x (myTail xs))
+reverse :: LinkedList a -> LinkedList a
+reverse Empty = Empty
+reverse (Value listHead listTail) = push (listHead) (reverse listTail)
 
-myToList :: MyList a -> [a]
-myToList MyNil = []
-myToList (Cons a l) = a:(myToList l)
-
-myFromList :: [a] -> MyList a 
-myFromList [] = MyNil
-myFromList l = Cons (head l) (myFromList (tail l))
-
-myMapList :: (t -> a) -> MyList t -> MyList a
-myMapList f (Cons x MyNil) = Cons (f x) MyNil
-myMapList f l = Cons (f (myHead l)) (myMapList f (myTail l))
+last :: LinkedList a -> Maybe a
+last Empty = Nothing
+last (Value listHead Empty) = Just listHead
+last list = last (tail list)
