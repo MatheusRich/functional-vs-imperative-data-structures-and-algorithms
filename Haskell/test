@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ghc -O Haskell/*.hs
+ghc -O Haskell/*.hs > /dev/null
 ./Haskell/Main
