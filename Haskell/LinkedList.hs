@@ -52,4 +52,4 @@ toString :: (Show a) => LinkedList a -> String
 toString list = toStringAcc list ""
   where
     toStringAcc Empty acc = acc ++ "X"
-    toStringAcc (Value listHead listTail) acc = toStringAcc listTail (acc  ++ show (listHead)++ " -> ")
+    toStringAcc (Value listHead listTail) acc = toStringAcc listTail (acc ++ show (listHead) ++ " -> ")
