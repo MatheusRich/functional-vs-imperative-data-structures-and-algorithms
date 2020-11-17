@@ -4,13 +4,17 @@ maybeToStr :: Show a => Maybe a -> String
 maybeToStr (Just value) = show value
 maybeToStr Nothing = "Fails"
 
+assert :: Bool -> String -> IO ()
+assert True msg = putStrLn msg
+assert False _ = putStrLn "Fails"
+
 main = do
   putStrLn "Creating a new linked list of integers"
   let list = LL.Empty
-  if (LL.isEmpty list) then putStrLn "It is empty" else putStrLn "Fails"
+  assert (LL.isEmpty list) "It is empty"
   putStrLn "Pushing 3, 1, 4, 1, and 5"
   let newList = LL.push 5 (LL.push 1 (LL.push 4 (LL.push 1 (LL.push 3 list))))
-  if (not (LL.isEmpty newList)) then putStrLn "It is not empty" else putStrLn "Fails"
+  assert (not (LL.isEmpty newList)) "It is not empty"
   putStrLn ("Length is " ++ show (LL.length newList))
   putStrLn ("List is " ++ LL.toString (newList))
   putStrLn ("Head is " ++ maybeToStr (LL.head newList))
