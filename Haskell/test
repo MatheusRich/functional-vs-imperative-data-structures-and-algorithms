@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ghc -O Haskell/*.hs
+./Haskell/Main

@@ -17,7 +17,7 @@ Reversed list is 3 -> 1 -> 4 -> 1 -> 5 -> X
 OUTPUT
 
 class ImplementationTest < Test::Unit::TestCase
-  [LANGUAGES[0], LANGUAGES[-1]].each do |lang|
+  [LANGUAGES[0], LANGUAGES[2], LANGUAGES[3]].each do |lang|
     define_method("test_#{lang.downcase}_linked_list") do
       assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test`
     end
