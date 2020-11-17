@@ -34,14 +34,16 @@ index idx list =
     else index (idx - 1) (LinkedList.tail list)
 
 length :: LinkedList a -> Integer
-length Empty = 0
-length list = 1 + (length (tail list))
+length list = lengthAcc list 0
+  where
+    lengthAcc Empty acc = acc
+    lengthAcc (Value listHead listTail) acc = lengthAcc listTail (1 + acc)
 
 reverse :: LinkedList a -> LinkedList a
-reverse list = rev list Empty
+reverse list = reverseAcc list Empty
   where
-    rev Empty acc = acc
-    rev (Value listHead listTail) acc = rev listTail (push listHead acc)
+    reverseAcc Empty acc = acc
+    reverseAcc (Value listHead listTail) acc = reverseAcc listTail (push listHead acc)
 
 last :: LinkedList a -> Maybe a
 last Empty = Nothing
