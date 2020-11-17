@@ -5,7 +5,7 @@ import Prelude hiding (head, last, length, reverse, tail)
 data LinkedList a
   = Value a (LinkedList a)
   | Empty
-  deriving (Show)
+  deriving (Show, Eq)
 
 new :: a -> LinkedList a
 new value =
@@ -47,3 +47,9 @@ last :: LinkedList a -> Maybe a
 last Empty = Nothing
 last (Value listHead Empty) = Just listHead
 last list = last (tail list)
+
+toString :: (Show a) => LinkedList a -> String
+toString list = toStringAcc list ""
+  where
+    toStringAcc Empty acc = acc ++ "X"
+    toStringAcc (Value listHead listTail) acc = toStringAcc listTail (acc  ++ show (listHead)++ " -> ")
