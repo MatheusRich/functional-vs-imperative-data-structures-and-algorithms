@@ -1,7 +1,6 @@
 module LinkedList exposing
     ( LinkedList(..)
     , drop
-    , foldl
     , head
     , index
     , isEmpty
@@ -56,18 +55,17 @@ map fn list =
 
 
 reverse : LinkedList a -> LinkedList a
-reverse list =
-    foldl Value Empty list
+reverse linkedList =
+    let
+        rev list acc =
+            case ( list, acc ) of
+                ( Empty, _ ) ->
+                    acc
 
-
-foldl : (a -> b -> b) -> b -> LinkedList a -> b
-foldl func acc list =
-    case list of
-        Empty ->
-            acc
-
-        Value listHead listTail ->
-            foldl func (func listHead acc) listTail
+                ( Value listHead listTail, _ ) ->
+                    rev listTail (push listHead acc)
+    in
+    rev linkedList Empty
 
 
 
