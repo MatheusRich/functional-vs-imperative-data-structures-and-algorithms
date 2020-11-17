@@ -1,6 +1,6 @@
 module LinkedList where
 
-import Prelude hiding (foldl, head, last, length, reverse, tail)
+import Prelude hiding (head, last, length, reverse, tail)
 
 data LinkedList a
   = Value a (LinkedList a)
@@ -38,8 +38,10 @@ length Empty = 0
 length list = 1 + (length (tail list))
 
 reverse :: LinkedList a -> LinkedList a
-reverse Empty = Empty
-reverse (Value listHead listTail) = push (listHead) (reverse listTail)
+reverse list = rev list Empty
+  where
+    rev Empty acc = acc
+    rev (Value listHead listTail) acc = rev listTail (push listHead acc)
 
 last :: LinkedList a -> Maybe a
 last Empty = Nothing

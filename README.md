@@ -1,15 +1,18 @@
 # Data Structures
 
+- [ ] Review implementantions using tail-recursion.
+
 - [ ] LinkedList
   - head: DONE
   - tail: DONE
   - index: DONE
   - isEmpty: DONE
-  - last: Haskell
+  - last: DONE
   - length: DONE
-  - sort: Haskell and C++
+  - sort: Haskell, TS,  and C++
   - push: DONE
-  - reverse: DONE (redo in ELM)
+  - reverse: DONE
+  - toString: Haskell, ELM
 - [ ] BST
   - contains: Haskell and C++
   - depth: TS, Haskell and C++
@@ -19,8 +22,6 @@
 - [ ] Array?
 
 # Algorithms
-
-<!-- Assuming this operations will be in linked lists -->
 
 - [ ] MergeSort
   - TS, C++ and Haskell
@@ -53,4 +54,3 @@
 
 **Version:** g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
 **Compile command:** `g++ -std=c++11 main.cpp`
-
