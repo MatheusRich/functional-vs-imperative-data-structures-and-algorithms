@@ -12,7 +12,7 @@
   - sort: Haskell, TS,  and C++
   - push: DONE
   - reverse: DONE
-  - toString: Haskell, ELM
+  - toString: ELM
 - [ ] BST
   - contains: Haskell and C++
   - depth: TS, Haskell and C++
@@ -38,7 +38,7 @@
 
 **Version:** 0.19.1
 **Node Version:** v13.0.1
-**Compile command:** `elm make --optimize filename.ts`
+**Compile command:** `elm make --optimize filename.elm`
 
 ## Typescript
 
@@ -49,8 +49,9 @@
 ## Haskell
 
 **Version:** The Glorious Glasgow Haskell Compilation System, version 8.0.2
+**Compile command:** `ghc -O filename.hs`
 
 ## C++
 
 **Version:** g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
-**Compile command:** `g++ -std=c++11 main.cpp`
+**Compile command:** `g++ -std=c++11 filename.cpp`
