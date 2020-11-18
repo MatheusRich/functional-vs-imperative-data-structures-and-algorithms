@@ -19,13 +19,15 @@ private:
 
 public:
   LinkedList();
-  LinkedList(ListNode<T> * head, int size);
+  LinkedList(ListNode<T> *head, int size);
 
   ListNode<T> *head();
   LinkedList<T> tail();
   ListNode<T> *last();
   ListNode<T> *index(int index);
   LinkedList<T> reverse();
+  template <typename U>
+  LinkedList<U> map(U (*fn)(T));
   bool isEmpty();
   int length();
   void push(T value);

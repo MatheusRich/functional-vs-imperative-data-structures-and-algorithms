@@ -101,3 +101,19 @@ string LinkedList<T>::toString() {
 
   return ss.str();
 }
+
+template <typename T>
+template <typename U>
+LinkedList<U> LinkedList<T>::map(U (*fn)(T)) {
+  if (_head == nullptr) return LinkedList<U>();
+
+  auto newList = LinkedList<U>();
+
+  auto currentNode = head();
+  while (currentNode) {
+    newList.push(fn(currentNode->value));
+    currentNode = currentNode->next;
+  }
+
+  return newList.reverse();
+}

@@ -1,6 +1,7 @@
 #include "LinkedList.cpp"
 
 string assert(bool a, string msg) { return a ? msg : "Fail"; }
+string to_s(int n) { return '"' + (to_string(n)) + '"'; }
 
 int main() {
   cout << "Creating a new linked list of integers" << endl;
@@ -20,4 +21,5 @@ int main() {
   cout << "Tail length is " << l.tail().length() << endl;
   cout << "Last is " << l.last()->value << endl;
   cout << "Reversed list is " << l.reverse().toString() << endl;
+  cout << "List as string is " << l.map(to_s).toString() << endl;
 }
