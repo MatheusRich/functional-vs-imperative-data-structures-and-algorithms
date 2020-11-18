@@ -1,6 +1,7 @@
 module LinkedList exposing
     ( LinkedList(..)
     , drop
+    , filter
     , head
     , index
     , isEmpty
@@ -11,11 +12,14 @@ module LinkedList exposing
     , mergeSort
     , new
     , push
+    , reduce
     , reverse
     , sort
     , tail
     , take
     )
+
+import Html exposing (th)
 
 
 type LinkedList a
@@ -47,12 +51,32 @@ map fn list =
         Empty ->
             Empty
 
-        -- This is probably unnecessary
-        Value listHead Empty ->
-            new (fn listHead)
-
         Value listHead listTail ->
             push (fn listHead) (map fn listTail)
+
+
+filter : (a -> Bool) -> LinkedList a -> LinkedList a
+filter fn list =
+    case list of
+        Empty ->
+            Empty
+
+        Value listHead listTail ->
+            if fn listHead then
+                Value listHead (filter fn listTail)
+
+            else
+                filter fn listTail
+
+
+reduce : (a -> a -> a) -> a -> LinkedList a -> a
+reduce fn acc list =
+    case list of
+        Empty ->
+            acc
+
+        Value listHead listTail ->
+            reduce fn (fn listHead acc) listTail
 
 
 reverse : LinkedList a -> LinkedList a
