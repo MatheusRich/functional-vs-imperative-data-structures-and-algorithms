@@ -1,6 +1,6 @@
 module LinkedList where
 
-import Prelude hiding (head, last, length, map, reverse, tail)
+import Prelude hiding (filter, head, last, length, map, reverse, tail)
 
 data LinkedList a
   = Value a (LinkedList a)
@@ -53,6 +53,18 @@ last list = last (tail list)
 map :: (a -> b) -> LinkedList a -> LinkedList b
 map _ Empty = Empty
 map fn (Value listHead listTail) = (Value (fn listHead)) (map fn listTail)
+
+filter :: (a -> Bool) -> LinkedList a -> LinkedList a
+filter _ Empty = Empty
+filter fn (Value listHead listTail) =
+  if fn (listHead)
+    then Value listHead (filter fn listTail)
+    else filter fn listTail
+
+reduce :: (a -> a -> a) -> a -> LinkedList a -> a
+reduce _ acc Empty = acc
+reduce fn acc (Value listHead listTail) =
+  reduce fn (fn listHead acc) (listTail)
 
 toString :: (Show a) => LinkedList a -> String
 toString list = toStringAcc list ""
