@@ -26,11 +26,11 @@
 - [ ] MergeSort
   - TS, C++ and Haskell
 - [ ] Filter
-  - Elm, TS, C++ and Haskell
+  - DONE
 - [ ] Map
-  - TS, C++ and Haskell
+  - DONE
 - [ ] Reduce
-  - Elm, TS, C++ and Haskell
+  - DONE
 
 # Tools
 

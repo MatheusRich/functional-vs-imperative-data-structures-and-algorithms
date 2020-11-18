@@ -117,3 +117,34 @@ LinkedList<U> LinkedList<T>::map(U (*fn)(T)) {
 
   return newList.reverse();
 }
+
+template <typename T>
+LinkedList<T> LinkedList<T>::filter(bool (*fn)(T)) {
+  if (_head == nullptr) return LinkedList<T>();
+
+  auto newList = LinkedList<T>();
+
+  auto currentNode = head();
+  while (currentNode) {
+    if (fn(currentNode->value)) {
+      newList.push(currentNode->value);
+    }
+
+    currentNode = currentNode->next;
+  }
+
+  return newList.reverse();
+}
+
+template <typename T>
+T LinkedList<T>::reduce(T (*fn)(T, T), T acc) {
+  if (_head == nullptr) return acc;
+
+  auto currentNode = head();
+  while (currentNode) {
+    acc = fn(currentNode->value, acc);
+    currentNode = currentNode->next;
+  }
+
+  return acc;
+}

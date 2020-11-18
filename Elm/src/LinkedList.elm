@@ -94,7 +94,6 @@ reverse linkedList =
 
 
 
--- filter : LinkedList a -> (a -> Bool) -> LinkedList a
 -- SORT
 
 

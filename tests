@@ -17,9 +17,9 @@ Tail length is 4
 Last is 3
 Reversed list is 3 -> 1 -> 4 -> 1 -> 5 -> X
 List as string is "5" -> "1" -> "4" -> "1" -> "3" -> X
+List without even numbers is 5 -> 1 -> 1 -> 3 -> X
+Sum of all list elements is 14
 OUTPUT
-# Only odd numbers: 5 -> 1 -> 1 -> 3 -> X
-# Sum of all elements is 14
 
 class ImplementationTest < Test::Unit::TestCase
   [LANGUAGES[0], LANGUAGES[2], LANGUAGES[3]].each do |lang|

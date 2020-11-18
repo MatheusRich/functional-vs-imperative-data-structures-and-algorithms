@@ -28,6 +28,8 @@ public:
   LinkedList<T> reverse();
   template <typename U>
   LinkedList<U> map(U (*fn)(T));
+  LinkedList<T> filter(bool (*fn)(T));
+  T reduce(T (*fn)(T, T), T acc);
   bool isEmpty();
   int length();
   void push(T value);

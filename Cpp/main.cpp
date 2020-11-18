@@ -2,6 +2,8 @@
 
 string assert(bool a, string msg) { return a ? msg : "Fail"; }
 string to_s(int n) { return '"' + (to_string(n)) + '"'; }
+bool is_odd(int n) { return n % 2 == 1; }
+int sum(int a, int b) { return a + b; }
 
 int main() {
   cout << "Creating a new linked list of integers" << endl;
@@ -22,4 +24,6 @@ int main() {
   cout << "Last is " << l.last()->value << endl;
   cout << "Reversed list is " << l.reverse().toString() << endl;
   cout << "List as string is " << l.map(to_s).toString() << endl;
+  cout << "List without even numbers is " << l.filter(is_odd).toString() << endl;
+  cout << "Sum of all list elements is " << l.reduce(sum, 0) << endl;
 }

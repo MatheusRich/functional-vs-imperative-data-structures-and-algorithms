@@ -18,3 +18,5 @@ console.log(`Tail length is ${list.tail().length()}`);
 console.log(`Last is ${list.last()?.value}`);
 console.log(`Reversed list is ${list.reverse().toString()}`);
 console.log(`List as string is ${list.map(i => `"${i}"`).toString()}`);
+console.log(`List without even numbers is ${list.filter(n => n % 2 == 1).toString()}`);
+console.log(`Sum of all list elements is ${list.reduce((a, b) => a + b, 0)}`);

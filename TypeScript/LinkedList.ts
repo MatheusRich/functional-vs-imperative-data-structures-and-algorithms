@@ -30,18 +30,43 @@ export class LinkedList<T> {
   // Transform
 
   // TODO: REVIEW THIS
-  map(func: (value: T) => any): LinkedList<T> {
+  map(fn: (value: T) => any): LinkedList<T> {
     if (!this.head()) return new LinkedList<T>();
 
     let newList = new LinkedList<T>();
 
     let currentNode = this.head();
     while (currentNode) {
-      newList.push(func(currentNode.value));
+      newList.push(fn(currentNode.value));
       currentNode = currentNode.next;
     }
 
     return newList.reverse();
+  }
+
+  filter(fn: (a: T) => boolean): LinkedList<T> {
+    if (!this.head()) return new LinkedList<T>();
+
+    let newList = new LinkedList<T>();
+    let currentNode = this.head();
+    while (currentNode) {
+      if (fn(currentNode.value)) newList.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    return newList.reverse();
+  }
+
+  reduce(fn: (a: T, b: T) => T, acc: T): T {
+    if (!this.head()) return acc;
+
+    let currentNode = this.head();
+    while (currentNode) {
+      acc = fn(currentNode.value, acc);
+      currentNode = currentNode.next;
+    }
+
+    return acc;
   }
 
   reverse(): LinkedList<T> {
