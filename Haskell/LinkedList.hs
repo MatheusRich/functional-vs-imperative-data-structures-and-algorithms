@@ -1,6 +1,6 @@
 module LinkedList where
 
-import Prelude hiding (filter, head, last, length, map, reverse, tail)
+import Prelude hiding (filter, head, last, length, map, reverse, tail, drop, take)
 
 data LinkedList a
   = Value a (LinkedList a)
@@ -65,6 +65,40 @@ reduce :: (a -> a -> a) -> a -> LinkedList a -> a
 reduce _ acc Empty = acc
 reduce fn acc (Value listHead listTail) =
   reduce fn (fn listHead acc) (listTail)
+
+sort :: (Ord a) => LinkedList a -> LinkedList a
+sort list = mergeSort list
+
+mergeSort :: (Ord a) => LinkedList a -> LinkedList a
+mergeSort Empty = Empty
+mergeSort (Value a Empty) = (Value a Empty)
+mergeSort list = merge (mergeSort left) (mergeSort right)
+  where
+    left = take ((length list) `div` 2) list
+    right = drop ((length list) `div` 2) list
+
+merge :: (Ord a) => LinkedList a -> LinkedList a -> LinkedList a
+merge list1 Empty = list1
+merge Empty list2 = list2
+merge (Value head1 tail1) (Value head2 tail2) =
+  if head1 < head2
+    then push head1 (merge tail1 list2)
+    else push head2 (merge list1 tail2)
+    where
+      list1 = (Value head1 tail1)
+      list2 = (Value head2 tail2)
+
+take :: Integer -> LinkedList a -> LinkedList a
+take _ Empty = Empty
+take 0 list = list
+take 1 (Value listHead _) = new listHead
+take n (Value listHead listTail) = Value listHead (take (n - 1) listTail)
+
+drop :: Integer -> LinkedList a -> LinkedList a
+drop _ Empty = Empty
+drop 0 list = list
+drop n (Value _ listTail) = drop (n - 1) listTail
+
 
 toString :: (Show a) => LinkedList a -> String
 toString list = toStringAcc list ""

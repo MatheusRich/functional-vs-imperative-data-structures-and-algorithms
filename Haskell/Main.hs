@@ -25,3 +25,4 @@ main = do
   putStrLn ("List as string is " ++ LL.toString (LL.map (\x -> show x) newList))
   putStrLn ("List without even numbers is " ++ LL.toString (LL.filter (\x -> rem x 2 /= 0) newList))
   putStrLn ("Sum of all list elements is " ++ show (LL.reduce (+) 0 newList))
+  putStrLn ("Sorted list is " ++ LL.toString (LL.sort newList))
