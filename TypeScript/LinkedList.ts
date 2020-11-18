@@ -10,11 +10,9 @@ class LinkedListNode<T> {
 
 export class LinkedList<T> {
   _head: LinkedListNode<T> | null;
-  _length: number;
 
-  constructor(head: LinkedListNode<T> | null = null, length: number = 0) {
+  constructor(head: LinkedListNode<T> | null = null) {
     this._head = head;
-    this._length = length;
   }
 
   // Create
@@ -22,7 +20,6 @@ export class LinkedList<T> {
   push(value: T): LinkedList<T> {
     let newNode = new LinkedListNode(value, this._head);
     this._head = newNode;
-    this._length++;
 
     return this;
   }
@@ -90,11 +87,11 @@ export class LinkedList<T> {
   tail(): LinkedList<T> {
     if (!this._head) return new LinkedList<T>();
 
-    return new LinkedList<T>(this._head.next, this._length - 1);
+    return new LinkedList<T>(this._head.next);
   }
 
   index(index: number): LinkedListNode<T> | null {
-    if (this._length < index || index < 0) return null;
+    if (index < 0 || index >= this.length()) return null;
 
     let currentIndex: number = 0;
     let currentNode = this._head;
@@ -119,11 +116,20 @@ export class LinkedList<T> {
   // Utilities
 
   isEmpty(): boolean {
-    return this._length === 0;
+    return this.length() === 0;
   }
 
   length(): number {
-    return this._length;
+    if (!this.head()) return 0;
+
+    let length = 0;
+    let currentNode = this.head();
+    while (currentNode) {
+      length++;
+      currentNode = currentNode.next;
+    }
+
+    return length;
   }
 
   toString(): string {
@@ -149,8 +155,6 @@ export class LinkedList<T> {
     } else {
       currentNode = otherList.head();
     }
-
-    this._length += otherList.length();
 
     return this;
   }
