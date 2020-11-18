@@ -11,13 +11,11 @@ ListNode<T>::ListNode(T value, ListNode<T>* next) {
 template <typename T>
 LinkedList<T>::LinkedList() {
   _head = nullptr;
-  _size = 0;
 }
 
 template <typename T>
-LinkedList<T>::LinkedList(ListNode<T>* head, int size) {
+LinkedList<T>::LinkedList(ListNode<T>* head) {
   _head = head;
-  _size = size;
 }
 
 template <typename T>
@@ -29,7 +27,7 @@ template <typename T>
 LinkedList<T> LinkedList<T>::tail() {
   if (_head == nullptr) return LinkedList();
 
-  return LinkedList(_head->next, _size - 1);
+  return LinkedList(_head->next);
 }
 
 template <typename T>
@@ -45,24 +43,32 @@ ListNode<T>* LinkedList<T>::last() {
 
 template <typename T>
 bool LinkedList<T>::isEmpty() {
-  return _head == nullptr;
+  return length() == 0;
 }
 
 template <typename T>
 int LinkedList<T>::length() {
-  return _size;
+  if (!head()) return 0;
+
+  int length = 0;
+  auto currentNode = head();
+  while (currentNode != nullptr) {
+    length++;
+    currentNode = currentNode->next;
+  }
+
+  return length;
 }
 
 template <typename T>
 void LinkedList<T>::push(T value) {
   auto tmp = new ListNode<T>(value, _head);
   _head = tmp;
-  _size++;
 }
 
 template <typename T>
 ListNode<T>* LinkedList<T>::index(int index) {
-  if (index < 0 || index >= _size) return nullptr;
+  if (index < 0 || index >= length()) return nullptr;
 
   int currentIndex = 0;
   auto currentNode = head();
@@ -80,7 +86,7 @@ LinkedList<T> LinkedList<T>::reverse() {
   auto newList = LinkedList();
   auto currentNode = head();
 
-  while (currentNode) {
+  while (currentNode != nullptr) {
     newList.push(currentNode->value);
     currentNode = currentNode->next;
   }
@@ -110,7 +116,7 @@ LinkedList<U> LinkedList<T>::map(U (*fn)(T)) {
   auto newList = LinkedList<U>();
 
   auto currentNode = head();
-  while (currentNode) {
+  while (currentNode != nullptr) {
     newList.push(fn(currentNode->value));
     currentNode = currentNode->next;
   }
@@ -125,7 +131,7 @@ LinkedList<T> LinkedList<T>::filter(bool (*fn)(T)) {
   auto newList = LinkedList<T>();
 
   auto currentNode = head();
-  while (currentNode) {
+  while (currentNode != nullptr) {
     if (fn(currentNode->value)) newList.push(currentNode->value);
     currentNode = currentNode->next;
   }
@@ -138,7 +144,7 @@ T LinkedList<T>::reduce(T (*fn)(T, T), T acc) {
   if (_head == nullptr) return acc;
 
   auto currentNode = head();
-  while (currentNode) {
+  while (currentNode != nullptr) {
     acc = fn(currentNode->value, acc);
     currentNode = currentNode->next;
   }

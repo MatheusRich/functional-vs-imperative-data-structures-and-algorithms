@@ -15,11 +15,10 @@ template <typename T>
 class LinkedList {
 private:
   ListNode<T> *_head;
-  int _size;
 
 public:
   LinkedList();
-  LinkedList(ListNode<T> *head, int size);
+  LinkedList(ListNode<T> *head);
 
   ListNode<T> *head();
   LinkedList<T> tail();
