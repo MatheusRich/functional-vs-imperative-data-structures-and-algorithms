@@ -47,6 +47,7 @@ map fn list =
         Empty ->
             Empty
 
+        -- This is probably unnecessary
         Value listHead Empty ->
             new (fn listHead)
 
