@@ -17,3 +17,4 @@ console.log(`Tail is ${list.tail().toString()}`);
 console.log(`Tail length is ${list.tail().length()}`);
 console.log(`Last is ${list.last()?.value}`);
 console.log(`Reversed list is ${list.reverse().toString()}`);
+console.log(`List as string is ${list.map(i => `"${i}"`).toString()}`);

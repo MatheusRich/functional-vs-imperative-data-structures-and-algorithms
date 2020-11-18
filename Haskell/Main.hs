@@ -22,4 +22,4 @@ main = do
   putStrLn ("Tail length is " ++ show (LL.length (LL.tail newList)))
   putStrLn ("Last is " ++ maybeToStr (LL.last newList))
   putStrLn ("Reversed list is " ++ LL.toString (LL.reverse newList))
-  putStrLn ("Doubling list elements: " ++ LL.toString (LL.map (\x -> x * 2) newList))
+  putStrLn ("List as string is " ++ LL.toString (LL.map (\x -> show x) newList))

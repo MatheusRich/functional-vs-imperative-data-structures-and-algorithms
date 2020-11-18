@@ -29,6 +29,7 @@ export class LinkedList<T> {
 
   // Transform
 
+  // TODO: REVIEW THIS
   map(func: (value: T) => any): LinkedList<T> {
     if (!this.head()) return new LinkedList<T>();
 
