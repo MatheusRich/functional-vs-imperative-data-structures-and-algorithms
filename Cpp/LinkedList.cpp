@@ -126,10 +126,7 @@ LinkedList<T> LinkedList<T>::filter(bool (*fn)(T)) {
 
   auto currentNode = head();
   while (currentNode) {
-    if (fn(currentNode->value)) {
-      newList.push(currentNode->value);
-    }
-
+    if (fn(currentNode->value)) newList.push(currentNode->value);
     currentNode = currentNode->next;
   }
 
