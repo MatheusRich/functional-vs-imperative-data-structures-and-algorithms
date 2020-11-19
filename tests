@@ -39,7 +39,7 @@ class ImplementationTest < Test::Unit::TestCase
       end
     end
 
-    if lang == LANGUAGES[1]
+    if [LANGUAGES[1], LANGUAGES[3]].include? lang
       define_method("test_#{lang.downcase}_bst") do
         assert_equal BST_EXPECTED_OUTPUT, `#{lang}/test_bst`
       end

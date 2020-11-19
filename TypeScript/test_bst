@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tsc TypeScript/BSTTest.ts
+node TypeScript/BSTTest.js
