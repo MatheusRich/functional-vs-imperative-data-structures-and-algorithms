@@ -1,64 +1,16 @@
-port module Main exposing (main)
+module Main exposing (main)
 
-import Html.Attributes exposing (list)
+import Headless exposing (..)
 import LinkedList exposing (LinkedList(..))
-import Platform exposing (Program)
 
 
-type alias InputType =
-    Int
-
-
-type alias OutputType =
-    String
-
-
-port get : (InputType -> msg) -> Sub msg
-
-
-port put : OutputType -> Cmd msg
-
-
-main : Program Flags Model Msg
+main : Program Headless.Flags Headless.Model Headless.Msg
 main =
-    Platform.worker
-        { init = init
-        , update = update
-        , subscriptions = subscriptions
-        }
+    Headless.run linkedListTest
 
 
-type alias Model =
-    ()
-
-
-type Msg
-    = Input Int
-
-
-type alias Flags =
-    ()
-
-
-init : Flags -> ( Model, Cmd Msg )
-init _ =
-    ( (), Cmd.none )
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        Input input ->
-            ( model, put (transform input) )
-
-
-subscriptions : Model -> Sub Msg
-subscriptions _ =
-    get Input
-
-
-transform : InputType -> OutputType
-transform i =
+linkedListTest : InputType -> OutputType
+linkedListTest i =
     let
         emptyList =
             LinkedList.Empty
