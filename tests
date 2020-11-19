@@ -22,10 +22,27 @@ Sum of all list elements is 14
 Sorted list is 1 -> 1 -> 3 -> 4 -> 5 -> X
 OUTPUT
 
+BST_EXPECTED_OUTPUT = <<~OUTPUT
+Creating a new binary search tree of integers
+It is empty
+Pushing 3, -1, -4 and 5
+It is not empty
+Depth is 3
+First negative number is -1
+OUTPUT
+
 class ImplementationTest < Test::Unit::TestCase
-  [LANGUAGES[1], LANGUAGES[2]].each do |lang|
-    define_method("test_#{lang.downcase}_linked_list") do
-      assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test_linked_list`
+  [LANGUAGES[0], LANGUAGES[1], LANGUAGES[2], LANGUAGES[3]].each do |lang|
+    if [LANGUAGES[1], LANGUAGES[2]].include? lang
+      define_method("test_#{lang.downcase}_linked_list") do
+        assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test_linked_list`
+      end
+    end
+
+    if lang == LANGUAGES[1]
+      define_method("test_#{lang.downcase}_bst") do
+        assert_equal BST_EXPECTED_OUTPUT, `#{lang}/test_bst`
+      end
     end
   end
 end

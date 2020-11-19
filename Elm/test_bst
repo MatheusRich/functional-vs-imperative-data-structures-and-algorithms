@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd Elm/
+elm make --optimize src/BSTTest.elm --output=src/BSTTest.js > /dev/null
+node src/cli.js BSTTest 1 2 3 4 5 6
+cd ..
