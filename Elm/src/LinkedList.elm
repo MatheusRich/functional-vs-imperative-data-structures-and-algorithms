@@ -19,8 +19,6 @@ module LinkedList exposing
     , take
     )
 
-import Html exposing (th)
-
 
 type LinkedList a
     = Value a (LinkedList a)
