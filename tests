@@ -23,7 +23,7 @@ Sorted list is 1 -> 1 -> 3 -> 4 -> 5 -> X
 OUTPUT
 
 class ImplementationTest < Test::Unit::TestCase
-  [LANGUAGES[0], LANGUAGES[2], LANGUAGES[3]].each do |lang|
+  [LANGUAGES[2]].each do |lang|
     define_method("test_#{lang.downcase}_linked_list") do
       assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test`
     end
