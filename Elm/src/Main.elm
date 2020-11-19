@@ -1,28 +1,140 @@
-module Main exposing (..)
+port module Main exposing (main)
 
+import Html.Attributes exposing (list)
 import LinkedList exposing (LinkedList(..))
-import Platform exposing (worker)
+import Platform exposing (Program)
 
 
-nodeProgram : a -> Program () () ()
-nodeProgram _ =
-    worker
-        { init = always ( (), Cmd.none )
-        , update = \() -> \() -> ( (), Cmd.none )
-        , subscriptions = \() -> Sub.none
+type alias InputType =
+    Int
+
+
+type alias OutputType =
+    String
+
+
+port get : (InputType -> msg) -> Sub msg
+
+
+port put : OutputType -> Cmd msg
+
+
+main : Program Flags Model Msg
+main =
+    Platform.worker
+        { init = init
+        , update = update
+        , subscriptions = subscriptions
         }
 
 
-
--- worker
---     { init = always ( (), Cmd.none )
---     , update = update
---     , subscriptions = always (start Start)
---     }
--- main : Program () () Msg
--- main =
+type alias Model =
+    ()
 
 
-main : Program () () ()
-main =
-    nodeProgram (Debug.log "asdf")
+type Msg
+    = Input Int
+
+
+type alias Flags =
+    ()
+
+
+init : Flags -> ( Model, Cmd Msg )
+init _ =
+    ( (), Cmd.none )
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        Input input ->
+            ( model, put (transform input) )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    get Input
+
+
+transform : InputType -> OutputType
+transform i =
+    let
+        emptyList =
+            LinkedList.Empty
+
+        list =
+            Value 5 (Value 1 (Value 4 (Value 1 (Value 3 Empty))))
+
+        listHead =
+            case LinkedList.head list of
+                Just value ->
+                    value
+
+                Nothing ->
+                    -999
+
+        listLast =
+            case LinkedList.last list of
+                Just value ->
+                    value
+
+                Nothing ->
+                    -999
+    in
+    case i of
+        1 ->
+            "Creating a new linked list of integers"
+
+        2 ->
+            if LinkedList.isEmpty emptyList then
+                "It is empty"
+
+            else
+                "fails"
+
+        3 ->
+            "Pushing 3, 1, 4, 1, and 5"
+
+        4 ->
+            if not (LinkedList.isEmpty list) then
+                "It is not empty"
+
+            else
+                "fails"
+
+        5 ->
+            "Length is " ++ String.fromInt (LinkedList.length list)
+
+        6 ->
+            "List is " ++ LinkedList.toString list
+
+        7 ->
+            "Head is " ++ String.fromInt listHead
+
+        8 ->
+            "Tail is " ++ LinkedList.toString (LinkedList.tail list)
+
+        9 ->
+            "Tail length is " ++ String.fromInt (LinkedList.length (LinkedList.tail list))
+
+        10 ->
+            "Last is " ++ String.fromInt listLast
+
+        11 ->
+            "Reversed list is " ++ LinkedList.toString (LinkedList.reverse list)
+
+        12 ->
+            "List as string is " ++ LinkedList.toString2 (LinkedList.map (\x -> String.fromInt x) list)
+
+        13 ->
+            "List without even numbers is " ++ LinkedList.toString (LinkedList.filter (\x -> remainderBy 2 x == 1) list)
+
+        14 ->
+            "Sum of all list elements is " ++ String.fromInt (LinkedList.reduce (+) 0 list)
+
+        15 ->
+            "Sorted list is " ++ LinkedList.toString (LinkedList.sort list)
+
+        _ ->
+            "fails"

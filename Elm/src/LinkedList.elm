@@ -17,7 +17,11 @@ module LinkedList exposing
     , sort
     , tail
     , take
+    , toString
+    , toString2
     )
+
+import String
 
 
 type LinkedList a
@@ -221,3 +225,31 @@ length list =
 
         notEmptyList ->
             1 + length (tail notEmptyList)
+
+
+toString : LinkedList Int -> String
+toString list =
+    let
+        toStringAcc acc linkedList =
+            case linkedList of
+                Empty ->
+                    acc ++ "X"
+
+                Value listHead listTail ->
+                    toStringAcc (acc ++ String.fromInt listHead ++ " -> ") listTail
+    in
+    toStringAcc "" list
+
+
+toString2 : LinkedList String -> String
+toString2 list =
+    let
+        toStringAcc acc linkedList =
+            case linkedList of
+                Empty ->
+                    acc ++ "X"
+
+                Value listHead listTail ->
+                    toStringAcc (acc ++ "\"" ++ listHead ++ "\"" ++ " -> ") listTail
+    in
+    toStringAcc "" list
