@@ -90,14 +90,14 @@ class BSTNode<T> {
   }
 
   printSelf2(buffer: string, prefix: string, childrenPrefix: string): string {
-    buffer += prefix;
+    buffer += prefix + "(";
     buffer += this.value;
-    buffer += '\n';
+    buffer += ')\n';
     if (this.right) {
-      buffer = this.right.printSelf2(buffer, childrenPrefix + '├── ', childrenPrefix + '│   ');
+      buffer = this.right.printSelf2(buffer, childrenPrefix + '├─ r ', childrenPrefix + '│   ');
     }
     if (this.left) {
-      buffer = this.left.printSelf2(buffer, childrenPrefix + '└── ', childrenPrefix + '    ');
+      buffer = this.left.printSelf2(buffer, childrenPrefix + '└─ l ', childrenPrefix + '    ');
     }
 
     return buffer;
@@ -116,7 +116,7 @@ class BSTNode<T> {
   }
 }
 
-class BinarySearchTree<T> {
+export class BinarySearchTree<T> {
   root: BSTNode<T> | null;
 
   constructor() {
@@ -177,23 +177,23 @@ class BinarySearchTree<T> {
   }
 }
 
-let bst: BinarySearchTree<number> = new BinarySearchTree();
-bst.push(1);
-bst.push(2);
-bst.push(1.5);
-bst.push(-3);
-bst.push(4);
-bst.push(3);
-bst.push(-5);
-bst.push(-4);
-bst.push(-12);
-bst.push(12);
-// bst.toString();
-console.log(`Tree is \n${bst.toString2()}`);
-console.log('-------');
-console.log(`Tree is \n${bst.toString()}`);
-console.log(`Depth is ${bst.depth()}`);
+// let bst: BinarySearchTree<number> = new BinarySearchTree();
+// bst.push(1);
+// bst.push(2);
+// bst.push(1.5);
+// bst.push(-3);
+// bst.push(4);
+// bst.push(3);
+// bst.push(-5);
+// bst.push(-4);
+// bst.push(-12);
+// bst.push(12);
+// // bst.toString();
+// console.log(`Tree is \n${bst.toString2()}`);
+// console.log('-------');
+// console.log(`Tree is \n${bst.toString()}`);
+// console.log(`Depth is ${bst.depth()}`);
 
-// console.log({depth: bst.depth()});
-// console.log({map: bst.map(n => n * 2)});
-// console.log({find: bst.find(n => n < 0)});
+// // console.log({depth: bst.depth()});
+// // console.log({map: bst.map(n => n * 2)});
+// // console.log({find: bst.find(n => n < 0)});
