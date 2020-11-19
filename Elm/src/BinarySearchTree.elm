@@ -1,4 +1,4 @@
-module BinarySearchTree exposing (BinarySearchTree, contains, depth, find, first, isEmpty, map, new, push)
+module BinarySearchTree exposing (BinarySearchTree(..), contains, depth, find, first, isEmpty, map, new, push)
 
 
 type BinarySearchTree a
@@ -21,25 +21,25 @@ isEmpty tree =
             False
 
 
-push : BinarySearchTree comparable -> comparable -> BinarySearchTree comparable
-push tree x =
+push : comparable -> BinarySearchTree comparable -> BinarySearchTree comparable
+push x tree =
     case tree of
         Empty ->
             new x
 
         Node y left right ->
             if x > y then
-                Node y left (push right x)
+                Node y left (push x right)
 
             else if x < y then
-                Node y (push left x) right
+                Node y (push x left) right
 
             else
                 tree
 
 
-find : BinarySearchTree a -> (a -> Bool) -> Maybe a
-find tree fn =
+find : (a -> Bool) -> BinarySearchTree a -> Maybe a
+find fn tree =
     case tree of
         Empty ->
             Nothing
@@ -49,26 +49,26 @@ find tree fn =
                 Just n
 
             else
-                case find left fn of
+                case find fn left of
                     Nothing ->
-                        find right fn
+                        find fn right
 
                     found ->
                         found
 
 
-contains : BinarySearchTree comparable -> comparable -> Bool
-contains tree target =
+contains : comparable -> BinarySearchTree comparable -> Bool
+contains target tree =
     case tree of
         Empty ->
             False
 
         Node value left right ->
             if target < value then
-                contains left target
+                contains target left
 
             else if target > value then
-                contains right target
+                contains target right
 
             else
                 True
@@ -84,14 +84,14 @@ depth tree =
             1 + max (depth left) (depth right)
 
 
-map : BinarySearchTree a -> (a -> b) -> BinarySearchTree b
-map tree func =
+map : (a -> b) -> BinarySearchTree a -> BinarySearchTree b
+map fn tree =
     case tree of
         Empty ->
             Empty
 
         Node v left right ->
-            Node (func v) (map left func) (map right func)
+            Node (fn v) (map fn left) (map fn right)
 
 
 first : BinarySearchTree a -> Maybe a
