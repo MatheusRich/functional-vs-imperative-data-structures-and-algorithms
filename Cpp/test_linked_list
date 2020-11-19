@@ -1,4 +1,4 @@
 #!/bin/bash
 
-g++ -std=c++11 Cpp/main.cpp -o Cpp/a.out > /dev/null
+g++ -std=c++11 Cpp/LinkedListTest.cpp -o Cpp/a.out > /dev/null
 ./Cpp/a.out

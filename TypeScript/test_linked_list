@@ -1,4 +1,4 @@
 #!/bin/bash
 
-tsc TypeScript/Main.ts
-node TypeScript/Main.js
+tsc TypeScript/LinkedListTest.ts
+node TypeScript/LinkedListTest.js

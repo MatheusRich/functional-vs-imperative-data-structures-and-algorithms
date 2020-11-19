@@ -1,6 +1,6 @@
 #!/bin/bash
 
 cd Elm/
-elm make --optimize src/Main.elm --output=src/main.js > /dev/null
-node src/cli.js 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+elm make --optimize src/LinkedListTest.elm --output=src/LinkedListTest.js > /dev/null
+node src/cli.js LinkedListTest 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 cd ..
