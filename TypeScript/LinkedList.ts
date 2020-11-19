@@ -15,16 +15,12 @@ export class LinkedList<T> {
     this._head = head;
   }
 
-  // Create
-
   push(value: T): LinkedList<T> {
     let newNode = new LinkedListNode(value, this._head);
     this._head = newNode;
 
     return this;
   }
-
-  // Transform
 
   // TODO: REVIEW THIS
   map(fn: (value: T) => any): LinkedList<T> {
@@ -78,8 +74,6 @@ export class LinkedList<T> {
     return reversed;
   }
 
-  // Deconstruct
-
   head(): LinkedListNode<T> | null {
     return this._head;
   }
@@ -113,8 +107,6 @@ export class LinkedList<T> {
     return currentNode;
   }
 
-  // Utilities
-
   isEmpty(): boolean {
     return this.length() === 0;
   }
@@ -140,22 +132,5 @@ export class LinkedList<T> {
       currentNode = currentNode.next;
     }
     return str + 'X';
-  }
-
-  // Combine
-
-  append(otherList: LinkedList<T>): LinkedList<T> {
-    let currentNode = this.head();
-    while (currentNode && currentNode.next) {
-      currentNode = currentNode.next;
-    }
-
-    if (currentNode) {
-      currentNode.next = otherList.head();
-    } else {
-      currentNode = otherList.head();
-    }
-
-    return this;
   }
 }
