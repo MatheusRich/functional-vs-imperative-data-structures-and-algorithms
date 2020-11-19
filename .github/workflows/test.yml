@@ -22,11 +22,5 @@ jobs:
         with:
           stack-no-global: true
           enable-stack: true
-      # - run: ruby -v
-      # - run: g++ -v
-      # - run: node --version
-      # - run: tsc --version
-      # - run: ghc --version
-      - run: elm --version
       - name: Run tests
         run: ./tests
