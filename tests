@@ -25,7 +25,7 @@ OUTPUT
 class ImplementationTest < Test::Unit::TestCase
   [LANGUAGES[1], LANGUAGES[2]].each do |lang|
     define_method("test_#{lang.downcase}_linked_list") do
-      assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test`
+      assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test_linked_list`
     end
   end
 end
