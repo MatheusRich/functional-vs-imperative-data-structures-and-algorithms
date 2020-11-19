@@ -9,7 +9,7 @@
   - isEmpty: DONE
   - last: DONE
   - length: DONE
-  - sort: Haskell, TS, and C++
+  - sort: TS, and C++
   - push: DONE
   - reverse: DONE
   - toString: ELM
@@ -24,7 +24,7 @@
 # Algorithms
 
 - [ ] MergeSort
-  - TS, C++ and Haskell
+  - TS, C++
 - [ ] Filter
   - DONE
 - [ ] Map

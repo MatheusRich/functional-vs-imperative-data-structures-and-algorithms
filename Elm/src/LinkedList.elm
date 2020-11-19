@@ -27,10 +27,6 @@ type LinkedList a
     | Empty
 
 
-
--- CREATE
-
-
 new : a -> LinkedList a
 new value =
     Value value Empty
@@ -39,10 +35,6 @@ new value =
 push : a -> LinkedList a -> LinkedList a
 push value list =
     Value value list
-
-
-
--- TRANSFORM
 
 
 map : (a -> b) -> LinkedList a -> LinkedList b
@@ -91,10 +83,6 @@ reverse linkedList =
                     rev listTail (push listHead acc)
     in
     rev linkedList Empty
-
-
-
--- SORT
 
 
 sort : LinkedList comparable -> LinkedList comparable
@@ -170,10 +158,6 @@ take n list =
                 push listHead (take (n - 1) listTail)
 
 
-
--- DECONSTRUCT
-
-
 isEmpty : LinkedList a -> Bool
 isEmpty list =
     case list of
@@ -231,10 +215,6 @@ last list =
             last (tail list)
 
 
-
--- UTILITIES
-
-
 length : LinkedList a -> Int
 length list =
     case list of
@@ -243,24 +223,3 @@ length list =
 
         notEmptyList ->
             1 + length (tail notEmptyList)
-
-
-
--- UTILS
-
-
-double : Int -> Int
-double n =
-    n * 2
-
-
-divide : Int -> Float
-divide n =
-    toFloat n / 2
-
-
-
--- l = LinkedList.Empty
--- LinkedList.isEmpty l
--- l2 = LinkedList.push l (Just 2)
--- LinkedList.tail l2
