@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ghc -O Haskell/*.hs > /dev/null
+ghc -O Haskell/LinkedList.hs Haskell/LinkedListTest.hs > /dev/null
 ./Haskell/LinkedListTest

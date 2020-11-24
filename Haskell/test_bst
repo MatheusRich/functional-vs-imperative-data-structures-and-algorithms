@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ghc -O Haskell/BinarySearchTree.hs Haskell/BSTTest.hs > /dev/null
+./Haskell/BSTTest
