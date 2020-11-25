@@ -36,11 +36,10 @@ T TreeNode<T>::find(bool (*fn)(T)) {
   if (fn(_value)) return _value;
 
   int leftFind = _left ? _left->find(fn) : ERROR;
-  if (leftFind) return leftFind;
+  if (leftFind != ERROR) return leftFind;
 
-  int rightFind;
-  if (_right) rightFind = _right->find(fn);
-  if (rightFind) return rightFind;
+  int rightFind = _right ? _right->find(fn) : ERROR;
+  if (rightFind != ERROR) return rightFind;
 
   return ERROR;
 }

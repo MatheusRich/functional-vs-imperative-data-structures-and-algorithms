@@ -37,12 +37,10 @@ class BSTNode<T> {
   find(fn: (value: T) => boolean): T | null {
     if (fn(this.value)) return this.value;
 
-    let leftFind = null;
-    if (this.left) leftFind = this.left.find(fn);
+    let leftFind = this.left ? this.left.find(fn) : null;
     if (leftFind) return leftFind;
 
-    let rightFind = null;
-    if (this.right) rightFind = this.right.find(fn);
+    let rightFind = this.right ? this.right.find(fn) : null;
     if (rightFind) return rightFind;
 
     return null;
@@ -56,6 +54,7 @@ class BSTNode<T> {
       if (!this.right) return false;
       return this.right.contains(value);
     }
+
     return true;
   }
 
@@ -64,17 +63,11 @@ class BSTNode<T> {
 
     let newNode = new BSTNode(fn(this.value));
 
-    if (this.left) {
-      newNode.left = this.left.map(fn);
-    } else {
-      newNode.left = new BSTNode(null);
-    }
+    if (this.left) newNode.left = this.left.map(fn);
+    else newNode.left = new BSTNode(null);
 
-    if (this.right) {
-      newNode.right = this.right.map(fn);
-    } else {
-      newNode.right = new BSTNode(null);
-    }
+    if (this.right) newNode.right = this.right.map(fn);
+    else newNode.right = new BSTNode(null);
 
     return newNode;
   }
@@ -90,7 +83,7 @@ class BSTNode<T> {
   }
 
   printSelf2(buffer: string, prefix: string, childrenPrefix: string): string {
-    buffer += prefix + "(";
+    buffer += prefix + '(';
     buffer += this.value;
     buffer += ')\n';
     if (this.right) {
@@ -134,11 +127,8 @@ export class BinarySearchTree<T> {
   }
 
   push(value: T): BinarySearchTree<T> {
-    if (!this.root) {
-      this.root = new BSTNode(value);
-    } else {
-      this.root.push(value);
-    }
+    if (!this.root) this.root = new BSTNode(value);
+    else this.root.push(value);
 
     return this;
   }
