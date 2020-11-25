@@ -13,12 +13,12 @@
   - [x] push
   - [x] reverse
   - [x] toString
-- [ ] BST
-  - [ ] contains: Haskell and C++
-  - [ ] depth: TS, Haskell and C++
-  - [ ] find: Haskell and C++
-  - [ ] isEmpty: Haskell and C++
-  - [ ] push: Haskell and C++
+- [x] BST
+  - [x] contains
+  - [x] depth
+  - [x] find
+  - [x] isEmpty
+  - [x] push
 - [ ] Array?
 
 # Algorithms
