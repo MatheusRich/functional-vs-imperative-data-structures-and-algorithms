@@ -124,6 +124,85 @@ export class LinkedList<T> {
     return length;
   }
 
+  mergeSort(): LinkedList<T> {
+    if (this.length() === 1) return this;
+
+    const half = Math.floor(this.length() / 2);
+    const left = this.take(half);
+    const right = this.drop(half);
+
+    return this.merge(left.mergeSort(), right.mergeSort());
+  }
+
+  merge(left: LinkedList<T>, right: LinkedList<T>): LinkedList<T> {
+    let leftNode = left._head;
+    let rightNode = right._head;
+
+    let newList = new LinkedList<T>();
+
+    while (leftNode && rightNode) {
+      if (leftNode.value < rightNode.value) {
+        newList.push(leftNode.value);
+        leftNode = leftNode.next;
+      } else {
+        newList.push(rightNode.value);
+        rightNode = rightNode.next;
+      }
+    }
+
+    while (leftNode) {
+      newList.push(leftNode.value);
+
+      leftNode = leftNode.next;
+    }
+
+    while (rightNode) {
+      newList.push(rightNode.value);
+
+      rightNode = rightNode.next;
+    }
+
+    return newList.reverse();
+  }
+
+  take(n: number): LinkedList<T> {
+    let newList = new LinkedList<T>();
+    if (n === 0) return newList;
+
+    let node = this.head();
+    if (!node) return newList;
+
+    for (let i = 0; i < n; i++) {
+      newList.push(node.value);
+      node = node.next;
+
+      if (!node) break;
+    }
+
+    return newList.reverse();
+  }
+
+  drop(n: number): LinkedList<T> {
+    let newList = new LinkedList<T>();
+    if (n === this.length()) return newList;
+
+    let node = this.head();
+    if (!node) return newList;
+
+    for (let i = 0; i < n; i++) {
+      node = node.next;
+
+      if (!node) break;
+    }
+
+    while (node) {
+      newList.push(node.value);
+      node = node.next;
+    }
+
+    return newList.reverse();
+  }
+
   toString(): string {
     let currentNode = this._head;
     let str = '';
