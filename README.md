@@ -23,8 +23,7 @@
 
 # Algorithms
 
-- [ ] MergeSort
-  - TS, C++
+- [X] MergeSort
 - [x] Filter
 - [x] Map
 - [x] Reduce
@@ -41,9 +40,9 @@
 
 ## Typescript
 
-**Version:** 4.0.5
+**Version:** 4.2.3
 
-**Node Version:** v13.0.1
+**Node Version:** v13.14.0
 
 **Compile command:** `tsc input.ts`
 
