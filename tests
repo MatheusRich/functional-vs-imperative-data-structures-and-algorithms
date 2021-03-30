@@ -33,10 +33,8 @@ OUTPUT
 
 class ImplementationTest < Test::Unit::TestCase
   LANGUAGES.each do |lang|
-    if [LANGUAGES[1], LANGUAGES[2], LANGUAGES[3]].include? lang
-      define_method("test_#{lang.downcase}_linked_list") do
-        assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test_linked_list`
-      end
+    define_method("test_#{lang.downcase}_linked_list") do
+      assert_equal LINKED_LIST_EXPECTED_OUTPUT, `#{lang}/test_linked_list`
     end
 
     define_method("test_#{lang.downcase}_bst") do
