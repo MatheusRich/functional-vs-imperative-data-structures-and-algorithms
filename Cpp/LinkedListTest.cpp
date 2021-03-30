@@ -26,4 +26,5 @@ int main() {
   cout << "List as string is " << l.map(to_s).toString() << endl;
   cout << "List without even numbers is " << l.filter(is_odd).toString() << endl;
   cout << "Sum of all list elements is " << l.reduce(sum, 0) << endl;
+  cout << "Sorted list is " << l.mergeSort().toString() << endl;
 }

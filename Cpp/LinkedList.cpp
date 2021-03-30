@@ -95,6 +95,88 @@ LinkedList<T> LinkedList<T>::reverse() {
 }
 
 template <typename T>
+LinkedList<T> LinkedList<T>::mergeSort() {
+  if (length() == 1) return *this;
+
+  auto half = length() / 2;
+  auto left = take(half);
+  auto right = drop(half);
+
+  return merge(left.mergeSort(), right.mergeSort());
+}
+
+template <typename T>
+LinkedList<T> LinkedList<T>::merge(LinkedList<T> left, LinkedList<T> right) {
+  auto leftNode = left.head();
+  auto rightNode = right.head();
+  auto newList = LinkedList();
+
+  while (leftNode && rightNode) {
+    if (leftNode->value < rightNode->value) {
+      newList.push(leftNode->value);
+      leftNode = leftNode->next;
+    } else {
+      newList.push(rightNode->value);
+      rightNode = rightNode->next;
+    }
+  }
+
+  while (leftNode) {
+    newList.push(leftNode->value);
+
+    leftNode = leftNode->next;
+  }
+
+  while (rightNode) {
+    newList.push(rightNode->value);
+
+    rightNode = rightNode->next;
+  }
+
+  return newList.reverse();
+}
+
+template <typename T>
+LinkedList<T> LinkedList<T>::take(int n) {
+  auto newList = LinkedList();
+  if (n == 0) return newList;
+
+  auto node = head();
+  if (!node) return newList;
+
+  for (int i = 0; i < n; i++) {
+    newList.push(node->value);
+    node = node->next;
+
+    if (!node) break;
+  }
+
+  return newList.reverse();
+}
+
+template <typename T>
+LinkedList<T> LinkedList<T>::drop(int n) {
+  auto newList = LinkedList();
+  if (n == length()) return newList;
+
+  auto node = head();
+  if (!node) return newList;
+
+  for (int i = 0; i < n; i++) {
+    node = node->next;
+
+    if (!node) break;
+  }
+
+  while (node) {
+    newList.push(node->value);
+    node = node->next;
+  }
+
+  return newList.reverse();
+}
+
+template <typename T>
 string LinkedList<T>::toString() {
   stringstream ss;
 
