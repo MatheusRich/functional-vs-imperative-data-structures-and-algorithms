@@ -135,9 +135,8 @@ export class LinkedList<T> {
   }
 
   merge(left: LinkedList<T>, right: LinkedList<T>): LinkedList<T> {
-    let leftNode = left._head;
-    let rightNode = right._head;
-
+    let leftNode = left.head();
+    let rightNode = right.head();
     let newList = new LinkedList<T>();
 
     while (leftNode && rightNode) {
