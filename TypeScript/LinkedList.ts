@@ -22,10 +22,10 @@ export class LinkedList<T> {
     return this;
   }
 
-  map(fn: (value: T) => any): LinkedList<T> {
-    if (!this.head()) return new LinkedList<T>();
+  map(fn: (value: T) => any): LinkedList<any> {
+    if (!this.head()) return new LinkedList<any>();
 
-    let newList = new LinkedList<T>();
+    let newList = new LinkedList<any>();
 
     let currentNode = this.head();
     while (currentNode) {
