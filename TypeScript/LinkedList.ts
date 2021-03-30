@@ -22,7 +22,6 @@ export class LinkedList<T> {
     return this;
   }
 
-  // TODO: REVIEW THIS
   map(fn: (value: T) => any): LinkedList<T> {
     if (!this.head()) return new LinkedList<T>();
 
