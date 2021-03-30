@@ -113,20 +113,20 @@ mergeSort list =
 
 
 merge : LinkedList comparable -> LinkedList comparable -> LinkedList comparable
-merge list1 list2 =
-    case ( list1, list2 ) of
+merge left right =
+    case ( left, right ) of
         ( _, Empty ) ->
-            list1
+            left
 
         ( Empty, _ ) ->
-            list2
+            right
 
         ( Value head1 tail1, Value head2 tail2 ) ->
             if head1 < head2 then
-                push head1 (merge tail1 list2)
+                push head1 (merge tail1 right)
 
             else
-                push head2 (merge list1 tail2)
+                push head2 (merge left tail2)
 
 
 drop : Int -> LinkedList a -> LinkedList a

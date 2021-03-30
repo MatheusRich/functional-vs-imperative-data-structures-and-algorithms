@@ -78,15 +78,15 @@ mergeSort list = merge (mergeSort left) (mergeSort right)
     right = drop ((length list) `div` 2) list
 
 merge :: (Ord a) => LinkedList a -> LinkedList a -> LinkedList a
-merge list1 Empty = list1
-merge Empty list2 = list2
+merge left Empty = left
+merge Empty right = right
 merge (Value head1 tail1) (Value head2 tail2) =
   if head1 < head2
-    then push head1 (merge tail1 list2)
-    else push head2 (merge list1 tail2)
+    then push head1 (merge tail1 right)
+    else push head2 (merge left tail2)
     where
-      list1 = (Value head1 tail1)
-      list2 = (Value head2 tail2)
+      left = (Value head1 tail1)
+      right = (Value head2 tail2)
 
 take :: Integer -> LinkedList a -> LinkedList a
 take _ Empty = Empty
