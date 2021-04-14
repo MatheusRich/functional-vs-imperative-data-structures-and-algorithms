@@ -71,42 +71,6 @@ class BSTNode<T> {
 
     return newNode;
   }
-
-  toString(): string {
-    return this.printSelf('', this, 0);
-  }
-
-  toString2(): string {
-    let buffer = '';
-    buffer = this.printSelf2(buffer, '', '');
-    return buffer;
-  }
-
-  printSelf2(buffer: string, prefix: string, childrenPrefix: string): string {
-    buffer += prefix + '(';
-    buffer += this.value;
-    buffer += ')\n';
-    if (this.right) {
-      buffer = this.right.printSelf2(buffer, childrenPrefix + '├─ r ', childrenPrefix + '│   ');
-    }
-    if (this.left) {
-      buffer = this.left.printSelf2(buffer, childrenPrefix + '└─ l ', childrenPrefix + '    ');
-    }
-
-    return buffer;
-  }
-
-  printSelf(buffer: string, root: BSTNode<T> | null, level: number): string {
-    if (!root) return buffer;
-
-    buffer = this.printSelf(buffer, root.right, level + 1) + '\n';
-    if (level != 0) {
-      for (let i = 0; i < level - 1; i++) buffer += '│    ';
-      buffer += `├──(${root.value})`;
-    } else buffer += `(${root.value})`;
-    buffer = this.printSelf(buffer, root.left, level + 1);
-    return buffer;
-  }
 }
 
 export class BinarySearchTree<T> {
@@ -153,37 +117,4 @@ export class BinarySearchTree<T> {
 
     return newTree;
   }
-
-  toString(): string {
-    if (!this.root) return '';
-
-    return this.root.toString();
-  }
-
-  toString2(): string {
-    if (!this.root) return '';
-
-    return this.root.toString2();
-  }
 }
-
-// let bst: BinarySearchTree<number> = new BinarySearchTree();
-// bst.push(1);
-// bst.push(2);
-// bst.push(1.5);
-// bst.push(-3);
-// bst.push(4);
-// bst.push(3);
-// bst.push(-5);
-// bst.push(-4);
-// bst.push(-12);
-// bst.push(12);
-// // bst.toString();
-// console.log(`Tree is \n${bst.toString2()}`);
-// console.log('-------');
-// console.log(`Tree is \n${bst.toString()}`);
-// console.log(`Depth is ${bst.depth()}`);
-
-// // console.log({depth: bst.depth()});
-// // console.log({map: bst.map(n => n * 2)});
-// // console.log({find: bst.find(n => n < 0)});
