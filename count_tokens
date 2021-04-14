@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Linked List:"
+echo -e "    Cpp"
+echo -e "        " $(python3 lexer.py Cpp/LinkedList.h)
+echo -e "        " $(python3 lexer.py Cpp/LinkedList.cpp)
+echo -e "    Elm"
+echo -e "        " $(python3 lexer.py Elm/src/LinkedList.elm)
+echo -e "    Haskell"
+echo -e "        " $(python3 lexer.py Haskell/LinkedList.hs)
+echo -e "    TypeScript"
+echo -e "        " $(python3 lexer.py TypeScript/LinkedList.ts)
+
+echo ""
+echo "Binary Search Tree:"
+echo -e "    Cpp"
+echo -e "        " $(python3 lexer.py Cpp/BinarySearchTree.h)
+echo -e "        " $(python3 lexer.py Cpp/BinarySearchTree.cpp)
+echo -e "    Elm"
+echo -e "        " $(python3 lexer.py Elm/src/BinarySearchTree.elm)
+echo -e "    Haskell"
+echo -e "        " $(python3 lexer.py Haskell/BinarySearchTree.hs)
+echo -e "    TypeScript"
+echo -e "        " $(python3 lexer.py TypeScript/BinarySearchTree.ts)
