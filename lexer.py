@@ -86,7 +86,7 @@ def main(path, lang, verbose, token):
             if token is None or (tk.type == token):
                 print(f"    {tk!r}")
 
-    print(f"Tokens count: {len(stream)}")
+    print(f"Token count: {len(stream)}")
 
 
 if __name__ == "__main__":
