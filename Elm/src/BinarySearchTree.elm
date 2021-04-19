@@ -1,4 +1,4 @@
-module BinarySearchTree exposing (BinarySearchTree(..), contains, depth, find, first, isEmpty, map, new, push)
+module BinarySearchTree exposing (BinarySearchTree(..), contains, depth, find, isEmpty, map, new, push)
 
 
 type BinarySearchTree a
@@ -93,12 +93,3 @@ map fn tree =
         Node v left right ->
             Node (fn v) (map fn left) (map fn right)
 
-
-first : BinarySearchTree a -> Maybe a
-first tree =
-    case tree of
-        Empty ->
-            Nothing
-
-        Node v _ _ ->
-            Just v

@@ -51,7 +51,3 @@ depth (Node _ left right) = 1 + max (depth left) (depth right)
 map :: (a -> b) -> BinarySearchTree a -> BinarySearchTree b
 map fn Empty = Empty
 map fn (Node v left right) = Node (fn v) (map fn left) (map fn right)
-
-first :: BinarySearchTree a -> Maybe a
-first Empty = Nothing
-first (Node v _ _) = Just v
