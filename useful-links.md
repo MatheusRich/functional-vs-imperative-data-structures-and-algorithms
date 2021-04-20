@@ -1,6 +1,13 @@
 # General
+
 ## Elm
+
 - https://package.elm-lang.org/help/design-guidelines
+
+## Haskell
+
+- https://hexagoxel.de/brittany/
+- https://monadfix.com/ormolu
 
 # Linked List
 
