@@ -13,8 +13,8 @@
   - [x] toString
 
 - [x] BST
-  - [ ] contains: cpp
-  - [ ] map: cpp
+  - [x] contains
+  - [x] map
   - [x] depth
   - [x] find
   - [x] isEmpty

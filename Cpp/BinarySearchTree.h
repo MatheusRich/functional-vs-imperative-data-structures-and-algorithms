@@ -15,6 +15,8 @@ public:
   int depth();
   void push(T value);
   bool contains(T value);
+  template <typename U>
+  TreeNode<U> *map(U (*fn)(T));
 };
 
 template <typename T>
@@ -30,4 +32,6 @@ public:
   int depth();
   void push(T value);
   bool contains(T value);
+  template <typename U>
+  BinarySearchTree<U> *map(U (*fn)(T));
 };

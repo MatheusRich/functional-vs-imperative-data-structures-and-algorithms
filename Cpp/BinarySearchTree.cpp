@@ -10,8 +10,8 @@ TreeNode<T>::TreeNode(T value) {
 
 template <typename T>
 int TreeNode<T>::depth() {
-  int leftDepth = _left == nullptr ? 0 : _left->depth();
-  int rightDepth = _right == nullptr ? 0 : _right->depth();
+  int leftDepth = !_left ? 0 : _left->depth();
+  int rightDepth = !_right ? 0 : _right->depth();
 
   return 1 + max(leftDepth, rightDepth);
 }
@@ -19,12 +19,12 @@ int TreeNode<T>::depth() {
 template <typename T>
 void TreeNode<T>::push(T value) {
   if (value < _value) {
-    if (_left == nullptr)
+    if (!_left)
       _left = new TreeNode(value);
     else
       _left->push(value);
   } else if (value > _value) {
-    if (_right == nullptr)
+    if (!_right)
       _right = new TreeNode(value);
     else
       _right->push(value);
@@ -42,6 +42,17 @@ bool TreeNode<T>::contains(T value) {
   }
 
   return true;
+}
+
+template <typename T>
+template <typename U>
+TreeNode<U>* TreeNode<T>::map(U (*fn)(T)) {
+  auto newNode = new TreeNode(fn(_value));
+
+  if (_left) newNode->_left = _left->map(fn);
+  if (_right) newNode->_right = _right->map(fn);
+
+  return newNode;
 }
 
 template <typename T>
@@ -64,19 +75,19 @@ BinarySearchTree<T>::BinarySearchTree() {
 
 template <typename T>
 bool BinarySearchTree<T>::isEmpty() {
-  return _root == nullptr;
+  return !_root;
 }
 
 template <typename T>
 int BinarySearchTree<T>::depth() {
-  if (_root == nullptr) return 0;
+  if (!_root) return 0;
 
   return _root->depth();
 }
 
 template <typename T>
 void BinarySearchTree<T>::push(T value) {
-  if (_root == nullptr)
+  if (!_root)
     _root = new TreeNode<T>(value);
   else
     _root->push(value);
@@ -90,8 +101,19 @@ bool BinarySearchTree<T>::contains(T value) {
 }
 
 template <typename T>
+template <typename U>
+BinarySearchTree<U>* BinarySearchTree<T>::map(U (*fn)(T)) {
+  if (!_root) return new BinarySearchTree<U>();
+
+  auto newTree = new BinarySearchTree<U>();
+  newTree->_root = _root->map(fn);
+
+  return newTree;
+}
+
+template <typename T>
 T BinarySearchTree<T>::find(bool (*fn)(T)) {
-  if (_root == nullptr) return ERROR;
+  if (!_root) return ERROR;
 
   return _root->find(fn);
 }
