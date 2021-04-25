@@ -59,15 +59,10 @@ class BSTNode<T> {
   }
 
   map(fn: (value: T) => any): BSTNode<any> {
-    if (!this.value) return new BSTNode(null);
-
     let newNode = new BSTNode(fn(this.value));
 
     if (this.left) newNode.left = this.left.map(fn);
-    else newNode.left = new BSTNode(null);
-
     if (this.right) newNode.right = this.right.map(fn);
-    else newNode.right = new BSTNode(null);
 
     return newNode;
   }
