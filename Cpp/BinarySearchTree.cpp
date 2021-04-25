@@ -32,6 +32,19 @@ void TreeNode<T>::push(T value) {
 }
 
 template <typename T>
+bool TreeNode<T>::contains(T value) {
+  if (value < _value) {
+    if (!_left) return false;
+    return _left->contains(value);
+  } else if (value > _value) {
+    if (!_right) return false;
+    return _right->contains(value);
+  }
+
+  return true;
+}
+
+template <typename T>
 T TreeNode<T>::find(bool (*fn)(T)) {
   if (fn(_value)) return _value;
 
@@ -67,6 +80,13 @@ void BinarySearchTree<T>::push(T value) {
     _root = new TreeNode<T>(value);
   else
     _root->push(value);
+}
+
+template <typename T>
+bool BinarySearchTree<T>::contains(T value) {
+  if (!_root) return false;
+
+  return _root->contains(value);
 }
 
 template <typename T>

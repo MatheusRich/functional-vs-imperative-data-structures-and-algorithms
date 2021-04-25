@@ -14,6 +14,7 @@ public:
   bool isEmpty();
   int depth();
   void push(T value);
+  bool contains(T value);
 };
 
 template <typename T>
@@ -28,4 +29,5 @@ public:
   bool isEmpty();
   int depth();
   void push(T value);
+  bool contains(T value);
 };
