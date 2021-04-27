@@ -72,7 +72,6 @@
 ### C++
 
 - https://github.com/google/benchmark
-- https://quick-bench.com/q/oBCRvQHqVejER3UrBGpJyTEjp70
 
 ### TypeScript
 
@@ -84,8 +83,16 @@
 
 ### Haskell
 
+- https://hexagoxel.de/brittany/
+
 ### Elm
+
+- elm-format
 
 ### C++
 
+- vscode
+
 ### TypeScript
+
+- prettier
