@@ -2,6 +2,35 @@ module LinkedListTest exposing (main)
 
 import Headless exposing (..)
 import LinkedList exposing (LinkedList(..))
+import String
+
+
+toString : LinkedList Int -> String
+toString list =
+    let
+        toStringAcc acc linkedList =
+            case linkedList of
+                Empty ->
+                    acc ++ "X"
+
+                Value listHead listTail ->
+                    toStringAcc (acc ++ String.fromInt listHead ++ " -> ") listTail
+    in
+    toStringAcc "" list
+
+
+toString2 : LinkedList String -> String
+toString2 list =
+    let
+        toStringAcc acc linkedList =
+            case linkedList of
+                Empty ->
+                    acc ++ "X"
+
+                Value listHead listTail ->
+                    toStringAcc (acc ++ "\"" ++ listHead ++ "\"" ++ " -> ") listTail
+    in
+    toStringAcc "" list
 
 
 main : Program Headless.Flags Headless.Model Headless.Msg
@@ -59,13 +88,13 @@ linkedListTest i =
             "Length is " ++ String.fromInt (LinkedList.length list)
 
         6 ->
-            "List is " ++ LinkedList.toString list
+            "List is " ++ toString list
 
         7 ->
             "Head is " ++ String.fromInt listHead
 
         8 ->
-            "Tail is " ++ LinkedList.toString (LinkedList.tail list)
+            "Tail is " ++ toString (LinkedList.tail list)
 
         9 ->
             "Tail length is " ++ String.fromInt (LinkedList.length (LinkedList.tail list))
@@ -74,19 +103,19 @@ linkedListTest i =
             "Last is " ++ String.fromInt listLast
 
         11 ->
-            "Reversed list is " ++ LinkedList.toString (LinkedList.reverse list)
+            "Reversed list is " ++ toString (LinkedList.reverse list)
 
         12 ->
-            "List as string is " ++ LinkedList.toString2 (LinkedList.map (\x -> String.fromInt x) list)
+            "List as string is " ++ toString2 (LinkedList.map (\x -> String.fromInt x) list)
 
         13 ->
-            "List without even numbers is " ++ LinkedList.toString (LinkedList.filter (\x -> remainderBy 2 x == 1) list)
+            "List without even numbers is " ++ toString (LinkedList.filter (\x -> remainderBy 2 x == 1) list)
 
         14 ->
             "Sum of all list elements is " ++ String.fromInt (LinkedList.reduce (+) 0 list)
 
         15 ->
-            "Sorted list is " ++ LinkedList.toString (LinkedList.sort list)
+            "Sorted list is " ++ toString (LinkedList.mergeSort list)
 
         _ ->
             "fails"

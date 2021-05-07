@@ -65,9 +65,6 @@ reduce _ acc Empty = acc
 reduce fn acc (Value listHead listTail) =
   reduce fn (fn listHead acc) (listTail)
 
-sort :: (Ord a) => LinkedList a -> LinkedList a
-sort list = mergeSort list
-
 mergeSort :: (Ord a) => LinkedList a -> LinkedList a
 mergeSort Empty = Empty
 mergeSort (Value a Empty) = (Value a Empty)
