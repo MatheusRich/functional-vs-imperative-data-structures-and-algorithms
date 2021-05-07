@@ -1,36 +1,43 @@
-import Criterion.Main
-import qualified BinarySearchTree as BST
+import           Criterion.Main
+import qualified BinarySearchTree              as BST
 
--- (1..10).sort_by { Math.sqrt(_1).round(1).to_s.split('.').last.to_i
--- createTree :: Int -> BST.BinarySearchTree Int -> BST.BinarySearchTree Int
--- createTree 0    tree = tree
--- createTree size tree = createTree (size - 1) (BST.push (size * (-1) ^ size) tree)
+bstFromList []   = BST.Empty
+bstFromList list = (BST.Node mid) (bstFromList half0) (bstFromList half1)
+  where
+    (half0, half') = splitAt ((length list `div` 2) - 1) list
+    half1          = tail half'
+    mid            = head half'
 
-criterion :: BST.BinarySearchTree Int -> BST.BinarySearchTree Int -> BST.BinarySearchTree Int -> IO ()
-criterion list1 list2 list3 = defaultMain
+doubleN x = x * 2
+
+benchmark tree1 tree2 tree3 tree4 tree5 tree6 = defaultMain
   [ bgroup
     "BST contains"
-    [ bench "10 000 elements" $ whnf BST.contains 9
-    , bench "100 000 elements" $ whnf BST.contains 99
-    , bench "1 000 000 elements" $ whnf BST.contains 999
+    [ bench "1 000 elements" $ whnf (BST.contains 501) tree1
+    , bench "10 000 elements" $ whnf (BST.contains 5001) tree2
+    , bench "100 000 elements" $ whnf (BST.contains 50001) tree3
+    , bench "1 000 000 elements" $ whnf (BST.contains 500001) tree4
+    , bench "10 000 000 elements" $ whnf (BST.contains 5000001) tree5
+    , bench "100 000 000 elements" $ whnf (BST.contains 50000001) tree6
     ]
-  -- , bgroup
-  --   "BST map"
-  --   [ bench "10 000 elements" $ whnf (LL.map (\x -> x * 2)) list1
-  --   , bench "100 000 elements" $ whnf (LL.map (\x -> x * 2)) list2
-  --   , bench "1 000 000 elements" $ whnf (LL.map (\x -> x * 2)) list3
-  --   ]
-  -- , bgroup
-  --   "BST Reduce"
-  --   [ bench "10 000 elements" $ whnf (LL.reduce (+) 0) list1
-  --   , bench "100 000 elements" $ whnf (LL.reduce (+) 0) list2
-  --   , bench "1 000 000 elements" $ whnf (LL.reduce (+) 0) list3
-  --   ]
+  , bgroup
+    "BST map"
+    [ bench "1 000 elements" $ whnf (BST.map doubleN) tree1
+    , bench "10 000 elements" $ whnf (BST.map doubleN) tree2
+    , bench "100 000 elements" $ whnf (BST.map doubleN) tree3
+    , bench "1 000 000 elements" $ whnf (BST.map doubleN) tree4
+    , bench "10 000 000 elements" $ whnf (BST.map doubleN) tree5
+    , bench "100 000 000 elements" $ whnf (BST.map doubleN) tree6
+    ]
   ]
 
 main = do
-  putStrLn "Bench for 10 000, 100 000 and 1 000 000 elements"
-  let tree  = createTree 10000 BST.Empty
-  let tree2 = createTree 100000 BST.Empty
-  let tree3 = createTree 1000000 BST.Empty
-  criterion tree tree2 tree3
+  let tree1 = bstFromList [1 .. 1000]
+  let tree2 = bstFromList [1 .. 10000]
+  let tree3 = bstFromList [1 .. 100000]
+  let tree4 = bstFromList [1 .. 1000000]
+  let tree5 = bstFromList [1 .. 10000000]
+  let tree6 = bstFromList [1 .. 100000000]
+
+  benchmark tree1 tree2 tree3 tree4 tree5 tree6
+  benchmark tree1 tree2 tree3 tree4 tree5 tree6
