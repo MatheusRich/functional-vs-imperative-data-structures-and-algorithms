@@ -9,9 +9,9 @@ benchmark :: LL.LinkedList Int -> LL.LinkedList Int -> LL.LinkedList Int -> IO (
 benchmark list1 list2 list3 = defaultMain
   [ bgroup
     "Linked List Sort"
-    [ bench "10 000 elements" $ whnf LL.sort list1
-    , bench "100 000 elements" $ whnf LL.sort list2
-    , bench "1 000 000 elements" $ whnf LL.sort list3
+    [ bench "10 000 elements" $ whnf LL.mergeSort list1
+    , bench "100 000 elements" $ whnf LL.mergeSort list2
+    , bench "1 000 000 elements" $ whnf LL.mergeSort list3
     ]
   , bgroup
     "Linked List Filter"

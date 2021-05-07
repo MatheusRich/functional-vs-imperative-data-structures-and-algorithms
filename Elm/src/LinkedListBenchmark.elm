@@ -18,9 +18,9 @@ createList begin end list =
 sortSuite : LL.LinkedList Int -> LL.LinkedList Int -> LL.LinkedList Int -> Benchmark
 sortSuite list1 list2 list3 =
     Benchmark.describe "Sort"
-        [ Benchmark.benchmark "100 elements" (\_ -> LL.sort list1)
-        , Benchmark.benchmark "1000 elements" (\_ -> LL.sort list2)
-        , Benchmark.benchmark "10 000 elements" (\_ -> LL.sort list3)
+        [ Benchmark.benchmark "100 elements" (\_ -> LL.mergeSort list1)
+        , Benchmark.benchmark "1000 elements" (\_ -> LL.mergeSort list2)
+        , Benchmark.benchmark "10 000 elements" (\_ -> LL.mergeSort list3)
         ]
 
 
