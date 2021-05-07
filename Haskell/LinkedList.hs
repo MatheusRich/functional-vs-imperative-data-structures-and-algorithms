@@ -5,7 +5,6 @@ import Prelude hiding (filter, head, last, length, map, reverse, tail, drop, tak
 data LinkedList a
   = Value a (LinkedList a)
   | Empty
-  deriving (Show, Eq)
 
 new :: a -> LinkedList a
 new value =
@@ -98,10 +97,3 @@ drop :: Integer -> LinkedList a -> LinkedList a
 drop _ Empty = Empty
 drop 0 list = list
 drop n (Value _ listTail) = drop (n - 1) listTail
-
-
-toString :: (Show a) => LinkedList a -> String
-toString list = toStringAcc list ""
-  where
-    toStringAcc Empty acc = acc ++ "X"
-    toStringAcc (Value listHead listTail) acc = toStringAcc listTail (acc ++ show (listHead) ++ " -> ")

@@ -1,5 +1,11 @@
 import qualified LinkedList as LL
 
+listToString :: (Show a) => LL.LinkedList a -> String
+listToString list = toStringAcc list ""
+  where
+    toStringAcc LL.Empty acc = acc ++ "X"
+    toStringAcc (LL.Value listHead listTail) acc = toStringAcc listTail (acc ++ show (listHead) ++ " -> ")
+
 maybeToStr :: Show a => Maybe a -> String
 maybeToStr (Just value) = show value
 maybeToStr Nothing = "Fails"
@@ -16,13 +22,13 @@ main = do
   let newList = LL.push 5 (LL.push 1 (LL.push 4 (LL.push 1 (LL.push 3 list))))
   assert (not (LL.isEmpty newList)) "It is not empty"
   putStrLn ("Length is " ++ show (LL.length newList))
-  putStrLn ("List is " ++ LL.toString (newList))
+  putStrLn ("List is " ++ listToString (newList))
   putStrLn ("Head is " ++ maybeToStr (LL.head newList))
-  putStrLn ("Tail is " ++ LL.toString (LL.tail newList))
+  putStrLn ("Tail is " ++ listToString (LL.tail newList))
   putStrLn ("Tail length is " ++ show (LL.length (LL.tail newList)))
   putStrLn ("Last is " ++ maybeToStr (LL.last newList))
-  putStrLn ("Reversed list is " ++ LL.toString (LL.reverse newList))
-  putStrLn ("List as string is " ++ LL.toString (LL.map (\x -> show x) newList))
-  putStrLn ("List without even numbers is " ++ LL.toString (LL.filter (\x -> rem x 2 /= 0) newList))
+  putStrLn ("Reversed list is " ++ listToString (LL.reverse newList))
+  putStrLn ("List as string is " ++ listToString (LL.map (\x -> show x) newList))
+  putStrLn ("List without even numbers is " ++ listToString (LL.filter (\x -> rem x 2 /= 0) newList))
   putStrLn ("Sum of all list elements is " ++ show (LL.reduce (+) 0 newList))
-  putStrLn ("Sorted list is " ++ LL.toString (LL.sort newList))
+  putStrLn ("Sorted list is " ++ listToString (LL.sort newList))
