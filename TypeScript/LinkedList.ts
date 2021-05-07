@@ -200,14 +200,4 @@ export class LinkedList<T> {
 
     return newList.reverse();
   }
-
-  toString(): string {
-    let currentNode = this._head;
-    let str = '';
-    while (currentNode) {
-      str += `${currentNode.value} -> `;
-      currentNode = currentNode.next;
-    }
-    return str + 'X';
-  }
 }
