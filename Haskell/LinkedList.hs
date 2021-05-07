@@ -30,7 +30,7 @@ index 0 list = head list
 index idx list =
   if idx < 0
     then Nothing
-    else index (idx - 1) (LinkedList.tail list)
+    else index (idx - 1) (tail list)
 
 length :: LinkedList a -> Integer
 length list = lengthAcc list 0
