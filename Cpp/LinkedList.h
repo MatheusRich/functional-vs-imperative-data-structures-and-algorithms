@@ -36,5 +36,4 @@ public:
   LinkedList<T> take(int n);
   LinkedList<T> drop(int n);
   LinkedList<T> merge(LinkedList<T> left, LinkedList<T> right);
-  string toString();
 };

@@ -177,20 +177,6 @@ LinkedList<T> LinkedList<T>::drop(int n) {
 }
 
 template <typename T>
-string LinkedList<T>::toString() {
-  stringstream ss;
-
-  auto current = head();
-  while (current != nullptr) {
-    ss << current->value << " -> ";
-    current = current->next;
-  }
-  ss << "X";
-
-  return ss.str();
-}
-
-template <typename T>
 template <typename U>
 LinkedList<U> LinkedList<T>::map(U (*fn)(T)) {
   if (_head == nullptr) return LinkedList<U>();
