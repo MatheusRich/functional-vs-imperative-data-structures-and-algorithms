@@ -9,7 +9,7 @@ template <typename T>
 string listToString(LinkedList<T> list) {
   stringstream ss;
 
-  auto current = list.head();
+  auto current = list._head;
   while (current != nullptr) {
     ss << current->value << " -> ";
     current = current->next;
@@ -32,10 +32,10 @@ int main() {
   cout << assert(!l.isEmpty(), "It is not empty") << endl;
   cout << "Length is " << l.length() << endl;
   cout << "List is " << listToString(l) << endl;
-  cout << "Head is " << l.head()->value << endl;
+  cout << "Head is " << *l.head() << endl;
   cout << "Tail is " << listToString(l.tail()) << endl;
   cout << "Tail length is " << l.tail().length() << endl;
-  cout << "Last is " << l.last()->value << endl;
+  cout << "Last is " << *l.last() << endl;
   cout << "Reversed list is " << listToString(l.reverse()) << endl;
   cout << "List as string is " << listToString(l.map(to_s)) << endl;
   cout << "List without even numbers is " << listToString(l.filter(is_odd))

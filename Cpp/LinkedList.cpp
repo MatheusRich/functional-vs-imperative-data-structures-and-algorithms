@@ -19,8 +19,8 @@ LinkedList<T>::LinkedList(ListNode<T>* head) {
 }
 
 template <typename T>
-ListNode<T>* LinkedList<T>::head() {
-  return _head;
+T* LinkedList<T>::head() {
+  return &_head->value;
 }
 
 template <typename T>
@@ -31,14 +31,14 @@ LinkedList<T> LinkedList<T>::tail() {
 }
 
 template <typename T>
-ListNode<T>* LinkedList<T>::last() {
-  auto currentNode = head();
+T* LinkedList<T>::last() {
+  auto currentNode = _head;
 
   while (currentNode != nullptr && currentNode->next != nullptr) {
     currentNode = currentNode->next;
   }
 
-  return currentNode;
+  return currentNode ? &currentNode->value : nullptr;
 }
 
 template <typename T>
@@ -51,7 +51,7 @@ int LinkedList<T>::length() {
   if (!head()) return 0;
 
   int length = 0;
-  auto currentNode = head();
+  auto currentNode = _head;
   while (currentNode != nullptr) {
     length++;
     currentNode = currentNode->next;
@@ -67,24 +67,24 @@ void LinkedList<T>::push(T value) {
 }
 
 template <typename T>
-ListNode<T>* LinkedList<T>::index(int index) {
+T* LinkedList<T>::index(int index) {
   if (index < 0 || index >= length()) return nullptr;
 
   int currentIndex = 0;
-  auto currentNode = head();
+  auto currentNode = _head;
 
   while (currentIndex < index && currentNode) {
     currentNode = currentNode->next;
     currentIndex++;
   }
 
-  return currentNode;
+  return currentNode ? currentNode->value : nullptr;
 }
 
 template <typename T>
 LinkedList<T> LinkedList<T>::reverse() {
   auto newList = LinkedList();
-  auto currentNode = head();
+  auto currentNode = _head;
 
   while (currentNode != nullptr) {
     newList.push(currentNode->value);
@@ -107,8 +107,8 @@ LinkedList<T> LinkedList<T>::mergeSort() {
 
 template <typename T>
 LinkedList<T> LinkedList<T>::merge(LinkedList<T> left, LinkedList<T> right) {
-  auto leftNode = left.head();
-  auto rightNode = right.head();
+  auto leftNode = left._head;
+  auto rightNode = right._head;
   auto newList = LinkedList();
 
   while (leftNode && rightNode) {
@@ -141,7 +141,7 @@ LinkedList<T> LinkedList<T>::take(int n) {
   auto newList = LinkedList();
   if (n == 0) return newList;
 
-  auto node = head();
+  auto node = _head;
   if (!node) return newList;
 
   for (int i = 0; i < n; i++) {
@@ -159,7 +159,7 @@ LinkedList<T> LinkedList<T>::drop(int n) {
   auto newList = LinkedList();
   if (n == length()) return newList;
 
-  auto node = head();
+  auto node = _head;
   if (!node) return newList;
 
   for (int i = 0; i < n; i++) {
@@ -183,7 +183,7 @@ LinkedList<U> LinkedList<T>::map(U (*fn)(T)) {
 
   auto newList = LinkedList<U>();
 
-  auto currentNode = head();
+  auto currentNode = _head;
   while (currentNode != nullptr) {
     newList.push(fn(currentNode->value));
     currentNode = currentNode->next;
@@ -198,7 +198,7 @@ LinkedList<T> LinkedList<T>::filter(bool (*fn)(T)) {
 
   auto newList = LinkedList<T>();
 
-  auto currentNode = head();
+  auto currentNode = _head;
   while (currentNode != nullptr) {
     if (fn(currentNode->value)) newList.push(currentNode->value);
     currentNode = currentNode->next;
@@ -211,7 +211,7 @@ template <typename T>
 T LinkedList<T>::reduce(T (*fn)(T, T), T acc) {
   if (_head == nullptr) return acc;
 
-  auto currentNode = head();
+  auto currentNode = _head;
   while (currentNode != nullptr) {
     acc = fn(currentNode->value, acc);
     currentNode = currentNode->next;

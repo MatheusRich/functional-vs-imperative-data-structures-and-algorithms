@@ -13,17 +13,17 @@ public:
 
 template <typename T>
 class LinkedList {
-private:
+public:
   ListNode<T> *_head;
 
-public:
   LinkedList();
   LinkedList(ListNode<T> *head);
 
-  ListNode<T> *head();
+  // retornar um ponteiro pro value do node
+  T *head();
   LinkedList<T> tail();
-  ListNode<T> *last();
-  ListNode<T> *index(int index);
+  T *last();
+  T *index(int index);
   LinkedList<T> reverse();
   template <typename U>
   LinkedList<U> map(U (*fn)(T));
