@@ -25,7 +25,7 @@ T* LinkedList<T>::head() {
 
 template <typename T>
 LinkedList<T> LinkedList<T>::tail() {
-  if (_head == nullptr) return LinkedList();
+  if (!_head) return LinkedList();
 
   return LinkedList(_head->next);
 }
@@ -34,7 +34,7 @@ template <typename T>
 T* LinkedList<T>::last() {
   auto currentNode = _head;
 
-  while (currentNode != nullptr && currentNode->next != nullptr) {
+  while (currentNode && currentNode->next) {
     currentNode = currentNode->next;
   }
 
@@ -52,7 +52,7 @@ int LinkedList<T>::length() {
 
   int length = 0;
   auto currentNode = _head;
-  while (currentNode != nullptr) {
+  while (currentNode) {
     length++;
     currentNode = currentNode->next;
   }
@@ -86,7 +86,7 @@ LinkedList<T> LinkedList<T>::reverse() {
   auto newList = LinkedList();
   auto currentNode = _head;
 
-  while (currentNode != nullptr) {
+  while (currentNode) {
     newList.push(currentNode->value);
     currentNode = currentNode->next;
   }
@@ -179,12 +179,12 @@ LinkedList<T> LinkedList<T>::drop(int n) {
 template <typename T>
 template <typename U>
 LinkedList<U> LinkedList<T>::map(U (*fn)(T)) {
-  if (_head == nullptr) return LinkedList<U>();
+  if (!_head) return LinkedList<U>();
 
   auto newList = LinkedList<U>();
 
   auto currentNode = _head;
-  while (currentNode != nullptr) {
+  while (currentNode) {
     newList.push(fn(currentNode->value));
     currentNode = currentNode->next;
   }
@@ -194,12 +194,12 @@ LinkedList<U> LinkedList<T>::map(U (*fn)(T)) {
 
 template <typename T>
 LinkedList<T> LinkedList<T>::filter(bool (*fn)(T)) {
-  if (_head == nullptr) return LinkedList<T>();
+  if (!_head) return LinkedList<T>();
 
   auto newList = LinkedList<T>();
 
   auto currentNode = _head;
-  while (currentNode != nullptr) {
+  while (currentNode) {
     if (fn(currentNode->value)) newList.push(currentNode->value);
     currentNode = currentNode->next;
   }
@@ -209,10 +209,10 @@ LinkedList<T> LinkedList<T>::filter(bool (*fn)(T)) {
 
 template <typename T>
 T LinkedList<T>::reduce(T (*fn)(T, T), T acc) {
-  if (_head == nullptr) return acc;
+  if (!_head) return acc;
 
   auto currentNode = _head;
-  while (currentNode != nullptr) {
+  while (currentNode) {
     acc = fn(currentNode->value, acc);
     currentNode = currentNode->next;
   }
