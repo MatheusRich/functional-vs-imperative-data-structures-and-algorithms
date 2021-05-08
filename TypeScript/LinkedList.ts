@@ -1,22 +1,22 @@
-class LinkedListNode<T> {
+class ListNode<T> {
   value: T;
-  next: LinkedListNode<T> | null;
+  next: ListNode<T> | null;
 
-  constructor(value: T, next: LinkedListNode<T> | null = null) {
+  constructor(value: T, next: ListNode<T> | null = null) {
     this.value = value;
     this.next = next;
   }
 }
 
 export class LinkedList<T> {
-  _head: LinkedListNode<T> | null;
+  _head: ListNode<T> | null;
 
-  constructor(head: LinkedListNode<T> | null = null) {
+  constructor(head: ListNode<T> | null = null) {
     this._head = head;
   }
 
   push(value: T): LinkedList<T> {
-    let newNode = new LinkedListNode(value, this._head);
+    let newNode = new ListNode(value, this._head);
     this._head = newNode;
 
     return this;
