@@ -59,6 +59,7 @@ EXTENSIONS = {
     "elm": "elm",
     "ts": "typescript",
     "cpp": "c++",
+    "hpp": "c++",
     "h": "c++",
     "hs": "haskell",
     "py": "python",

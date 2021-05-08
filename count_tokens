@@ -2,8 +2,7 @@
 
 echo "Linked List:"
 echo -e "    Cpp"
-echo -e "        " $(python3 lexer.py Cpp/LinkedList.h)
-echo -e "        " $(python3 lexer.py Cpp/LinkedList.cpp)
+echo -e "        " $(python3 lexer.py Cpp/LinkedList.hpp)
 echo -e "    Elm"
 echo -e "        " $(python3 lexer.py Elm/src/LinkedList.elm)
 echo -e "    Haskell"
