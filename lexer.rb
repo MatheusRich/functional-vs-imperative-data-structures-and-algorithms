@@ -24,7 +24,7 @@ puts "LinkedList.ts: #{ts_count} tokens"
 
 ts_source = File.read('./TypeScript/BinarySearchTree.ts')
 hs_source = File.read('./Haskell/BinarySearchTree.hs')
-cpp_source = File.read('./Cpp/BinarySearchTree.cpp')
+cpp_source = File.read('./Cpp/BinarySearchTree.hpp')
 elm_source = File.read('./Elm/src/BinarySearchTree.elm')
 ts_count = Rouge::Lexers::Typescript.new.lex(ts_source).filter {!(/\s/ === _1[1])}.count
 hs_count = Rouge::Lexers::Haskell.new.lex(hs_source).filter {!(/\s/ === _1[1])}.count

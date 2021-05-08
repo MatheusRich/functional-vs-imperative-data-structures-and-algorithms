@@ -1,4 +1,4 @@
-#include "BinarySearchTree.cpp"
+#include "BinarySearchTree.hpp"
 
 string assert(bool a, string msg) { return a ? msg : "Fail"; }
 string to_s(int n) { return '"' + (to_string(n)) + '"'; }

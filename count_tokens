@@ -13,8 +13,7 @@ echo -e "        " $(python3 lexer.py TypeScript/LinkedList.ts)
 echo ""
 echo "Binary Search Tree:"
 echo -e "    Cpp"
-echo -e "        " $(python3 lexer.py Cpp/BinarySearchTree.h)
-echo -e "        " $(python3 lexer.py Cpp/BinarySearchTree.cpp)
+echo -e "        " $(python3 lexer.py Cpp/BinarySearchTree.hpp)
 echo -e "    Elm"
 echo -e "        " $(python3 lexer.py Elm/src/BinarySearchTree.elm)
 echo -e "    Haskell"
