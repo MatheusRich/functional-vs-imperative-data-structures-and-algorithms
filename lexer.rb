@@ -31,6 +31,7 @@ hs_count = Rouge::Lexers::Haskell.new.lex(hs_source).filter {!(/\s/ === _1[1])}.
 cpp_count = Rouge::Lexers::Cpp.new.lex(cpp_source).filter {!(/\s/ === _1[1])}.count
 elm_count = Rouge::Lexers::Elm.new.lex(elm_source).filter {!(/\s/ === _1[1])}.count
 
+puts
 puts "BST.cpp: #{cpp_count} tokens"
 puts "BST.elm: #{elm_count} tokens"
 puts "BST.hs: #{hs_count} tokens"

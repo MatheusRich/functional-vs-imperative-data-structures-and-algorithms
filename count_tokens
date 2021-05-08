@@ -1,22 +1,12 @@
 #!/bin/bash
 
-echo "Linked List:"
-echo -e "    Cpp"
-echo -e "        " $(python3 lexer.py Cpp/LinkedList.hpp)
-echo -e "    Elm"
-echo -e "        " $(python3 lexer.py Elm/src/LinkedList.elm)
-echo -e "    Haskell"
-echo -e "        " $(python3 lexer.py Haskell/LinkedList.hs)
-echo -e "    TypeScript"
-echo -e "        " $(python3 lexer.py TypeScript/LinkedList.ts)
+echo -e "LinkedList.cpp " $(python3 lexer.py Cpp/LinkedList.hpp)
+echo -e "LinkedList.elm " $(python3 lexer.py Elm/src/LinkedList.elm)
+echo -e "LinkedList.hs " $(python3 lexer.py Haskell/LinkedList.hs)
+echo -e "LinkedList.ts " $(python3 lexer.py TypeScript/LinkedList.ts)
 
 echo ""
-echo "Binary Search Tree:"
-echo -e "    Cpp"
-echo -e "        " $(python3 lexer.py Cpp/BinarySearchTree.hpp)
-echo -e "    Elm"
-echo -e "        " $(python3 lexer.py Elm/src/BinarySearchTree.elm)
-echo -e "    Haskell"
-echo -e "        " $(python3 lexer.py Haskell/BinarySearchTree.hs)
-echo -e "    TypeScript"
-echo -e "        " $(python3 lexer.py TypeScript/BinarySearchTree.ts)
+echo -e "BST.cpp " $(python3 lexer.py Cpp/BinarySearchTree.hpp)
+echo -e "BST.elm " $(python3 lexer.py Elm/src/BinarySearchTree.elm)
+echo -e "BST.hs " $(python3 lexer.py Haskell/BinarySearchTree.hs)
+echo -e "BST.ts " $(python3 lexer.py TypeScript/BinarySearchTree.ts)
