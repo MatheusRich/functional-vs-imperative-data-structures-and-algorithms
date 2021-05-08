@@ -45,7 +45,7 @@ GRAMMARS = {
     "c++": r"""
     start : (OP | NAME | STRING | NUMBER)+
 
-    OP : /==|!=|<=|>=|&&|->|\#include|\#define|[()[\]{}:,<>+*\/\-;|=\.!?]/
+    OP : /==|!=|<=|>=|&&|->|\#include|\#define|[()[\]{}:,<>+*\/\-;|=\.!?&]/
     NAME : /(?!\d)[\w_]+/
     STRING : /"[^"\n]*"|'[^'\n]*'|`[^`\n]*`/
     NUMBER : /\d+(\.\d+)?([eE][+-]?\d+)?/
