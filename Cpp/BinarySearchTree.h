@@ -10,7 +10,7 @@ public:
   TreeNode<T> *_right;
 
   TreeNode(T value);
-  T find(bool (*fn)(T));
+  T *find(bool (*fn)(T));
   bool isEmpty();
   int depth();
   void push(T value);
@@ -27,7 +27,7 @@ private:
 public:
   BinarySearchTree();
 
-  T find(bool (*fn)(T));
+  T* find(bool (*fn)(T));
   bool isEmpty();
   int depth();
   void push(T value);

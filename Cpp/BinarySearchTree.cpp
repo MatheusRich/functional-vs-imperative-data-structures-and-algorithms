@@ -1,5 +1,4 @@
 #include "BinarySearchTree.h"
-#define ERROR -9999999
 
 template <typename T>
 TreeNode<T>::TreeNode(T value) {
@@ -56,16 +55,16 @@ TreeNode<U>* TreeNode<T>::map(U (*fn)(T)) {
 }
 
 template <typename T>
-T TreeNode<T>::find(bool (*fn)(T)) {
-  if (fn(_value)) return _value;
+T* TreeNode<T>::find(bool (*fn)(T)) {
+  if (fn(_value)) return &_value;
 
-  int leftFind = _left ? _left->find(fn) : ERROR;
-  if (leftFind != ERROR) return leftFind;
+  auto leftFind = _left ? _left->find(fn) : nullptr;
+  if (leftFind) return leftFind;
 
-  int rightFind = _right ? _right->find(fn) : ERROR;
-  if (rightFind != ERROR) return rightFind;
+  auto rightFind = _right ? _right->find(fn) : nullptr;
+  if (rightFind) return rightFind;
 
-  return ERROR;
+  return nullptr;
 }
 
 template <typename T>
@@ -112,8 +111,8 @@ BinarySearchTree<U>* BinarySearchTree<T>::map(U (*fn)(T)) {
 }
 
 template <typename T>
-T BinarySearchTree<T>::find(bool (*fn)(T)) {
-  if (!_root) return ERROR;
+T* BinarySearchTree<T>::find(bool (*fn)(T)) {
+  if (!_root) return nullptr;
 
   return _root->find(fn);
 }

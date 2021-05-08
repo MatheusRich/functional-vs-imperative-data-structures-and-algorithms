@@ -16,5 +16,5 @@ int main() {
   bst.push(5);
   cout << assert(!bst.isEmpty(), "It is not empty") << endl;
   cout << "Depth is " << bst.depth() << endl;
-  cout << "First negative number is " << bst.find(is_negative) << endl;
+  cout << "First negative number is " << *bst.find(is_negative) << endl;
 }
