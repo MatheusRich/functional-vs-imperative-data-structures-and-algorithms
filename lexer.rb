@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-require 'bundler/inline'
+require "bundler/inline"
 
 gemfile do
-  source 'http://rubygems.org'
+  ruby "2.7.2"
+  source "http://rubygems.org"
 
-  gem 'rouge'
+  gem "rouge"
 end
 
 TYPESCRIPT_LEXER = Rouge::Lexers::Typescript.new
@@ -13,14 +14,14 @@ HASKELL_LEXER = Rouge::Lexers::Haskell.new
 CPP_LEXER = Rouge::Lexers::Cpp.new
 ELM_LEXER = Rouge::Lexers::Elm.new
 
-linked_list_ts = File.read('./TypeScript/LinkedList.ts')
-linked_list_hs = File.read('./Haskell/LinkedList.hs')
-linked_list_cpp = File.read('./Cpp/LinkedList.hpp')
-linked_list_elm = File.read('./Elm/src/LinkedList.elm')
-bst_ts = File.read('./TypeScript/BinarySearchTree.ts')
-bst_hs = File.read('./Haskell/BinarySearchTree.hs')
-bst_cpp = File.read('./Cpp/BinarySearchTree.hpp')
-bst_elm = File.read('./Elm/src/BinarySearchTree.elm')
+linked_list_ts = File.read("./TypeScript/LinkedList.ts")
+linked_list_hs = File.read("./Haskell/LinkedList.hs")
+linked_list_cpp = File.read("./Cpp/LinkedList.hpp")
+linked_list_elm = File.read("./Elm/src/LinkedList.elm")
+bst_ts = File.read("./TypeScript/BinarySearchTree.ts")
+bst_hs = File.read("./Haskell/BinarySearchTree.hs")
+bst_cpp = File.read("./Cpp/BinarySearchTree.hpp")
+bst_elm = File.read("./Elm/src/BinarySearchTree.elm")
 
 ll_ts_count = TYPESCRIPT_LEXER.lex(linked_list_ts).filter {!(/\s/ === _1[1])}.count
 ll_hs_count = HASKELL_LEXER.lex(linked_list_hs).filter {!(/\s/ === _1[1])}.count
