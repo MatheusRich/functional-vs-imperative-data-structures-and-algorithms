@@ -27,7 +27,7 @@ export class LinkedList<T> {
 
     let newList = new LinkedList<any>();
 
-    let currentNode = this.head();
+    let currentNode = this._head;
     while (currentNode) {
       newList.push(fn(currentNode.value));
       currentNode = currentNode.next;
@@ -40,7 +40,7 @@ export class LinkedList<T> {
     if (!this.head()) return new LinkedList<T>();
 
     let newList = new LinkedList<T>();
-    let currentNode = this.head();
+    let currentNode = this._head;
     while (currentNode) {
       if (fn(currentNode.value)) newList.push(currentNode.value);
       currentNode = currentNode.next;
@@ -52,7 +52,7 @@ export class LinkedList<T> {
   reduce(fn: (a: T, b: T) => T, acc: T): T {
     if (!this.head()) return acc;
 
-    let currentNode = this.head();
+    let currentNode = this._head;
     while (currentNode) {
       acc = fn(currentNode.value, acc);
       currentNode = currentNode.next;
@@ -73,8 +73,8 @@ export class LinkedList<T> {
     return reversed;
   }
 
-  head(): LinkedListNode<T> | null {
-    return this._head;
+  head(): T | null {
+    return this._head?.value || null;
   }
 
   tail(): LinkedList<T> {
@@ -83,7 +83,7 @@ export class LinkedList<T> {
     return new LinkedList<T>(this._head.next);
   }
 
-  index(index: number): LinkedListNode<T> | null {
+  index(index: number): T | null {
     if (index < 0 || index >= this.length()) return null;
 
     let currentIndex: number = 0;
@@ -94,16 +94,16 @@ export class LinkedList<T> {
       currentIndex++;
     }
 
-    return currentNode;
+    return currentNode?.value || null;
   }
 
-  last(): LinkedListNode<T> | null {
+  last(): T | null {
     let currentNode = this._head;
     while (currentNode && currentNode.next) {
       currentNode = currentNode.next;
     }
 
-    return currentNode;
+    return currentNode?.value || null;
   }
 
   isEmpty(): boolean {
@@ -114,7 +114,7 @@ export class LinkedList<T> {
     if (!this.head()) return 0;
 
     let length = 0;
-    let currentNode = this.head();
+    let currentNode = this._head;
     while (currentNode) {
       length++;
       currentNode = currentNode.next;
@@ -134,8 +134,8 @@ export class LinkedList<T> {
   }
 
   merge(left: LinkedList<T>, right: LinkedList<T>): LinkedList<T> {
-    let leftNode = left.head();
-    let rightNode = right.head();
+    let leftNode = left._head;
+    let rightNode = right._head;
     let newList = new LinkedList<T>();
 
     while (leftNode && rightNode) {
@@ -167,7 +167,7 @@ export class LinkedList<T> {
     let newList = new LinkedList<T>();
     if (n === 0) return newList;
 
-    let node = this.head();
+    let node = this._head;
     if (!node) return newList;
 
     for (let i = 0; i < n; i++) {
@@ -184,7 +184,7 @@ export class LinkedList<T> {
     let newList = new LinkedList<T>();
     if (n === this.length()) return newList;
 
-    let node = this.head();
+    let node = this._head;
     if (!node) return newList;
 
     for (let i = 0; i < n; i++) {
