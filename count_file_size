@@ -11,12 +11,14 @@ def count_zipped_file_size(path=nil)
   zipped_size
 end
 
-puts "LinkedList.cpp #{count_zipped_file_size("Cpp/LinkedList.hpp")} bytes"
-puts "LinkedList.elm #{count_zipped_file_size("Elm/src/LinkedList.elm")} bytes"
-puts "LinkedList.hs #{count_zipped_file_size("Haskell/LinkedList.hs")} bytes"
-puts "LinkedList.ts #{count_zipped_file_size("TypeScript/LinkedList.ts")} bytes"
+puts "Linked List"
+puts "  - Cpp #{count_zipped_file_size("Cpp/LinkedList.hpp")} bytes"
+puts "  - Elm #{count_zipped_file_size("Elm/src/LinkedList.elm")} bytes"
+puts "  - Haskell #{count_zipped_file_size("Haskell/LinkedList.hs")} bytes"
+puts "  - TypeScript #{count_zipped_file_size("TypeScript/LinkedList.ts")} bytes"
 puts
-puts "BinarySearchTree.cpp #{count_zipped_file_size("Cpp/BinarySearchTree.hpp")} bytes"
-puts "BinarySearchTree.elm #{count_zipped_file_size("Elm/src/BinarySearchTree.elm")} bytes"
-puts "BinarySearchTree.hs #{count_zipped_file_size("Haskell/BinarySearchTree.hs")} bytes"
-puts "BinarySearchTree.ts #{count_zipped_file_size("TypeScript/BinarySearchTree.ts")} bytes"
+puts "Binary Search Tree"
+puts "  - Cpp: #{count_zipped_file_size("Cpp/BinarySearchTree.hpp")} bytes"
+puts "  - Elm: #{count_zipped_file_size("Elm/src/BinarySearchTree.elm")} bytes"
+puts "  - Haskell: #{count_zipped_file_size("Haskell/BinarySearchTree.hs")} bytes"
+puts "  - TypeScript: #{count_zipped_file_size("TypeScript/BinarySearchTree.ts")} bytes"
