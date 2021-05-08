@@ -10,7 +10,7 @@ string listToString(LinkedList<T> list) {
   stringstream ss;
 
   auto current = list._head;
-  while (current != nullptr) {
+  while (current) {
     ss << current->value << " -> ";
     current = current->next;
   }
