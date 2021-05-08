@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-def count_zipped_file_size(path=nil)
+def count_zipped_file_size(path)
   system "rm temp.zip 2>/dev/null"
   system "zip -9 temp.zip #{path} > /dev/null"
   original_size = `wc -c < #{path}`.chomp
@@ -11,14 +11,31 @@ def count_zipped_file_size(path=nil)
   zipped_size
 end
 
+def count_lines(path)
+  `wc -l < #{path}`.chomp
+end
+
+puts "== ZIPPED FILE SIZE =="
 puts "Linked List"
 puts "  - Cpp: #{count_zipped_file_size("Cpp/LinkedList.hpp")} bytes"
 puts "  - Elm: #{count_zipped_file_size("Elm/src/LinkedList.elm")} bytes"
 puts "  - Haskell: #{count_zipped_file_size("Haskell/LinkedList.hs")} bytes"
 puts "  - TypeScript: #{count_zipped_file_size("TypeScript/LinkedList.ts")} bytes"
-puts
 puts "Binary Search Tree"
 puts "  - Cpp: #{count_zipped_file_size("Cpp/BinarySearchTree.hpp")} bytes"
 puts "  - Elm: #{count_zipped_file_size("Elm/src/BinarySearchTree.elm")} bytes"
 puts "  - Haskell: #{count_zipped_file_size("Haskell/BinarySearchTree.hs")} bytes"
 puts "  - TypeScript: #{count_zipped_file_size("TypeScript/BinarySearchTree.ts")} bytes"
+
+puts
+puts "== LINES OF CODE =="
+puts "Linked List"
+puts "  - Cpp: #{count_lines("Cpp/LinkedList.hpp")} lines"
+puts "  - Elm: #{count_lines("Elm/src/LinkedList.elm")} lines"
+puts "  - Haskell: #{count_lines("Haskell/LinkedList.hs")} lines"
+puts "  - TypeScript: #{count_lines("TypeScript/LinkedList.ts")} lines"
+puts "Binary Search Tree"
+puts "  - Cpp: #{count_lines("Cpp/BinarySearchTree.hpp")} lines"
+puts "  - Elm: #{count_lines("Elm/src/BinarySearchTree.elm")} lines"
+puts "  - Haskell: #{count_lines("Haskell/BinarySearchTree.hs")} lines"
+puts "  - TypeScript: #{count_lines("TypeScript/BinarySearchTree.ts")} lines"
