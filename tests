@@ -2,7 +2,11 @@
 
 require "test/unit"
 
-LANGUAGES = Dir.glob('*').filter { |f| File.directory?(f) && !f.end_with?("benchmark") }.sort!.freeze
+LANGUAGES = if ARGV.empty?
+              Dir.glob('*').filter { |f| File.directory?(f) && !f.end_with?("benchmark") }.sort!.freeze
+            else
+              ARGV
+            end
 
 LINKED_LIST_EXPECTED_OUTPUT = <<~OUTPUT
   Creating a new linked list of integers
