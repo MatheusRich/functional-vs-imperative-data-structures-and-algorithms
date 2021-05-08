@@ -1,12 +1,12 @@
-class BSTNode<T> {
+class TreeNode<T> {
   value: T;
-  left: BSTNode<T> | null;
-  right: BSTNode<T> | null;
+  left: TreeNode<T> | null;
+  right: TreeNode<T> | null;
 
-  constructor(value: T, left: BSTNode<T> | null = null, right: BSTNode<T> | null = null) {
+  constructor(value: T) {
     this.value = value;
-    this.left = left;
-    this.right = right;
+    this.left = null;
+    this.right = null;
   }
 
   depth(): number {
@@ -16,19 +16,13 @@ class BSTNode<T> {
     return 1 + Math.max(leftDepth, rightDepth);
   }
 
-  push(value: T): BSTNode<T> {
+  push(value: T): TreeNode<T> {
     if (value < this.value) {
-      if (this.left === null) {
-        this.left = new BSTNode(value);
-      } else {
-        this.left.push(value);
-      }
+      if (this.left === null) this.left = new TreeNode(value);
+      else this.left.push(value);
     } else if (value > this.value) {
-      if (this.right === null) {
-        this.right = new BSTNode(value);
-      } else {
-        this.right.push(value);
-      }
+      if (this.right === null) this.right = new TreeNode(value);
+      else this.right.push(value);
     }
 
     return this;
@@ -58,8 +52,8 @@ class BSTNode<T> {
     return true;
   }
 
-  map(fn: (value: T) => any): BSTNode<any> {
-    let newNode = new BSTNode(fn(this.value));
+  map(fn: (value: T) => any): TreeNode<any> {
+    let newNode = new TreeNode(fn(this.value));
 
     if (this.left) newNode.left = this.left.map(fn);
     if (this.right) newNode.right = this.right.map(fn);
@@ -69,7 +63,7 @@ class BSTNode<T> {
 }
 
 export class BinarySearchTree<T> {
-  root: BSTNode<T> | null;
+  root: TreeNode<T> | null;
 
   constructor() {
     this.root = null;
@@ -86,7 +80,7 @@ export class BinarySearchTree<T> {
   }
 
   push(value: T): BinarySearchTree<T> {
-    if (!this.root) this.root = new BSTNode(value);
+    if (!this.root) this.root = new TreeNode(value);
     else this.root.push(value);
 
     return this;

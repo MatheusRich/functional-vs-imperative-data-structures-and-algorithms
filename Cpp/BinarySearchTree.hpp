@@ -15,19 +15,6 @@ public:
     this->_right = nullptr;
   };
 
-  T *find(bool (*fn)(T)) {
-    if (fn(_value)) return &_value;
-
-    auto leftFind = _left ? _left->find(fn) : nullptr;
-    if (leftFind) return leftFind;
-
-    auto rightFind = _right ? _right->find(fn) : nullptr;
-    if (rightFind) return rightFind;
-
-    return nullptr;
-  };
-
-  bool isEmpty();
   int depth() {
     int leftDepth = !_left ? 0 : _left->depth();
     int rightDepth = !_right ? 0 : _right->depth();
@@ -35,7 +22,7 @@ public:
     return 1 + max(leftDepth, rightDepth);
   };
 
-  void push(T value) {
+  TreeNode<T> *push(T value) {
     if (value < _value) {
       if (!_left)
         _left = new TreeNode(value);
@@ -47,6 +34,20 @@ public:
       else
         _right->push(value);
     }
+
+    return this;
+  };
+
+  T *find(bool (*fn)(T)) {
+    if (fn(_value)) return &_value;
+
+    auto leftFind = _left ? _left->find(fn) : nullptr;
+    if (leftFind) return leftFind;
+
+    auto rightFind = _right ? _right->find(fn) : nullptr;
+    if (rightFind) return rightFind;
+
+    return nullptr;
   };
 
   bool contains(T value) {
@@ -80,12 +81,6 @@ private:
 public:
   BinarySearchTree() { _root = nullptr; };
 
-  T *find(bool (*fn)(T)) {
-    if (!_root) return nullptr;
-
-    return _root->find(fn);
-  };
-
   bool isEmpty() { return !_root; };
 
   int depth() {
@@ -94,11 +89,19 @@ public:
     return _root->depth();
   };
 
-  void push(T value) {
+  BinarySearchTree<T>* push(T value) {
     if (!_root)
       _root = new TreeNode<T>(value);
     else
       _root->push(value);
+
+    return this;
+  };
+
+  T *find(bool (*fn)(T)) {
+    if (!_root) return nullptr;
+
+    return _root->find(fn);
   };
 
   bool contains(T value) {
