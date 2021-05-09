@@ -65,6 +65,9 @@ reduce _ acc Empty = acc
 reduce fn acc (Value listHead listTail) =
   reduce fn (fn listHead acc) (listTail)
 
+-- TODO: Rewrite using the following:
+--       https://stackoverflow.com/questions/37082925/haskell-merge-sort/52896140
+--       https://stackoverflow.com/questions/37082925/haskell-merge-sort/52896140
 mergeSort :: (Ord a) => LinkedList a -> LinkedList a
 mergeSort Empty = Empty
 mergeSort (Value a Empty) = (Value a Empty)
