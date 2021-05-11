@@ -40,17 +40,16 @@ bstFromList list =
             BST.Node mid (bstFromList half0) (bstFromList half1)
 
 
-containsSuite tree1 tree2 tree3 tree4 tree5 =
+containsSuite tree1 tree2 tree3 tree4 =
     Benchmark.describe "Contains"
         [ Benchmark.benchmark "with 10 elements" (\_ -> BST.contains 6 tree1)
         , Benchmark.benchmark "with 100 elements" (\_ -> BST.contains 51 tree2)
         , Benchmark.benchmark "with 1 000 elements" (\_ -> BST.contains 501 tree3)
         , Benchmark.benchmark "with 10 000 elements" (\_ -> BST.contains 5001 tree4)
-        , Benchmark.benchmark "with 50 000 elements" (\_ -> BST.contains 25001 tree5)
         ]
 
 
-mapSuite tree1 tree2 tree3 tree4 tree5 =
+mapSuite tree1 tree2 tree3 tree4 =
     let
         doubleN x =
             x * 2
@@ -60,7 +59,6 @@ mapSuite tree1 tree2 tree3 tree4 tree5 =
         , Benchmark.benchmark "with 100 elements" (\_ -> BST.map doubleN tree2)
         , Benchmark.benchmark "with 1 000 elements" (\_ -> BST.map doubleN tree3)
         , Benchmark.benchmark "with 10 000 elements" (\_ -> BST.map doubleN tree4)
-        , Benchmark.benchmark "with 50 000 elements" (\_ -> BST.map doubleN tree5)
         ]
 
 
@@ -78,13 +76,9 @@ main =
 
         tree4 =
             bstFromList (List.range 1 10000)
-
-        tree5 =
-            bstFromList (List.range 1 50000)
     in
-    -- Debug.log (Debug.toString (tree1))
     program <|
         Benchmark.describe "Binary Search Tree"
-            [ containsSuite tree1 tree2 tree3 tree4 tree5
-            , mapSuite tree1 tree2 tree3 tree4 tree5
+            [ containsSuite tree1 tree2 tree3 tree4
+            , mapSuite tree1 tree2 tree3 tree4
             ]
