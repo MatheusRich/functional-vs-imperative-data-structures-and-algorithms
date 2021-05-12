@@ -1,11 +1,10 @@
 module BinarySearchTree where
 
-import           Prelude                 hiding ( map )
+import Prelude hiding ( map )
 
 data BinarySearchTree a
   = Node a (BinarySearchTree a) (BinarySearchTree a)
   | Empty
-  deriving (Show, Eq)
 
 new :: a -> BinarySearchTree a
 new value = Node value Empty Empty
