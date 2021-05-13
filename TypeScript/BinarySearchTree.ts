@@ -31,10 +31,10 @@ class TreeNode<T> {
   find(fn: (value: T) => boolean): T | null {
     if (fn(this.value)) return this.value
 
-    let leftFind = this.left ? this.left.find(fn) : null
+    let leftFind = this.left?.find(fn) || null
     if (leftFind) return leftFind
 
-    let rightFind = this.right ? this.right.find(fn) : null
+    let rightFind = this.right?.find(fn) || null
     if (rightFind) return rightFind
 
     return null

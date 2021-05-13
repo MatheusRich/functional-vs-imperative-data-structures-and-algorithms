@@ -5,6 +5,7 @@ import           Control.DeepSeq
 import           Criterion.Main
 import qualified BinarySearchTree as BST
 
+deriving instance Show a => Show (BST.BinarySearchTree a)
 deriving instance Generic (BST.BinarySearchTree a)
 deriving instance NFData a => NFData (BST.BinarySearchTree a)
 
@@ -50,10 +51,11 @@ benchmark tree1 tree2 tree3 tree4 tree5 tree6 = defaultMain
     ]
   ]
 
-main = benchmark tree1 tree2 tree3 tree4 tree5 tree6
-  where
-  -- putStrLn (show (isBalanced (tree1)))
+main = do
   -- putStrLn (show (tree1))
+  -- putStrLn (show (isBalanced (tree1)))
+  benchmark tree1 tree2 tree3 tree4 tree5 tree6
+  where
     tree1 = (bstFromList [1 .. 10])
     tree2 = (bstFromList [1 .. 100])
     tree3 = (bstFromList [1 .. 1000])

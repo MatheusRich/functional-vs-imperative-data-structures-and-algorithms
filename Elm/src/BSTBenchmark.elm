@@ -14,7 +14,7 @@ bstFromList : List Int -> BST.BinarySearchTree Int
 bstFromList list =
     let
         ( half0, half2 ) =
-            splitAt ((List.length list // 2) - 1) list
+            splitAt (List.length list // 2) list
 
         half1 =
             case List.tail half2 of
@@ -40,16 +40,17 @@ bstFromList list =
             BST.Node mid (bstFromList half0) (bstFromList half1)
 
 
-containsSuite tree1 tree2 tree3 tree4 =
+containsSuite tree1 tree2 tree3 tree4 tree5 =
     Benchmark.describe "Contains"
-        [ Benchmark.benchmark "with 10 elements" (\_ -> BST.contains 6 tree1)
-        , Benchmark.benchmark "with 100 elements" (\_ -> BST.contains 51 tree2)
-        , Benchmark.benchmark "with 1 000 elements" (\_ -> BST.contains 501 tree3)
-        , Benchmark.benchmark "with 10 000 elements" (\_ -> BST.contains 5001 tree4)
+        [ Benchmark.benchmark "with 10 elements" (\_ -> BST.contains 10 tree1)
+        , Benchmark.benchmark "with 100 elements" (\_ -> BST.contains 100 tree2)
+        , Benchmark.benchmark "with 1 000 elements" (\_ -> BST.contains 1000 tree3)
+        , Benchmark.benchmark "with 10 000 elements" (\_ -> BST.contains 10000 tree4)
+        , Benchmark.benchmark "with 100 000 elements" (\_ -> BST.contains 100000 tree5)
         ]
 
 
-mapSuite tree1 tree2 tree3 tree4 =
+mapSuite tree1 tree2 tree3 tree4 tree5 =
     let
         doubleN x =
             x * 2
@@ -59,6 +60,7 @@ mapSuite tree1 tree2 tree3 tree4 =
         , Benchmark.benchmark "with 100 elements" (\_ -> BST.map doubleN tree2)
         , Benchmark.benchmark "with 1 000 elements" (\_ -> BST.map doubleN tree3)
         , Benchmark.benchmark "with 10 000 elements" (\_ -> BST.map doubleN tree4)
+        , Benchmark.benchmark "with 100 000 elements" (\_ -> BST.map doubleN tree5)
         ]
 
 
@@ -76,9 +78,11 @@ main =
 
         tree4 =
             bstFromList (List.range 1 10000)
+        tree5 =
+            bstFromList (List.range 1 100000)
     in
     program <|
         Benchmark.describe "Binary Search Tree"
-            [ containsSuite tree1 tree2 tree3 tree4
-            , mapSuite tree1 tree2 tree3 tree4
+            [ containsSuite tree1 tree2 tree3 tree4 tree5
+            , mapSuite tree1 tree2 tree3 tree4 tree5
             ]
