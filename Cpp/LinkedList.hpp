@@ -121,9 +121,11 @@ public:
     return length;
   };
 
-  void push(T value) {
+  LinkedList<T> *push(T value) {
     auto tmp = new ListNode<T>(value, _head);
     _head = tmp;
+
+    return this;
   };
 
   LinkedList<T> mergeSort() {

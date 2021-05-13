@@ -26,11 +26,7 @@ int main() {
   auto l = LinkedList<int>();
   cout << assert(l.isEmpty(), "It is empty") << endl;
   cout << "Pushing 3, 1, 4, 1, and 5" << endl;
-  l.push(3);
-  l.push(1);
-  l.push(4);
-  l.push(1);
-  l.push(5);
+  l.push(3)->push(1)->push(4)->push(1)->push(5);
   cout << assert(!l.isEmpty(), "It is not empty") << endl;
   cout << "Length is " << l.length() << endl;
   cout << "List is " << listToString(l) << endl;
