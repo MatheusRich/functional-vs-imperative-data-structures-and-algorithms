@@ -89,7 +89,7 @@ public:
     return _root->depth();
   };
 
-  BinarySearchTree<T>* push(T value) {
+  BinarySearchTree<T> *push(T value) {
     if (!_root)
       _root = new TreeNode<T>(value);
     else
