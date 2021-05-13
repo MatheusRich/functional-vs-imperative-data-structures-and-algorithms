@@ -40,9 +40,6 @@ static void BM_SortList5(benchmark::State& state) {
 static void BM_SortList6(benchmark::State& state) {
   for (auto _ : state) list6.mergeSort();
 }
-static void BM_SortList7(benchmark::State& state) {
-  for (auto _ : state) list7.mergeSort();
-}
 
 static void BM_FilterList1(benchmark::State& state) {
   for (auto _ : state) list1.filter(is_odd);
