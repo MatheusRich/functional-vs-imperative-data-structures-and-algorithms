@@ -1,35 +1,8 @@
-# Data Structures
+# Data Structures and Algorithms: Comparison between Functional and Imperative Approaches
 
-- [x] LinkedList
+Benchmarks between functional and imperative implementations of basic data structures and algorithms.
 
-  - [x] head
-  - [x] tail
-  - [x] index
-  - [x] isEmpty
-  - [x] last
-  - [x] length
-  - [x] push
-  - [x] reverse
-  - [x] toString
-
-- [x] BST
-  - [x] contains
-  - [x] map
-  - [x] depth
-  - [x] find
-  - [x] isEmpty
-  - [x] push
-
-# Algorithms
-
-- [x] MergeSort
-- [x] Filter
-- [x] Map
-- [x] Reduce
-
-# Tools
-
-## Languages
+## Tools
 
 ### Elm
 
@@ -39,6 +12,10 @@
 
 **Compile command:** `elm make --optimize input.elm output.js`
 
+**Formatter:** [Elm-format](https://github.com/avh4/elm-format)
+
+**Benchmark:** [Elm-explorations' Benchmark](https://github.com/elm-explorations/benchmark)
+
 ### Typescript
 
 **Version:** 4.2.3
@@ -47,11 +24,19 @@
 
 **Compile command:** `tsc input.ts`
 
+**Formatter:** [Prettier](https://prettier.io/)
+
+**Benchmark:** [Kelonio](https://github.com/mtkennerly/kelonio)
+
 ### Haskell
 
 **Version:** The Glorious Glasgow Haskell Compilation System, version 8.0.2
 
 **Compile command:** `ghc -O input.hs`
+
+**Formatter:** [Brittany](https://hackage.haskell.org/package/brittany)
+
+**Benchmark:** [Criterion](http://www.serpentine.com/criterion/)
 
 ### C++
 
@@ -59,40 +44,6 @@
 
 **Compile command:** `g++ -std=c++11 input.cpp`
 
-## Benchmark tools
+**Formatter:** [VsCode's formatter with Google config](https://code.visualstudio.com/)
 
-### Haskell
-
-- http://www.serpentine.com/criterion/
-
-### Elm
-
-- https://github.com/elm-explorations/benchmark
-
-### C++
-
-- https://github.com/google/benchmark
-
-### TypeScript
-
-- https://github.com/mtkennerly/kelonio
-- https://www.npmjs.com/package/benchmark
-- https://github.com/bestiejs/benchmark.js/
-
-## Formatters
-
-### Haskell
-
-- https://hexagoxel.de/brittany/
-
-### Elm
-
-- elm-format
-
-### C++
-
-- vscode
-
-### TypeScript
-
-- prettier
+**Benchmark:** [Google's Benchmark](https://github.com/google/benchmark)
