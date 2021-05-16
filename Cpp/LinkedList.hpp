@@ -94,6 +94,26 @@ public:
     return newList.reverse();
   };
 
+  LinkedList<T> *filter2(bool (*fn)(T)) {
+    if (!_head) return this;
+
+    auto currentNode = _head;
+    auto previousNode = _head;
+    while (currentNode) {
+      if (!fn(currentNode->value)) {
+        if (currentNode == _head)
+          _head = currentNode->next;
+        else
+          previousNode->next = currentNode->next;
+      }
+
+      previousNode = currentNode;
+      currentNode = currentNode->next;
+    }
+
+    return this;
+  };
+
   T reduce(T (*fn)(T, T), T acc) {
     if (!_head) return acc;
 

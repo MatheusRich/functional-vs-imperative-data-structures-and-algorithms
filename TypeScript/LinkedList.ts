@@ -49,6 +49,26 @@ export class LinkedList<T> {
     return newList.reverse()
   }
 
+  filter2(fn: (a: T) => boolean): LinkedList<T> {
+    if (!this._head) return this
+
+    let currentNode: ListNode<T> | null = this._head;
+    let previousNode = this._head
+    while (currentNode) {
+      if (!fn(currentNode.value)) {
+        if (currentNode == this._head)
+          this._head = currentNode.next
+        else
+          previousNode.next = currentNode.next
+      }
+
+      previousNode = currentNode
+      currentNode = currentNode.next
+    }
+
+    return this
+  }
+
   reduce(fn: (a: T, b: T) => T, acc: T): T {
     if (!this.head()) return acc
 

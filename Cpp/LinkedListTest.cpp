@@ -24,9 +24,11 @@ string listToString(LinkedList<T> list) {
 int main() {
   cout << "Creating a new linked list of integers" << endl;
   auto l = LinkedList<int>();
+  auto l2 = LinkedList<int>();
   cout << assert(l.isEmpty(), "It is empty") << endl;
   cout << "Pushing 3, 1, 4, 1, and 5" << endl;
   l.push(3)->push(1)->push(4)->push(1)->push(5);
+  l2.push(3)->push(1)->push(4)->push(1)->push(5);
   cout << assert(!l.isEmpty(), "It is not empty") << endl;
   cout << "Length is " << l.length() << endl;
   cout << "List is " << listToString(l) << endl;
@@ -36,7 +38,7 @@ int main() {
   cout << "Last is " << *l.last() << endl;
   cout << "Reversed list is " << listToString(l.reverse()) << endl;
   cout << "List as string is " << listToString(l.map(to_s)) << endl;
-  cout << "List without even numbers is " << listToString(l.filter(is_odd))
+  cout << "List without even numbers is " << listToString(l2.filter(is_odd))
        << endl;
   cout << "Sum of all list elements is " << l.reduce(sum, 0) << endl;
   cout << "Sorted list is " << listToString(l.mergeSort()) << endl;
