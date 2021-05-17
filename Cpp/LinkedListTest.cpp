@@ -38,8 +38,7 @@ int main() {
   cout << "Last is " << *l.last() << endl;
   cout << "Reversed list is " << listToString(l.reverse()) << endl;
   cout << "List as string is " << listToString(l.map(to_s)) << endl;
-  cout << "List without even numbers is " << listToString(l2.filter(is_odd))
-       << endl;
+  cout << "List without even numbers is " << listToString(*l2.filter(is_odd)) << endl;
   cout << "Sum of all list elements is " << l.reduce(sum, 0) << endl;
   cout << "Sorted list is " << listToString(l.mergeSort()) << endl;
 }

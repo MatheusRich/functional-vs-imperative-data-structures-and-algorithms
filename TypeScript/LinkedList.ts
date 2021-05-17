@@ -37,19 +37,6 @@ export class LinkedList<T> {
   }
 
   filter(fn: (a: T) => boolean): LinkedList<T> {
-    if (!this.head()) return new LinkedList<T>()
-
-    let newList = new LinkedList<T>()
-    let currentNode = this._head
-    while (currentNode) {
-      if (fn(currentNode.value)) newList.push(currentNode.value)
-      currentNode = currentNode.next
-    }
-
-    return newList.reverse()
-  }
-
-  filter2(fn: (a: T) => boolean): LinkedList<T> {
     if (!this._head) return this
 
     let currentNode: ListNode<T> | null = this._head;

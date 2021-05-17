@@ -42,22 +42,22 @@ static void BM_SortList6(benchmark::State& state) {
 }
 
 static void BM_FilterList1(benchmark::State& state) {
-  for (auto _ : state) list1.filter2(is_odd);
+  for (auto _ : state) list1.filter(is_odd);
 }
 static void BM_FilterList2(benchmark::State& state) {
-  for (auto _ : state) list2.filter2(is_odd);
+  for (auto _ : state) list2.filter(is_odd);
 }
 static void BM_FilterList3(benchmark::State& state) {
-  for (auto _ : state) list3.filter2(is_odd);
+  for (auto _ : state) list3.filter(is_odd);
 }
 static void BM_FilterList4(benchmark::State& state) {
-  for (auto _ : state) list4.filter2(is_odd);
+  for (auto _ : state) list4.filter(is_odd);
 }
 static void BM_FilterList5(benchmark::State& state) {
-  for (auto _ : state) list5.filter2(is_odd);
+  for (auto _ : state) list5.filter(is_odd);
 }
 static void BM_FilterList6(benchmark::State& state) {
-  for (auto _ : state) list6.filter2(is_odd);
+  for (auto _ : state) list6.filter(is_odd);
 }
 
 static void BM_ReduceList1(benchmark::State& state) {
@@ -79,6 +79,20 @@ static void BM_ReduceList6(benchmark::State& state) {
   for (auto _ : state) list6.reduce(sum, 0);
 }
 
+// int main(int argc, char const *argv[])
+// {
+//   auto currentNode = list1._head;
+//   while (currentNode)
+//   {
+//     cout << currentNode->value << endl;
+//     currentNode = currentNode->next;
+//     /* code */
+//   }
+
+
+//   return 0;
+// }
+
 BENCHMARK(BM_SortList1);
 BENCHMARK(BM_SortList2);
 BENCHMARK(BM_SortList3);
@@ -98,4 +112,4 @@ BENCHMARK(BM_ReduceList4);
 BENCHMARK(BM_ReduceList5);
 BENCHMARK(BM_ReduceList6);
 
-BENCHMARK_MAIN();
+// BENCHMARK_MAIN();

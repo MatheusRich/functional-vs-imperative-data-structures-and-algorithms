@@ -80,21 +80,7 @@ public:
     return newList.reverse();
   };
 
-  LinkedList<T> filter(bool (*fn)(T)) {
-    if (!_head) return LinkedList<T>();
-
-    auto newList = LinkedList<T>();
-
-    auto currentNode = _head;
-    while (currentNode) {
-      if (fn(currentNode->value)) newList.push(currentNode->value);
-      currentNode = currentNode->next;
-    }
-
-    return newList.reverse();
-  };
-
-  LinkedList<T> *filter2(bool (*fn)(T)) {
+  LinkedList<T> *filter(bool (*fn)(T)) {
     if (!_head) return this;
 
     auto currentNode = _head;

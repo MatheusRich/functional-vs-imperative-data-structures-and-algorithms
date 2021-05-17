@@ -58,9 +58,9 @@ filter fn (Value listHead listTail)
   | fn listHead = Value listHead (filter fn listTail)
   | otherwise   = filter fn listTail
 
-reduce' :: (a -> a -> a) -> a -> LinkedList a -> a
-reduce' fn acc Empty                     = acc
-reduce' fn acc (Value listHead listTail) = seq acc' (reduce' fn acc' listTail)
+reduce :: (a -> a -> a) -> a -> LinkedList a -> a
+reduce fn acc Empty                     = acc
+reduce fn acc (Value listHead listTail) = seq acc' (reduce fn acc' listTail)
                                            where acc' = acc `fn` listHead
 
 mergeSort :: (Ord a) => LinkedList a -> LinkedList a

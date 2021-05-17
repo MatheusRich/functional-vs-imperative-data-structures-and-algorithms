@@ -26,6 +26,6 @@ console.log(`Tail length is ${list.tail().length()}`);
 console.log(`Last is ${list.last()}`);
 console.log(`Reversed list is ${toString(list.reverse())}`);
 console.log(`List as string is ${toString(list.map(i => `"${i}"`))}`);
-console.log(`List without even numbers is ${toString(list2.filter2(n => n % 2 == 1))}`);
+console.log(`List without even numbers is ${toString(list2.filter(n => n % 2 == 1))}`);
 console.log(`Sum of all list elements is ${list.reduce((a, b) => a + b, 0)}`);
 console.log(`Sorted list is ${toString(list.mergeSort())}`);
