@@ -30,5 +30,5 @@ main = do
   putStrLn ("Reversed list is " ++ listToString (LL.reverse newList))
   putStrLn ("List as string is " ++ listToString (LL.map (\x -> show x) newList))
   putStrLn ("List without even numbers is " ++ listToString (LL.filter (\x -> rem x 2 /= 0) newList))
-  putStrLn ("Sum of all list elements is " ++ show (LL.reduce (+) 0 newList))
+  putStrLn ("Sum of all list elements is " ++ show (LL.reduce' (+) 0 newList))
   putStrLn ("Sorted list is " ++ listToString (LL.mergeSort newList))
