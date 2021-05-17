@@ -27,10 +27,9 @@ push value list = Value value list
 
 index :: Integer -> LinkedList a -> Maybe a
 index 0 list = head list
-index idx list =
-  if idx < 0
-    then Nothing
-    else index (idx - 1) (tail list)
+index idx list
+  | idx < 0   = Nothing
+  | otherwise = index (idx - 1) (tail list)
 
 length :: LinkedList a -> Integer
 length list = lengthAcc list 0
@@ -55,15 +54,14 @@ map fn (Value listHead listTail) = (Value (fn listHead)) (map fn listTail)
 
 filter :: (a -> Bool) -> LinkedList a -> LinkedList a
 filter _ Empty = Empty
-filter fn (Value listHead listTail) =
-  if fn (listHead)
-    then Value listHead (filter fn listTail)
-    else filter fn listTail
+filter fn (Value listHead listTail)
+  | fn listHead = Value listHead (filter fn listTail)
+  | otherwise   = filter fn listTail
 
-reduce :: (a -> a -> a) -> a -> LinkedList a -> a
-reduce _ acc Empty = acc
-reduce fn acc (Value listHead listTail) =
-  reduce fn (fn listHead acc) (listTail)
+reduce' :: (a -> a -> a) -> a -> LinkedList a -> a
+reduce' fn acc Empty                     = acc
+reduce' fn acc (Value listHead listTail) = seq acc' (reduce' fn acc' listTail)
+                                           where acc' = acc `fn` listHead
 
 mergeSort :: (Ord a) => LinkedList a -> LinkedList a
 mergeSort Empty = Empty
@@ -76,10 +74,9 @@ mergeSort list = merge (mergeSort left) (mergeSort right)
 merge :: (Ord a) => LinkedList a -> LinkedList a -> LinkedList a
 merge left Empty = left
 merge Empty right = right
-merge (Value head1 tail1) (Value head2 tail2) =
-  if head1 < head2
-    then push head1 (merge tail1 right)
-    else push head2 (merge left tail2)
+merge (Value head1 tail1) (Value head2 tail2)
+  | head1 < head2 = push head1 (merge tail1 right)
+  | otherwise     = push head2 (merge left tail2)
     where
       left = (Value head1 tail1)
       right = (Value head2 tail2)

@@ -2,11 +2,11 @@
 
 #include "LinkedList.hpp"
 
-bool is_odd(int n) { return n % 2 == 1; }
-int sum(int a, int b) { return a + b; }
+bool is_odd(long long n) { return n % 2 == 1; }
+long long sum(long long a, long long b) { return a + b; }
 
-LinkedList<int> createList(int size) {
-  auto list = LinkedList<int>();
+LinkedList<long long> createList(int size) {
+  auto list = LinkedList<long long>();
 
   for (int i = 0; i < size; i++) {
     list.push(i + 1);
@@ -42,22 +42,22 @@ static void BM_SortList6(benchmark::State& state) {
 }
 
 static void BM_FilterList1(benchmark::State& state) {
-  for (auto _ : state) list1.filter(is_odd);
+  for (auto _ : state) list1.filter2(is_odd);
 }
 static void BM_FilterList2(benchmark::State& state) {
-  for (auto _ : state) list2.filter(is_odd);
+  for (auto _ : state) list2.filter2(is_odd);
 }
 static void BM_FilterList3(benchmark::State& state) {
-  for (auto _ : state) list3.filter(is_odd);
+  for (auto _ : state) list3.filter2(is_odd);
 }
 static void BM_FilterList4(benchmark::State& state) {
-  for (auto _ : state) list4.filter(is_odd);
+  for (auto _ : state) list4.filter2(is_odd);
 }
 static void BM_FilterList5(benchmark::State& state) {
-  for (auto _ : state) list5.filter(is_odd);
+  for (auto _ : state) list5.filter2(is_odd);
 }
 static void BM_FilterList6(benchmark::State& state) {
-  for (auto _ : state) list6.filter(is_odd);
+  for (auto _ : state) list6.filter2(is_odd);
 }
 
 static void BM_ReduceList1(benchmark::State& state) {
@@ -85,12 +85,12 @@ BENCHMARK(BM_SortList3);
 BENCHMARK(BM_SortList4);
 BENCHMARK(BM_SortList5);
 BENCHMARK(BM_SortList6);
-BENCHMARK(BM_FilterList1);
-BENCHMARK(BM_FilterList2);
-BENCHMARK(BM_FilterList3);
-BENCHMARK(BM_FilterList4);
-BENCHMARK(BM_FilterList5);
-BENCHMARK(BM_FilterList6);
+BENCHMARK(BM_FilterList1)->Iterations(1);
+BENCHMARK(BM_FilterList2)->Iterations(1);
+BENCHMARK(BM_FilterList3)->Iterations(1);
+BENCHMARK(BM_FilterList4)->Iterations(1);
+BENCHMARK(BM_FilterList5)->Iterations(1);
+BENCHMARK(BM_FilterList6)->Iterations(1);
 BENCHMARK(BM_ReduceList1);
 BENCHMARK(BM_ReduceList2);
 BENCHMARK(BM_ReduceList3);

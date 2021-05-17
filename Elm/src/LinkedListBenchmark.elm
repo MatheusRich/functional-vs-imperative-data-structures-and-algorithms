@@ -12,7 +12,7 @@ createList begin end list =
             list
 
         _ ->
-            createList (begin + 1) (end - 1) (LL.push begin list)
+            createList (begin + 1) (end - 1) (LL.push (begin + 1) list)
 
 
 isOdd x =
