@@ -26,13 +26,13 @@ Benchmarks between functional and imperative implementations of basic data struc
 
 **Formatter:** [Prettier](https://prettier.io/)
 
-**Benchmark:** [Kelonio](https://github.com/mtkennerly/kelonio)
+**Benchmark:** [Benny](https://github.com/caderek/benny)
 
 ### Haskell
 
 **Version:** The Glorious Glasgow Haskell Compilation System, version 8.0.2
 
-**Compile command:** `ghc -O input.hs`
+**Compile command:** `ghc -O2 input.hs`
 
 **Formatter:** [Brittany](https://hackage.haskell.org/package/brittany)
 
@@ -42,7 +42,7 @@ Benchmarks between functional and imperative implementations of basic data struc
 
 **Version:** g++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
 
-**Compile command:** `g++ -std=c++11 input.cpp`
+**Compile command:** `g++ -std=c++11 -O3 input.cpp`
 
 **Formatter:** [VsCode's formatter with Google config](https://code.visualstudio.com/)
 
