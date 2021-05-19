@@ -1,5 +1,6 @@
 import {LinkedList} from './LinkedList';
-const b = require('benny')
+// const b = require('benny')
+const { add, cycle, suite, complete } = require('benny');
 
 function createList(size: number): LinkedList<number> {
   let list = new LinkedList<number>();
@@ -19,67 +20,55 @@ function sum(a: number, b: number): number {
   return a + b;
 }
 
-let l1 = createList(10);
-let l2 = createList(100);
-let l3 = createList(1000);
-let l4 = createList(10000);
+const sortSuite = (...sizes: number[]) => {
+  return sizes.map((size) => {
+    return add(`${size} elements`, () => {
+      const input = createList(size)
 
-b.suite(
-  'sort',
+      return () => input.mergeSort()
+    });
+  });
+}
 
-  b.add('10', () => {
-    return () => l1.mergeSort()
-  }),
-  b.add('100', () => {
-    return () => l2.mergeSort()
-  }),
-  b.add('1000', () => {
-    return () => l3.mergeSort()
-  }),
-  b.add('10000', () => {
-    return () => l4.mergeSort()
-  }),
+const filterSuite = (...sizes: number[]) => {
+  return sizes.map((size) => {
+    return add(`${size} elements`, () => {
+      const input = createList(size)
 
-  b.cycle(),
-  b.complete(),
+      return () => input.filter(isOdd)
+    });
+  });
+}
+
+const reduceSuite = (...sizes: number[]) => {
+  return sizes.map((size) => {
+    return add(`${size} elements`, () => {
+      const input = createList(size)
+
+      return () => input.reduce(sum, 0)
+    });
+  });
+}
+
+const batches = [10, 100, 500, 1000, 2500, 5000, 7500, 10000];
+
+suite(
+  'Sort',
+  ...sortSuite(...batches),
+  cycle(),
+  complete(),
 )
 
-b.suite(
-  'reduce',
-
-  b.add('10', () => {
-    return () => l1.reduce(sum, 0)
-  }),
-  b.add('100', () => {
-    return () => l2.reduce(sum, 0)
-  }),
-  b.add('1000', () => {
-    return () => l3.reduce(sum, 0)
-  }),
-  b.add('10000', () => {
-    return () => l4.reduce(sum, 0)
-  }),
-
-  b.cycle(),
-  b.complete(),
+suite(
+  'Filter',
+  ...filterSuite(...batches),
+  cycle(),
+  complete(),
 )
 
-b.suite(
-  'filter',
-
-  b.add('10', () => {
-    return () => l1.filter(isOdd)
-  }),
-  b.add('100', () => {
-    return () => l2.filter(isOdd)
-  }),
-  b.add('1000', () => {
-    return () => l3.filter(isOdd)
-  }),
-  b.add('10000', () => {
-    return () => l4.filter(isOdd)
-  }),
-
-  b.cycle(),
-  b.complete(),
+suite(
+  'Reduce',
+  ...reduceSuite(...batches),
+  cycle(),
+  complete(),
 )
