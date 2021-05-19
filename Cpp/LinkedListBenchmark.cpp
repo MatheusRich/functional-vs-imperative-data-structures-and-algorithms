@@ -15,101 +15,57 @@ LinkedList<long long> createList(int size) {
   return list;
 }
 
-auto list1 = createList(10);
-auto list2 = createList(100);
-auto list3 = createList(1000);
-auto list4 = createList(10000);
-auto list5 = createList(100000);
-auto list6 = createList(1000000);
+static void BM_SortList(benchmark::State& state) {
+  auto size = state.range(0);
+  auto list = createList(size);
 
-static void BM_SortList1(benchmark::State& state) {
-  for (auto _ : state) list1.mergeSort();
-}
-static void BM_SortList2(benchmark::State& state) {
-  for (auto _ : state) list2.mergeSort();
-}
-static void BM_SortList3(benchmark::State& state) {
-  for (auto _ : state) list3.mergeSort();
-}
-static void BM_SortList4(benchmark::State& state) {
-  for (auto _ : state) list4.mergeSort();
-}
-static void BM_SortList5(benchmark::State& state) {
-  for (auto _ : state) list5.mergeSort();
-}
-static void BM_SortList6(benchmark::State& state) {
-  for (auto _ : state) list6.mergeSort();
+  for (auto _ : state) list.mergeSort();
 }
 
-static void BM_FilterList1(benchmark::State& state) {
-  for (auto _ : state) list1.filter(is_odd);
-}
-static void BM_FilterList2(benchmark::State& state) {
-  for (auto _ : state) list2.filter(is_odd);
-}
-static void BM_FilterList3(benchmark::State& state) {
-  for (auto _ : state) list3.filter(is_odd);
-}
-static void BM_FilterList4(benchmark::State& state) {
-  for (auto _ : state) list4.filter(is_odd);
-}
-static void BM_FilterList5(benchmark::State& state) {
-  for (auto _ : state) list5.filter(is_odd);
-}
-static void BM_FilterList6(benchmark::State& state) {
-  for (auto _ : state) list6.filter(is_odd);
+static void BM_FilterList(benchmark::State& state) {
+  auto size = state.range(0);
+  auto list = createList(size);
+  for (auto _ : state) list.filter(is_odd);
 }
 
-static void BM_ReduceList1(benchmark::State& state) {
-  for (auto _ : state) list1.reduce(sum, 0);
-}
-static void BM_ReduceList2(benchmark::State& state) {
-  for (auto _ : state) list2.reduce(sum, 0);
-}
-static void BM_ReduceList3(benchmark::State& state) {
-  for (auto _ : state) list3.reduce(sum, 0);
-}
-static void BM_ReduceList4(benchmark::State& state) {
-  for (auto _ : state) list4.reduce(sum, 0);
-}
-static void BM_ReduceList5(benchmark::State& state) {
-  for (auto _ : state) list5.reduce(sum, 0);
-}
-static void BM_ReduceList6(benchmark::State& state) {
-  for (auto _ : state) list6.reduce(sum, 0);
+static void BM_ReduceList(benchmark::State& state) {
+  auto size = state.range(0);
+  auto list = createList(size);
+  for (auto _ : state) list.reduce(sum, 0);
 }
 
-// int main(int argc, char const *argv[])
-// {
-//   auto currentNode = list1._head;
-//   while (currentNode)
-//   {
-//     cout << currentNode->value << endl;
-//     currentNode = currentNode->next;
-//     /* code */
-//   }
+BENCHMARK(BM_SortList)
+    ->Arg(10)
+    ->Arg(100)
+    ->Arg(1000)
+    ->Arg(10000)
+    ->Arg(100000)
+    ->Arg(250000)
+    ->Arg(500000)
+    ->Arg(750000)
+    ->Arg(1000000);
 
+BENCHMARK(BM_FilterList)
+    ->Arg(10)
+    ->Arg(100)
+    ->Arg(1000)
+    ->Arg(10000)
+    ->Arg(100000)
+    ->Arg(250000)
+    ->Arg(500000)
+    ->Arg(750000)
+    ->Arg(1000000)
+    ->Iterations(1);
 
-//   return 0;
-// }
+BENCHMARK(BM_ReduceList)
+    ->Arg(10)
+    ->Arg(100)
+    ->Arg(1000)
+    ->Arg(10000)
+    ->Arg(100000)
+    ->Arg(250000)
+    ->Arg(500000)
+    ->Arg(750000)
+    ->Arg(1000000);
 
-BENCHMARK(BM_SortList1);
-BENCHMARK(BM_SortList2);
-BENCHMARK(BM_SortList3);
-BENCHMARK(BM_SortList4);
-BENCHMARK(BM_SortList5);
-BENCHMARK(BM_SortList6);
-BENCHMARK(BM_FilterList1)->Iterations(1);
-BENCHMARK(BM_FilterList2)->Iterations(1);
-BENCHMARK(BM_FilterList3)->Iterations(1);
-BENCHMARK(BM_FilterList4)->Iterations(1);
-BENCHMARK(BM_FilterList5)->Iterations(1);
-BENCHMARK(BM_FilterList6)->Iterations(1);
-BENCHMARK(BM_ReduceList1);
-BENCHMARK(BM_ReduceList2);
-BENCHMARK(BM_ReduceList3);
-BENCHMARK(BM_ReduceList4);
-BENCHMARK(BM_ReduceList5);
-BENCHMARK(BM_ReduceList6);
-
-// BENCHMARK_MAIN();
+BENCHMARK_MAIN();
