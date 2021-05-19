@@ -1,12 +1,8 @@
 {
-  "dependencies": {
-    "kelonio": "^0.6.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^24.0.21",
     "@types/node": "^12.12.5",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
+    "benny": "^3.6.15",
     "typescript": "^3.6.4"
   }
 }
