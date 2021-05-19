@@ -1,5 +1,5 @@
 import {BinarySearchTree} from './BinarySearchTree';
-const { add, cycle, suite, complete } = require('benny');
+const { add, cycle, suite, complete, save } = require('benny');
 const util = require('util');
 const debug = (args: any) => console.log(util.inspect(args, false, null, true));
 
@@ -63,6 +63,7 @@ suite(
   ...containsSuite(...batches),
   cycle(),
   complete(),
+  save({file: 'BST_contains'})
 )
 
 suite(
@@ -70,4 +71,5 @@ suite(
   ...mapSuite(...batches),
   cycle(),
   complete(),
+  save({file: 'BST_map'})
 )

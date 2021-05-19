@@ -1,6 +1,5 @@
 import {LinkedList} from './LinkedList';
-// const b = require('benny')
-const { add, cycle, suite, complete } = require('benny');
+const { add, cycle, suite, complete, save } = require('benny');
 
 function createList(size: number): LinkedList<number> {
   let list = new LinkedList<number>();
@@ -57,6 +56,7 @@ suite(
   ...sortSuite(...batches),
   cycle(),
   complete(),
+  save({file: 'LL_sort'})
 )
 
 suite(
@@ -64,6 +64,7 @@ suite(
   ...filterSuite(...batches),
   cycle(),
   complete(),
+  save({file: 'LL_filter'})
 )
 
 suite(
@@ -71,4 +72,5 @@ suite(
   ...reduceSuite(...batches),
   cycle(),
   complete(),
+  save({file: 'LL_reduce'})
 )
