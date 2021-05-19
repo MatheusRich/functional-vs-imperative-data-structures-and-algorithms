@@ -1,13 +1,23 @@
 #!/usr/bin/env ruby
 
-def count_zipped_file_size(path)
-  system "rm temp.zip 2>/dev/null"
-  system "zip -9 temp.zip #{path} > /dev/null"
-  original_size = `wc -c < #{path}`.chomp
-  zipped_size = `wc -c < temp.zip`.chomp
-  system "rm temp.zip 2>/dev/null"
+require 'zlib'
 
-  puts "Original #{original_size} bytes" if !ARGV.empty?
+def zip_file(path)
+  File.read("./#{path}")
+    .then { Zlib::Deflate.deflate(_1, Zlib::BEST_COMPRESSION) }
+    .then { File.write('./temp.zip', _1) }
+end
+
+def delete_temp_zip_if_exists
+  system "rm temp.zip 2>/dev/null"
+end
+
+def count_zipped_file_size(path)
+  delete_temp_zip_if_exists
+  zip_file(path)
+  zipped_size = `wc -c < temp.zip`.chomp
+  delete_temp_zip_if_exists
+
   zipped_size
 end
 
