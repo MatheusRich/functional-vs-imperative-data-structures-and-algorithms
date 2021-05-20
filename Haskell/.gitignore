@@ -25,4 +25,5 @@ Main
 LinkedListBenchmark
 LinkedListTest
 BSTBenchmark
+benchmarks
 BSTTest

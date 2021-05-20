@@ -30,35 +30,42 @@ bstFromList list = (BST.Node mid) (bstFromList half0) (bstFromList half1)
 
 doubleN x = x * 2
 
-benchmark tree1 tree2 tree3 tree4 tree5 tree6 = defaultMain
+benchmark tree1 tree2 tree3 tree4 tree5 tree6 tree7 tree8 tree9 = defaultMain
   [ bgroup
     "BST contains"
     [ bench "10 elements" $ nf (BST.contains 10) tree1
     , bench "100 elements" $ nf (BST.contains 100) tree2
-    , bench "1 000 elements" $ nf (BST.contains 1000) tree3
-    , bench "10 000 elements" $ nf (BST.contains 10000) tree4
-    , bench "100 000 elements" $ nf (BST.contains 100000) tree5
-    , bench "1 000 000 elements" $ nf (BST.contains 1000000) tree6
+    , bench "1000 elements" $ nf (BST.contains 1000) tree3
+    , bench "10000 elements" $ nf (BST.contains 10000) tree4
+    , bench "100000 elements" $ nf (BST.contains 100000) tree5
+    , bench "250000 elements" $ nf (BST.contains 250000) tree6
+    , bench "500000 elements" $ nf (BST.contains 500000) tree7
+    , bench "750000 elements" $ nf (BST.contains 750000) tree8
+    , bench "1000000 elements" $ nf (BST.contains 1000000) tree9
     ]
   , bgroup
     "BST map"
     [ bench "10 elements" (nf (BST.map doubleN) tree1)
     , bench "100 elements" (nf (BST.map doubleN) tree2)
-    , bench "1 000 elements" (nf (BST.map doubleN) tree3)
-    , bench "10 000 elements" (nf (BST.map doubleN) tree4)
-    , bench "100 000 elements" (nf (BST.map doubleN) tree5)
-    , bench "1 000 000 elements" (nf (BST.map doubleN) tree6)
+    , bench "1000 elements" (nf (BST.map doubleN) tree3)
+    , bench "10000 elements" (nf (BST.map doubleN) tree4)
+    , bench "100000 elements" (nf (BST.map doubleN) tree5)
+    , bench "250000 elements" (nf (BST.map doubleN) tree6)
+    , bench "500000 elements" (nf (BST.map doubleN) tree7)
+    , bench "750000 elements" (nf (BST.map doubleN) tree8)
+    , bench "1000000 elements" (nf (BST.map doubleN) tree9)
     ]
   ]
 
 main = do
-  -- putStrLn (show (tree1))
-  -- putStrLn (show (isBalanced (tree1)))
-  benchmark tree1 tree2 tree3 tree4 tree5 tree6
+  benchmark tree1 tree2 tree3 tree4 tree5 tree6 tree7 tree8 tree9
   where
     tree1 = (bstFromList [1 .. 10])
     tree2 = (bstFromList [1 .. 100])
     tree3 = (bstFromList [1 .. 1000])
     tree4 = (bstFromList [1 .. 10000])
     tree5 = (bstFromList [1 .. 100000])
-    tree6 = (bstFromList [1 .. 1000000])
+    tree6 = (bstFromList [1 .. 250000])
+    tree7 = (bstFromList [1 .. 500000])
+    tree8 = (bstFromList [1 .. 750000])
+    tree9 = (bstFromList [1 .. 1000000])
